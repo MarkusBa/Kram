@@ -1,0 +1,6 @@
+PATH=${PATH}:${HOME}/bign
+# depending on which "bin" you want to give higher priority
+
+export PATH # for good measure
+export CLOJURESCRIPT_HOME=/home/markus/clojurescript
+export JAVA_OPTS="-Xms1536m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC" 
