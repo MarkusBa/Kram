@@ -122,3 +122,5 @@ export JAVA_OPTS="-Xms1536m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:P
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+exec zsh
