@@ -70,6 +70,7 @@
 ;;    (setq inferior-lisp-program "cljs-repl")
 ;;    (run-lisp))
 
-(setq inferior-lisp-program "/home/markus/clojurescript/script/browser-repl")
+;;(setq inferior-lisp-program "/home/markus/clojurescript/script/browser-repl")
+(setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")
 
 (set-variable (quote scheme-program-name) "gsi")
