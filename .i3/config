@@ -81,16 +81,16 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+#bindsym $mod+1 workspace 1
+#bindsym $mod+2 workspace 2
+#bindsym $mod+3 workspace 3
+#bindsym $mod+4 workspace 4
+#bindsym $mod+5 workspace 5
+#bindsym $mod+6 workspace 6
+#bindsym $mod+7 workspace 7
+#bindsym $mod+8 workspace 8
+#bindsym $mod+9 workspace 9
+#bindsym $mod+0 workspace 10
 
 #bindsym $mod+F1 workspace 1
 #bindsym $mod+F2 workspace 2
@@ -166,7 +166,52 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 
+bindsym $mod+t border normal
+bindsym $mod+y border 1pixel
+bindsym $mod+u border none
+
+new_window none
+
 exec_always xbindkeys 
 exec_always xmodmap ~/.Xmodmap.Neoangepasst  
 
+#exec ~/.screenlayout/dualdtop.sh			
+#exec chromium-browser					
+#exec gvim						
+#exec volumeicon							
+#exec parcellite
+#exec dropbox
+
+bindsym Mod1+1 workspace "1: firefox"
+bindsym Mod1+2 workspace "2: eclipse"
+bindsym Mod1+3 workspace "3: mail"
+bindsym Mod1+4 workspace "4: thunar"
+bindsym Mod1+5 workspace "5: emacs"
+bindsym Mod1+6 workspace "6: workbench"
+bindsym Mod1+7 workspace "7: terms"
+bindsym Mod1+8 workspace "8: web"
+bindsym Mod1+9 workspace "9: music"
+bindsym Mod1+0 workspace "10: office"
+
+## Output certain workspaces
+#workspace "1: web" output DFP3
+#workspace "2: irc" output DFP4
+#workspace "3: gvim" output DFP4
+#workspace "4: ranger" output DFP3
+#workspace "5: terms" output DFP4
+#workspace "6: mplayer" output DFP3
+#workspace "7: mail" output DFP3
+#workspace "8: firefox" output DFP3
+#workspace "9: music" output DFP3
+#workspace "10: office" output DFP4
+
+## Assign workspaces to programs
+assign [class="^Chromium-browser$" instance="^chromium-browser$"] → 1: web
+assign [class="^Gvim$" instance="^gvim$"] → 5: gvim
+assign [class="^MPlayer$" instance="^gl$"] → 6: mplayer
+assign [class="^Firefox$" instance="^Navigator$"] → 1: firefox
+assign [class="^Emacs$" instance="^emacs$"] → 5: emacs
+assign [class="^libreoffice-startcenter$" instance="^VCLSalFrame.DocumentWindow$"] 10: office
+assign [class="^Thunar$" instance="^thunar$"] 4: office
+assign [class="^Thunderbird$" instance="^Mail$"] 3: office
 
