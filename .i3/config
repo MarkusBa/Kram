@@ -211,7 +211,7 @@ assign [class="^Gvim$" instance="^gvim$"] → 5: gvim
 assign [class="^MPlayer$" instance="^gl$"] → 6: mplayer
 assign [class="^Firefox$" instance="^Navigator$"] → 1: firefox
 assign [class="^Emacs$" instance="^emacs$"] → 5: emacs
-assign [class="^libreoffice-startcenter$" instance="^VCLSalFrame.DocumentWindow$"] 10: office
-assign [class="^Thunar$" instance="^thunar$"] 4: office
-assign [class="^Thunderbird$" instance="^Mail$"] 3: office
+assign [class="^libreoffice-startcenter$" instance="^VCLSalFrame.DocumentWindow$"] → 10: office
+assign [class="^Thunar$" instance="^thunar$"] → 4: thunar
+assign [class="^Thunderbird$" instance="^Mail$"] → 3: mail
 
