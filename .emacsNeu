@@ -64,6 +64,7 @@
 (global-rainbow-delimiters-mode)
 
 (require 'paredit)
+(paredit-mode 1)
 
 (load-theme 'solarized-light t)
 
@@ -72,9 +73,9 @@
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode 
 ;;   'turn-on-haskell-indent)
 
-;;(add-to-list 'load-path "~/.emacs.d/elpa/evil-1.0.6")
-;;(require 'evil)
-;;(evil-mode 1)
+(add-to-list 'load-path "~/.emacs.d/elpa/evil-1.0.6")
+(require 'evil)
+(evil-mode 1)
 
 (tool-bar-mode 1)
 (menu-bar-mode 1)
