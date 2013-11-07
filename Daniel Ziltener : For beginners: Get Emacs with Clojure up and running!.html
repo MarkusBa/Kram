@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class='no-js' lang='en'>
+<head>
+<link href='https://d3levm2kxut31z.cloudfront.net/assets/favicon-7e6bed591eb101ee51bd9c308b42d17b.png' rel='shortcut icon' type='image/x-icon'>
+<link href="https://d3levm2kxut31z.cloudfront.net/assets/application-c826687ce18257361b80cce5f887af00.css" media="screen" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-797907-8']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+
+
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+        typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+mixpanel.init('3698c19fe4d7e94568a3b7de32667644', {
+  'track_pageview':true,
+  'debug': false,
+  'verbose': false
+});
+</script><!-- end Mixpanel -->
+
+
+<title>Daniel Ziltener : For beginners: Get Emacs with Clojure up and running!</title>
+<link href='/p/53bfpg' rel='canonical'>
+<meta content='A protip by zilti about emacs and clojure.' name='description' property='og:description'>
+<meta content='https://coderwall-assets-0.s3.amazonaws.com/uploads/user/avatar/75926/me.jpg' property='og:image'>
+<meta content='width=device-width,initial-scale=1.0,maximum-scale=1.0' name='viewport'>
+<meta content='summary' name='twitter:card'>
+<meta content='@coderwall' name='twitter:site'>
+<meta content='For beginners: Get Emacs with Clojure up and running!' name='twitter:title'>
+<meta content='https://coderwall.com/p/53bfpg' name='twitter:url'>
+<meta content='A protip by zilti about emacs and clojure.' name='twitter:description'>
+<meta content='16448365' name='twitter:creator:id'>
+
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="wKsRtK6fIFUc2JpphUkgmyxIa6QNlGPdF2GanmDD6Pc=" name="csrf-token" />
+</head>
+<body class='protip-single'>
+<header id='masthead'>
+<div class='inside-masthead cf'>
+<div class='mobile-panel cf'>
+<a class='logo' href='/'>
+<span>coderwall</span>
+</a>
+<!-- %a.notifications{:href => '/'} 3 -->
+<a class='menu-btn'></a>
+</div>
+<a class='tee-ribbon track' data-action='clicked tee' href='https://coderwall.com/team/new-relic'></a>
+<nav id='nav'>
+<ul>
+<li><a href="/">Discover</a></li>
+<li><a href="/teams">Teams</a></li>
+<li><a href="/jobs">Jobs</a></li>
+<li><a href="/signin">Sign In</a></li>
+<li><a href="/signin">Sign Up</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<div class='mobile-top'>
+<a class='new-logo' href='/'></a>
+<a class='mobile-nav-btn' id='x-mobile-toggle'></a>
+<nav class='mobile-nav' id='x-mobile-menu'>
+<ul>
+<li><a href="/">Discover</a></li>
+<li><a href="/teams">Teams</a></li>
+<li><a href="/jobs">Jobs</a></li>
+<li><a href="/signin">Sign In</a></li>
+<li><a href="/signin">Sign Up</a></li>
+</ul>
+</nav>
+</div>
+<canvas class='blur' src='https://d3levm2kxut31z.cloudfront.net/assets/locations/Switzerland-ac72b0101bdbf8cb08bc256f810d38a8.jpg'></canvas>
+<div id='x-active-preview-pane'>
+<div class='side-conversion-alert hide'>
+<p>Where developers come to connect, share, build and be inspired.</p>
+<a class='convert-signup track' data-action='view homepage' data-from='convert button on protip' href='/'>Join Coderwall</a>
+</div>
+<div class='inside cf x-protip-pane'>
+<!-- /.blur-screen -->
+<div class='cf fullpage protip-single tip-container x-protip-content' id='x-protip'>
+<aside class='tip-sidebar'>
+<div class='user-box'>
+<a class='avatar' data-action='view user profile' data-from='protip author avatar on top' data-properties='{"mode":"fullpage"}' href='/zilti'>
+<img alt="Me" class="avatar" src="https://coderwall-assets-0.s3.amazonaws.com/uploads/user/avatar/75926/me.jpg" />
+</a>
+<ul class='user-team'>
+<li class='user'>
+by
+<a class='track' data-action='view user profile' data-from='protip author name on top' data-properties='{"mode":"fullpage"}' href='/zilti'>
+Daniel Ziltener
+</a>
+</li>
+<li class='team'>
+of
+<a class='track' data-action='view team' data-from='protip author teamname on top' data-properties='{"mode":"fullpage"}' href='/team/lyrion'>
+Lyrion
+</a>
+</li>
+</ul>
+<p class='bio'>
+
+</p>
+<ul class='side-bar-list'>
+<li class='username'>
+<a class='name track' data-action='view user profile' data-from='protip author name(follow)' data-properties='{"mode":"fullpage"}' href='/zilti'>zilti</a>
+<a href="/users/zilti/follow" class="follow" data-follow-type="Users" data-method="post" data-remote="true" data-value="zilti" rel="nofollow"></a>
+</li>
+<li class='teamname'>
+<a class='name track' data-action='view team' data-from='protip teamname(follow)' data-properties='{"mode":"fullpage"}' href='/team/lyrion'>Lyrion</a>
+<a href="/teams/lyrion/follow" class="follow" data-follow-type="Teams" data-method="post" data-remote="true" data-value="lyrion" rel="nofollow"></a>
+</li>
+</ul>
+</div>
+<div class='side-btm'>
+<h3>Networks</h3>
+<ul class='side-bar-list side-bar-networks'>
+<li style='border-color:#CDE377'>
+<a class='name' href='/n/clojure'>clojure</a>
+<a href="/n/clojure/leave" class="follow clojure" data-follow-type="Networks" data-method="post" data-remote="true" data-value="clojure" rel="nofollow"></a>
+</li>
+<li style='border-color:#D7520E'>
+<a class='name' href='/n/emacs'>emacs</a>
+<a href="/n/emacs/leave" class="follow emacs" data-follow-type="Networks" data-method="post" data-remote="true" data-value="emacs" rel="nofollow"></a>
+</li>
+</ul>
+<h3>Featured team</h3>
+<a href="/team/soundcloud" class="team-box" data-action="view team jobs" data-from="job on protip" data-properties="{&quot;author's team&quot;:false,&quot;adjective&quot;:&quot;has a great engineering team&quot;,&quot;mode&quot;:&quot;fullpage&quot;}"><div class='image-top'>
+<img alt="961x477" src="http://media.getchute.com/media/dMkjOxgpo/fit/961x477" />
+</div>
+<div class='content'>
+<div class='avatar'>
+<img alt="Soundcloudd" src="https://coderwall-assets-0.s3.amazonaws.com/uploads/team/avatar/4f271947973bf000040004df/soundcloudd.jpg" />
+</div>
+<h4>SoundCloud</h4>
+<p>
+Calling all Back End Developers. SoundCloud has a great engineering team and is hiring!
+</p>
+</div>
+</a><a class='feature-jobs track' data-action='upgrade team' data-from='protip page' href='/employers'>
+feature your jobs here
+</a>
+</div>
+</aside>
+<article class='tip-panel' id='53bfpg'>
+<a href="http://twitter.com/share?url=https%3A%2F%2Fcoderwall.com%2Fp%2F53bfpg&amp;via=coderwall&amp;text=For+beginners%3A+Get+Emacs+with+Clojure+up+and+running%21+%23protip&amp;related=&amp;count=vertical&amp;lang=en" class="share-this-tip direction track" data-action="share protip" data-from="protip" target="new">Share this</a>
+<a href="/p/53bfpg/upvote" class="upvote track" data-action="upvote protip" data-from="protip" data-method="post" data-remote="true" rel="nofollow">2</a>
+<header class='tip-header'>
+<h1 class='tip-title'>
+For beginners: Get Emacs with Clojure up and running!
+</h1>
+<p class='views'>
+<span>
+315
+</span>
+views
+</p>
+<ul class='cf' id='tags'>
+<li>
+<a href='/p/t/emacs'>emacs</a>
+</li>
+<li>
+<a href='/p/t/clojure'>clojure</a>
+</li>
+</ul>
+<!-- /.tip-body.tip-content -->
+</header>
+<div class='tip-content'>
+<h2>Goal</h2>
+
+<p>After reading this article you will have an up-and-running Emacs setup ready for all your Clojure needs! I&#39;ll guide you through the most important basics, provide you a few links to dive deeper into Emacs and then show you how to install and use all that awesome Clojure stuff available!</p>
+
+<h2>Prerequisites</h2>
+
+<p>There are basically just two pieces of software you need to get manually: <strong>Leiningen</strong> and <strong>Emacs</strong>. And, of course, a <strong>JVM</strong>.
+I assume you have a running version of Java; A JVM is enough, you don&#39;t need a JDK.</p>
+
+<h3>Leiningen</h3>
+
+<p>You can get Leiningen from <a href="http://www.leiningen.org">Leiningen.org</a>. Installation is straightforward, on Linux and other UNIX-like systems just put the shell-script into ~/bin, on Windows put it somewhere you like (probably ~/bin as well) and add that directory to your PATH.</p>
+
+<h4>Using Leiningen</h4>
+
+<p>Open a commandline (windows-key -&gt; cmd -&gt; return) and type lein to use Leiningen.</p>
+
+<h3>Emacs</h3>
+
+<p>Once again, it&#39;s easier on Linux ;) Just install some Emacs 24 and make sure it&#39;s not 24.2 since that version has a breaking bug for Clojure development.
+For Windows you can download the most recent Emacs version from <a href="http://www.gnu.org/s/emacs">gnu.org/s/emacs</a> with a click on &quot;Obtain Emacs&quot;. Extract it wherever you want.</p>
+
+<h2>Getting started with Emacs</h2>
+
+<h3>Basic stuff</h3>
+
+<p>Fire up Emacs.
+Phew. That wasn&#39;t even that scary, was it? Don&#39;t worry, I won&#39;t leave you standing here...
+Actually, it&#39;s pretty simple to use Emacs as soon as you grasp a few core concepts.</p>
+
+<p>In tutorials you often see shortcuts like <code>C-c M-n</code> and similar. C stands for the control key, M for the meta-key (labelled <code>alt</code> on your keyboard) and S, if it appears, for shift.</p>
+
+<p>For the very most basic stuff there is a 10-minute built in interactive tutorial you can fire up using <code>C-h t</code>. It really does its job well, so for that little sequence I&#39;ll leave you alone.</p>
+
+<p>...done? Great! Let&#39;s jump to the concepts of Emacs that are important for you.</p>
+
+<ul>
+<li>You can use <code>C-h ?</code> to get help, or go to <a href="http://www.emacswiki.org/">http://www.emacswiki.org/</a></li>
+<li>If you want to change settings of a mode, you can do so by using <code>M-x</code><code>customize-group</code></li>
+<li>You can change the theme and the font using <code>M-x</code><code>customize-theme</code> and <code>M-x</code><code>customize-face</code> <code>default</code> respectively. You probably want to replace the default font with something like Adobe&#39;s &quot;Source Code Pro&quot; and I really like the &quot;solarized-theme&quot; which you can install later on using packages.</li>
+<li>Split windows using shortcuts:
+** <code>C-x 2</code> splits the window into two vertically aligned windows
+** <code>C-x 3</code> does the same horizontally
+** <code>C-x 1</code> makes the current one the only one
+** <code>C-x 0</code> closes the current one
+** Resize them using your mouse.</li>
+</ul>
+
+<h3>Installing the packages</h3>
+
+<p>Luckily Emacs got a package manager starting with version 24, so this gets a lot easier for us.
+At first we have to add an additional package source.</p>
+
+<p>Use <code>M-x customize-group</code> <code>package</code>. Keep in mind you can just press <code>TAB</code> for auto-completion.</p>
+
+<p>Click the little arrow beside &quot;Package Archives&quot; to show the options, click <code>INS</code> and add an archive &#39;marmalade&#39; with the URL <a href="http://marmalade-repo.org/packages/">http://marmalade-repo.org/packages/</a> .
+Click <code>Apply and Save</code> (or simply use <code>C-x C-s</code>) to store the settings and kill the buffer with <code>C-x C-k &lt;return&gt;</code>.</p>
+
+<p>Now let&#39;s see what&#39;s available! Keep in mind that you can use <code>C-s</code> to search.</p>
+
+<ul>
+<li><code>M-x package-list-packages</code></li>
+</ul>
+
+<p>You can mark a package to install it using <code>i</code> or you can click it and choose <code>install</code>. Use <code>x</code> to install marked packages, <code>d</code> to mark for removal.<br />
+You&#39;ll need the following to make Emacs itself a more user-friendly environment:</p>
+
+<ul>
+<li>idomenu</li>
+<li>smex</li>
+<li>sml-modeline</li>
+<li>ido-ubiquitous</li>
+<li>pretty-mode-plus</li>
+</ul>
+
+<p>And the following for Clojure:</p>
+
+<ul>
+<li>auto-complete</li>
+<li>ac-nrepl</li>
+<li>auto-indent-mode</li>
+<li>clj-refactor</li>
+<li>cljdoc</li>
+<li>clojure-mode (Who would&#39;ve thought THAT?)</li>
+<li>nrepl</li>
+<li>paredit</li>
+<li>rainbow-delimiters</li>
+</ul>
+
+<p>If you want, you can also install &quot;yasnippet&quot; to get snippets, but it doesn&#39;t have any Clojure snippets predefined and is somewhat a PITA to set up. I won&#39;t cover this in this tutorial.</p>
+
+<h3>Configuring Emacs</h3>
+
+<p><code>C-x C-f ~/.emacs</code> <br />
+Welcome to the world of elisp! After you&#39;ve survived that shock, let&#39;s get started!<br />
+Ok, first, place this at the end of the file:</p>
+
+<pre><code class="elisp">(defun my-init ()
+  ;; Your code will go here
+)
+(add-to-list &#39;after-init-hook &#39;my-init)
+</code></pre>
+
+<p>Explanation: The installed packages are loaded after this file gets parsed, so to configure those packages, we have to ensure our code also loads afterwards.
+Now you can reference this gist I made and copy the stuff you like (probably everything; I consider the stuff in this gist fairly minimal) at the place I wrote <code>;; Your code will go here</code>.</p>
+
+<ul>
+<li><a href="https://gist.github.com/zilti/6083155">The Gist</a></li>
+</ul>
+
+<p>My setup is pretty field-tested; Let me know if you find even better shortcuts.</p>
+
+<h2>Usage</h2>
+
+<p>Well, from here on everything is pretty straightforward and automatic; Here are some starters:</p>
+
+<ul>
+<li><code>M-x eshell</code> opens an emacs shell.</li>
+<li><code>C-x b</code> allows you to switch the content of a window, you&#39;ll probably need it when opening an nREPL.</li>
+<li>Get used to using the awesome nREPL using <a href="https://github.com/clojure-emacs/nrepl.el#basic-usage">this doc</a>.</li>
+<li>Paredit is great stuff, too. <code>C-&lt;leftarrow&gt;</code> and <code>C-&lt;rightarrow&gt;</code> are probably the most useful functions; see <a href="http://www.emacswiki.org/emacs/PareditCheatsheet">this cheatsheet</a> for all available functions. You don&#39;t have to use them all, but experiment a bit. You&#39;ll love it!</li>
+<li>If you want some serious debugging stuff (for which I didn&#39;t find any use yet) look for ritz-nrepl.</li>
+</ul>
+
+</div>
+</article>
+<section class='comments'>
+<h2 class='comments-header'>Comments</h2>
+<ul class='comment-list'>
+
+</ul>
+<div class='add-comment cf' id='add-comment'>
+<h2>Add a comment</h2>
+<form accept-charset="UTF-8" action="/p/53bfpg/comments" class="new_comment" id="new_comment" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="wKsRtK6fIFUc2JpphUkgmyxIa6QNlGPdF2GanmDD6Pc=" /></div>
+<textarea cols="40" id="comment_comment" label="false" name="comment[comment]" rows="5"></textarea>
+<input class='button' type='submit' value='Submit comment'>
+</form>
+</div>
+
+</section>
+<div class='mobile-job'>
+<a href="/team/soundcloud" class="team-box" data-action="view team jobs" data-from="job on protip" data-properties="{&quot;author's team&quot;:false,&quot;adjective&quot;:&quot;is amazing&quot;,&quot;mode&quot;:&quot;fullpage&quot;}"><div class='image-top'>
+<img alt="961x477" src="http://media.getchute.com/media/dMkjOxgpo/fit/961x477" />
+</div>
+<div class='content'>
+<div class='avatar'>
+<img alt="Soundcloudd" src="https://coderwall-assets-0.s3.amazonaws.com/uploads/team/avatar/4f271947973bf000040004df/soundcloudd.jpg" />
+</div>
+<h4>SoundCloud</h4>
+<p>
+Calling all Back End Developers. SoundCloud is amazing and is hiring!
+</p>
+</div>
+</a></div>
+</div>
+</div>
+
+
+</div>
+
+<script>
+  //<![CDATA[
+    window.console.log = function(){}
+  //]]>
+</script>
+<script src="https://d3levm2kxut31z.cloudfront.net/assets/jquery-55a1cc2df3a4b065fc618d31d7e0d695.js" type="text/javascript"></script>
+<script src="https://d3levm2kxut31z.cloudfront.net/assets/jquery_ujs-365fabdf74f208e2cde927b444f7a01e.js" type="text/javascript"></script>
+  <script src="https://d3levm2kxut31z.cloudfront.net/assets/tracking-26f5ae2985e3ab6e89f978f3ab2ad279.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+
+
+
+        mixpanel.register({'signed in' : false,
+                           'member': false,
+                           'first visit': true
+        }, 'all', 31);
+
+        logUsage('viewed protip', null, {"featured":false,"distinction":"views"});
+
+  
+    (function() {
+      window._pa = window._pa || {};
+      var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+      pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/serve/50775e2d30a1d50002000221.js";
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+    })();
+    window.onerror = function(message, file, line) {
+        var prop     = {}
+        prop.message = message;
+        prop.file    = file;
+        prop.line    = line;
+        mixpanel.track('error',prop);
+    }
+  </script>    
+
+<script src="https://d3levm2kxut31z.cloudfront.net/assets/highlight/highlight-1acc1d65b35ce5a7d65545136329827b.js" type="text/javascript"></script>
+<script src="https://d3levm2kxut31z.cloudfront.net/assets/highlight/language-106d6366bd3f6d24557c18a83ae5080f.js" type="text/javascript"></script>
+<script src="https://d3levm2kxut31z.cloudfront.net/assets/protips-ddfc063abf3e78513b088e96be678808.js" type="text/javascript"></script>
+
+</body>
+</html>

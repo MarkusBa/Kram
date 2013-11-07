@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Configuration for Emacs with Clojure; See [the full article](https://coderwall.com/p/53bfpg) on coderwall.</title>
+
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="8oHSJUM0GvU3SMz3dbon6BTGlGsoPA50h+I7zENvTWE=" name="csrf-token" />
+  <meta name="viewport" content="width=960">
+
+
+  <link type="text/plain" rel="author" href="https://github.com/humans.txt" />
+  <meta content="gist" name="octolytics-app-id" /><meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" />
+
+  <link href="/assets/application-40431a953a4fe71f7abb47ce95f23da2.css" media="screen, print" rel="stylesheet" />
+  <script src="/assets/application-ef934eddf8f7b5930eb6630337249c2d.js"></script>
+
+    <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@github">
+  <meta property="og:title" content="zilti/base-stuff.el">
+  <meta property="og:type" content="githubog:gist">
+  <meta property="og:url" content="https://gist.github.com//zilti/6083155">
+  <meta property="og:image" content="https://2.gravatar.com/avatar/e6a2cd04eead0fad7ff9800dcf5afe63?d=https%3A%2F%2Fidenticons.github.com%2F959c5e9d6df7d14d1c81f4b7d2a9122d.png&amp;s=140">
+  <meta property="og:site_name" content="GitHub Gists">
+  <meta property="og:description" content="Configuration for Emacs with Clojure; See [the full article](https://coderwall.com/p/53bfpg) on coderwall. - Gist is a simple way to share snippets of text and code with others.">
+  <meta name="description" content="Configuration for Emacs with Clojure; See [the full article](https://coderwall.com/p/53bfpg) on coderwall. - Gist is a simple way to share snippets of text and code with others.">
+
+</head>
+
+<body class=" ">
+
+  <div id="wrapper">
+    
+
+    <div id="header" class="header header-logged-out">
+      <div class="container" class="clearfix">
+        <a class="header-logo-wordmark" href="https://gist.github.com/">
+          <span class="octicon octicon-logo-github"></span>
+          <span class="octicon-logo octicon-logo-gist"></span>
+        </a>
+
+        <div class="header-actions">
+          <a class="button primary" href="https://github.com/signup?return_to=gist">Sign up for a GitHub Account</a>
+          <a class="button" href="https://gist.github.com/login?return_to=/zilti/6083155" data-skip-pjax>Sign in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-content" id="js-pjax-container" data-pjax-container>
+      <div class=" site-container js-site-container" data-url="/zilti/6083155">
+  
+  <meta content="true" name="octolytics-dimension-public" /><meta content="6083155" name="octolytics-dimension-gist_id" /><meta content="6083155" name="octolytics-dimension-gist_name" /><meta content="false" name="octolytics-dimension-anonymous" /><meta content="661984" name="octolytics-dimension-owner_id" /><meta content="zilti" name="octolytics-dimension-owner_login" /><meta content="false" name="octolytics-dimension-forked" />
+
+<div class="pagehead repohead">
+  <div class="container">
+    <div class="title-actions-bar">
+      <ul class="pagehead-actions">
+      </ul>
+      <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+        <span class="repo-label"><span>public</span></span>
+        <span class="mega-octicon octicon-gist" ></span>
+        <div class="meta">
+          <div class="gist-author">
+            <img src="https://2.gravatar.com/avatar/e6a2cd04eead0fad7ff9800dcf5afe63?d=https%3A%2F%2Fidenticons.github.com%2F959c5e9d6df7d14d1c81f4b7d2a9122d.png&s=140" width="26" height="26">
+            <span class="author vcard">
+                <span itemprop="title"><a href="/zilti">zilti</a></span>
+            </span> /
+            <strong><a href="/zilti/6083155" class="js-current-repository">base-stuff.el</a></strong>
+          </div>
+          <div class="gist-timestamp">
+              <span class="datetime">Created <time class="js-relative-date" title="2013-07-25T19:54:00Z" datetime="2013-07-25T19:54:00Z">2013-07-25</time></span>
+          </div>
+      </h1>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="gist-description container">
+  <p>Configuration for Emacs with Clojure; See [the full article](https://coderwall.com/p/53bfpg) on coderwall.</p>
+</div>
+
+<div class="gist container js-gist-container" data-version="56d559de6ac85cf3785d33763d425d058a787aca">
+    <div class="root-pane">
+  <div class="menu-container">
+    <ul class="menu gisttabs">
+      <li>
+        <a href="/zilti/6083155" class="selected">
+          Gist Detail
+        </a>
+      </li>
+
+        <li class="revision-count">
+          <a href="/zilti/6083155/revisions" >
+            Revisions
+            <span class="counter">1</span>
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/zilti/6083155/forks" >
+            Forks
+            <span class="counter">1</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+
+  <ul class="export-references">
+    <li>
+      <a href="/zilti/6083155/download" class="minibutton" data-skip-pjax="true" rel="nofollow"><span class="octicon octicon-cloud-download"></span>Download Gist</a>
+    </li>
+    <li>
+      <label for="url-field"><strong>Clone</strong> this gist</label>
+      <input type="text" readonly spellcheck="false" class="url-field js-url-field js-cptoggle" name="url-field" value="https://gist.github.com/6083155.git" data-cptoggle-display="/zilti/6083155">
+    </li>
+    <li>
+      <label for="embed-field"><strong>Embed</strong> this gist</label>
+      <input type="text" readonly spellcheck="false" class="url-field js-url-field" name="embed-field" value="&lt;script src=&quot;https://gist.github.com/zilti/6083155.js&quot;&gt;&lt;/script&gt;">
+    </li>
+    <li>
+      <label for="link-field"><strong>Link to</strong> this gist</label>
+      <input type="text" readonly spellcheck="false" class="url-field js-url-field" name="link-field" value="https://gist.github.com/zilti/6083155">
+    </li>
+  </ul>
+</div>
+
+
+  <div class="column files">
+        <div id="file-base-stuff-el" class="bubble">
+          <div class="file-box ">
+            <div class="meta">
+              <div class="file-info">
+                <span class="file-type-icon"><span class="octicon octicon-gist"></span></span>
+                <strong class="file-name js-selectable-text">base-stuff.el</strong>
+              </div>
+              <div class="file-actions">
+                <span class="file-language">Emacs Lisp</span>
+                <ul class="button-group">
+                  <li><a title="Permalink" href="#file-base-stuff-el" class="file-actions-button tooltipped downwards permalink"><span class="octicon octicon-link"></span></a></li>
+                  <li><a title="View Raw" href="/zilti/6083155/raw/16df26de41619b5b758d116acb8dcca747193cf7/base-stuff.el" data-skip-pjax class="file-actions-button tooltipped downwards raw-url"><span class="octicon octicon-code"></span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="suppressed">
+              <a class="js-show-suppressed-file">File suppressed. Click to show.</a>
+            </div>
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-base-stuff-el-L1" rel="file-base-stuff-el-L1">1</span>
+            <span class="line-number" id="file-base-stuff-el-L2" rel="file-base-stuff-el-L2">2</span>
+            <span class="line-number" id="file-base-stuff-el-L3" rel="file-base-stuff-el-L3">3</span>
+            <span class="line-number" id="file-base-stuff-el-L4" rel="file-base-stuff-el-L4">4</span>
+            <span class="line-number" id="file-base-stuff-el-L5" rel="file-base-stuff-el-L5">5</span>
+            <span class="line-number" id="file-base-stuff-el-L6" rel="file-base-stuff-el-L6">6</span>
+            <span class="line-number" id="file-base-stuff-el-L7" rel="file-base-stuff-el-L7">7</span>
+            <span class="line-number" id="file-base-stuff-el-L8" rel="file-base-stuff-el-L8">8</span>
+            <span class="line-number" id="file-base-stuff-el-L9" rel="file-base-stuff-el-L9">9</span>
+            <span class="line-number" id="file-base-stuff-el-L10" rel="file-base-stuff-el-L10">10</span>
+            <span class="line-number" id="file-base-stuff-el-L11" rel="file-base-stuff-el-L11">11</span>
+            <span class="line-number" id="file-base-stuff-el-L12" rel="file-base-stuff-el-L12">12</span>
+            <span class="line-number" id="file-base-stuff-el-L13" rel="file-base-stuff-el-L13">13</span>
+            <span class="line-number" id="file-base-stuff-el-L14" rel="file-base-stuff-el-L14">14</span>
+            <span class="line-number" id="file-base-stuff-el-L15" rel="file-base-stuff-el-L15">15</span>
+            <span class="line-number" id="file-base-stuff-el-L16" rel="file-base-stuff-el-L16">16</span>
+            <span class="line-number" id="file-base-stuff-el-L17" rel="file-base-stuff-el-L17">17</span>
+            <span class="line-number" id="file-base-stuff-el-L18" rel="file-base-stuff-el-L18">18</span>
+            <span class="line-number" id="file-base-stuff-el-L19" rel="file-base-stuff-el-L19">19</span>
+            <span class="line-number" id="file-base-stuff-el-L20" rel="file-base-stuff-el-L20">20</span>
+            <span class="line-number" id="file-base-stuff-el-L21" rel="file-base-stuff-el-L21">21</span>
+            <span class="line-number" id="file-base-stuff-el-L22" rel="file-base-stuff-el-L22">22</span>
+            <span class="line-number" id="file-base-stuff-el-L23" rel="file-base-stuff-el-L23">23</span>
+            <span class="line-number" id="file-base-stuff-el-L24" rel="file-base-stuff-el-L24">24</span>
+            <span class="line-number" id="file-base-stuff-el-L25" rel="file-base-stuff-el-L25">25</span>
+            <span class="line-number" id="file-base-stuff-el-L26" rel="file-base-stuff-el-L26">26</span>
+            <span class="line-number" id="file-base-stuff-el-L27" rel="file-base-stuff-el-L27">27</span>
+            <span class="line-number" id="file-base-stuff-el-L28" rel="file-base-stuff-el-L28">28</span>
+            <span class="line-number" id="file-base-stuff-el-L29" rel="file-base-stuff-el-L29">29</span>
+            <span class="line-number" id="file-base-stuff-el-L30" rel="file-base-stuff-el-L30">30</span>
+            <span class="line-number" id="file-base-stuff-el-L31" rel="file-base-stuff-el-L31">31</span>
+            <span class="line-number" id="file-base-stuff-el-L32" rel="file-base-stuff-el-L32">32</span>
+            <span class="line-number" id="file-base-stuff-el-L33" rel="file-base-stuff-el-L33">33</span>
+            <span class="line-number" id="file-base-stuff-el-L34" rel="file-base-stuff-el-L34">34</span>
+            <span class="line-number" id="file-base-stuff-el-L35" rel="file-base-stuff-el-L35">35</span>
+            <span class="line-number" id="file-base-stuff-el-L36" rel="file-base-stuff-el-L36">36</span>
+            <span class="line-number" id="file-base-stuff-el-L37" rel="file-base-stuff-el-L37">37</span>
+            <span class="line-number" id="file-base-stuff-el-L38" rel="file-base-stuff-el-L38">38</span>
+            <span class="line-number" id="file-base-stuff-el-L39" rel="file-base-stuff-el-L39">39</span>
+            <span class="line-number" id="file-base-stuff-el-L40" rel="file-base-stuff-el-L40">40</span>
+            <span class="line-number" id="file-base-stuff-el-L41" rel="file-base-stuff-el-L41">41</span>
+            <span class="line-number" id="file-base-stuff-el-L42" rel="file-base-stuff-el-L42">42</span>
+            <span class="line-number" id="file-base-stuff-el-L43" rel="file-base-stuff-el-L43">43</span>
+            <span class="line-number" id="file-base-stuff-el-L44" rel="file-base-stuff-el-L44">44</span>
+            <span class="line-number" id="file-base-stuff-el-L45" rel="file-base-stuff-el-L45">45</span>
+            <span class="line-number" id="file-base-stuff-el-L46" rel="file-base-stuff-el-L46">46</span>
+            <span class="line-number" id="file-base-stuff-el-L47" rel="file-base-stuff-el-L47">47</span>
+            <span class="line-number" id="file-base-stuff-el-L48" rel="file-base-stuff-el-L48">48</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-base-stuff-el-LC1"><span class="c1">;; Highlights line you&#39;re currently on</span></div><div class="line" id="file-base-stuff-el-LC2"><span class="p">(</span><span class="nf">global-hl-line-mode</span> <span class="nv">t</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC3"><span class="c1">;; Shows in modeline where in the file you are</span></div><div class="line" id="file-base-stuff-el-LC4"><span class="p">(</span><span class="nf">sml-modeline-mode</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC5"><span class="c1">;; Pretty symbols</span></div><div class="line" id="file-base-stuff-el-LC6">  <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;pretty-mode-plus</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC7">  <span class="p">(</span><span class="nf">global-pretty-mode</span> <span class="mi">1</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC8"><span class="c1">;; Autocomplete</span></div><div class="line" id="file-base-stuff-el-LC9"><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;auto-complete</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC10"><span class="c1">;; Disable annoying bell sound</span></div><div class="line" id="file-base-stuff-el-LC11"><span class="p">(</span><span class="nf">setq</span> <span class="nv">visible-bell</span> <span class="nv">t</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC12"><span class="c1">;; Disables scrollbar</span></div><div class="line" id="file-base-stuff-el-LC13"><span class="p">(</span><span class="nf">setq</span> <span class="nv">scroll-bar-mode</span> <span class="nv">nil</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC14"><span class="c1">;; Disables toolbar</span></div><div class="line" id="file-base-stuff-el-LC15"><span class="p">(</span><span class="nf">setq</span> <span class="nv">tool-bar-mode</span> <span class="nv">nil</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC16"><span class="c1">;; Optional: If you&#39;ve installed solarized-theme</span></div><div class="line" id="file-base-stuff-el-LC17"><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;solarized-dark-theme</span><span class="p">)</span> <span class="c1">;; Also as solarized-light-theme</span></div><div class="line" id="file-base-stuff-el-LC18">&nbsp;</div><div class="line" id="file-base-stuff-el-LC19"><span class="c1">;; ido completion</span></div><div class="line" id="file-base-stuff-el-LC20"><span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-enable-flex-matching</span> <span class="nv">t</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC21"><span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-everywhere</span> <span class="nv">t</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC22"><span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-mode</span> <span class="p">(</span><span class="k">quote </span><span class="nv">both</span><span class="p">)</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">ido</span><span class="p">))</span></div><div class="line" id="file-base-stuff-el-LC23"><span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-ubiquitous-mode</span> <span class="nv">t</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC24">&nbsp;</div><div class="line" id="file-base-stuff-el-LC25"><span class="c1">;; Enable SMEX, an enhancement for M-x completion</span></div><div class="line" id="file-base-stuff-el-LC26"><span class="p">(</span><span class="nf">global-set-key</span> <span class="p">[(</span><span class="nf">meta</span> <span class="nv">x</span><span class="p">)]</span> <span class="p">(</span><span class="k">lambda </span><span class="p">()</span></div><div class="line" id="file-base-stuff-el-LC27">				 <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC28">				 <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">boundp</span> <span class="ss">&#39;smex-cache</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC29">				     <span class="p">(</span><span class="nf">smex-initialize</span><span class="p">))</span></div><div class="line" id="file-base-stuff-el-LC30">				 <span class="p">(</span><span class="nf">global-set-key</span> <span class="p">[(</span><span class="nf">meta</span> <span class="nv">x</span><span class="p">)]</span> <span class="ss">&#39;smex</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC31">				 <span class="p">(</span><span class="nf">smex</span><span class="p">)))</span></div><div class="line" id="file-base-stuff-el-LC32">    <span class="p">(</span><span class="nf">global-set-key</span> <span class="p">[(</span><span class="nf">shift</span> <span class="nv">meta</span> <span class="nv">x</span><span class="p">)]</span> <span class="p">(</span><span class="k">lambda </span><span class="p">()</span></div><div class="line" id="file-base-stuff-el-LC33">				       <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC34">				       <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">boundp</span> <span class="ss">&#39;smex-cache</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC35">					   <span class="p">(</span><span class="nf">smex-initialize</span><span class="p">))</span></div><div class="line" id="file-base-stuff-el-LC36">				       <span class="p">(</span><span class="nf">global-set-key</span> <span class="p">[(</span><span class="nf">shift</span> <span class="nv">meta</span> <span class="nv">x</span><span class="p">)]</span> <span class="ss">&#39;smex-major-mode-commands</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC37">				       <span class="p">(</span><span class="nf">smex-major-mode-commands</span><span class="p">)))</span></div><div class="line" id="file-base-stuff-el-LC38">&nbsp;</div><div class="line" id="file-base-stuff-el-LC39"><span class="c1">;; Unicode as default</span></div><div class="line" id="file-base-stuff-el-LC40"><span class="c1">;; set up unicode</span></div><div class="line" id="file-base-stuff-el-LC41">    <span class="p">(</span><span class="nf">prefer-coding-system</span>       <span class="ss">&#39;utf-8</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC42">    <span class="p">(</span><span class="nf">set-default-coding-systems</span> <span class="ss">&#39;utf-8</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC43">    <span class="p">(</span><span class="nf">set-terminal-coding-system</span> <span class="ss">&#39;utf-8</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC44">    <span class="p">(</span><span class="nf">set-keyboard-coding-system</span> <span class="ss">&#39;utf-8</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC45">    <span class="c1">;; This from a japanese individual.  I hope it works.</span></div><div class="line" id="file-base-stuff-el-LC46">    <span class="p">(</span><span class="nf">setq</span> <span class="nv">default-buffer-file-coding-system</span> <span class="ss">&#39;utf-8</span><span class="p">)</span></div><div class="line" id="file-base-stuff-el-LC47">    <span class="c1">;; From Emacs wiki</span></div><div class="line" id="file-base-stuff-el-LC48">    <span class="p">(</span><span class="nf">setq</span> <span class="nv">x-select-request-type</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">UTF8_STRING</span> <span class="nv">COMPOUND_TEXT</span> <span class="nv">TEXT</span> <span class="nv">STRING</span><span class="p">))</span></div></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+          </div>
+        </div>
+        <div id="file-clojure-stuff-el" class="bubble">
+          <div class="file-box ">
+            <div class="meta">
+              <div class="file-info">
+                <span class="file-type-icon"><span class="octicon octicon-gist"></span></span>
+                <strong class="file-name js-selectable-text">clojure-stuff.el</strong>
+              </div>
+              <div class="file-actions">
+                <span class="file-language">Emacs Lisp</span>
+                <ul class="button-group">
+                  <li><a title="Permalink" href="#file-clojure-stuff-el" class="file-actions-button tooltipped downwards permalink"><span class="octicon octicon-link"></span></a></li>
+                  <li><a title="View Raw" href="/zilti/6083155/raw/ea574048c081b9cf442ed71e57c7fb75c3793234/clojure-stuff.el" data-skip-pjax class="file-actions-button tooltipped downwards raw-url"><span class="octicon octicon-code"></span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="suppressed">
+              <a class="js-show-suppressed-file">File suppressed. Click to show.</a>
+            </div>
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-clojure-stuff-el-L1" rel="file-clojure-stuff-el-L1">1</span>
+            <span class="line-number" id="file-clojure-stuff-el-L2" rel="file-clojure-stuff-el-L2">2</span>
+            <span class="line-number" id="file-clojure-stuff-el-L3" rel="file-clojure-stuff-el-L3">3</span>
+            <span class="line-number" id="file-clojure-stuff-el-L4" rel="file-clojure-stuff-el-L4">4</span>
+            <span class="line-number" id="file-clojure-stuff-el-L5" rel="file-clojure-stuff-el-L5">5</span>
+            <span class="line-number" id="file-clojure-stuff-el-L6" rel="file-clojure-stuff-el-L6">6</span>
+            <span class="line-number" id="file-clojure-stuff-el-L7" rel="file-clojure-stuff-el-L7">7</span>
+            <span class="line-number" id="file-clojure-stuff-el-L8" rel="file-clojure-stuff-el-L8">8</span>
+            <span class="line-number" id="file-clojure-stuff-el-L9" rel="file-clojure-stuff-el-L9">9</span>
+            <span class="line-number" id="file-clojure-stuff-el-L10" rel="file-clojure-stuff-el-L10">10</span>
+            <span class="line-number" id="file-clojure-stuff-el-L11" rel="file-clojure-stuff-el-L11">11</span>
+            <span class="line-number" id="file-clojure-stuff-el-L12" rel="file-clojure-stuff-el-L12">12</span>
+            <span class="line-number" id="file-clojure-stuff-el-L13" rel="file-clojure-stuff-el-L13">13</span>
+            <span class="line-number" id="file-clojure-stuff-el-L14" rel="file-clojure-stuff-el-L14">14</span>
+            <span class="line-number" id="file-clojure-stuff-el-L15" rel="file-clojure-stuff-el-L15">15</span>
+            <span class="line-number" id="file-clojure-stuff-el-L16" rel="file-clojure-stuff-el-L16">16</span>
+            <span class="line-number" id="file-clojure-stuff-el-L17" rel="file-clojure-stuff-el-L17">17</span>
+            <span class="line-number" id="file-clojure-stuff-el-L18" rel="file-clojure-stuff-el-L18">18</span>
+            <span class="line-number" id="file-clojure-stuff-el-L19" rel="file-clojure-stuff-el-L19">19</span>
+            <span class="line-number" id="file-clojure-stuff-el-L20" rel="file-clojure-stuff-el-L20">20</span>
+            <span class="line-number" id="file-clojure-stuff-el-L21" rel="file-clojure-stuff-el-L21">21</span>
+            <span class="line-number" id="file-clojure-stuff-el-L22" rel="file-clojure-stuff-el-L22">22</span>
+            <span class="line-number" id="file-clojure-stuff-el-L23" rel="file-clojure-stuff-el-L23">23</span>
+            <span class="line-number" id="file-clojure-stuff-el-L24" rel="file-clojure-stuff-el-L24">24</span>
+            <span class="line-number" id="file-clojure-stuff-el-L25" rel="file-clojure-stuff-el-L25">25</span>
+            <span class="line-number" id="file-clojure-stuff-el-L26" rel="file-clojure-stuff-el-L26">26</span>
+            <span class="line-number" id="file-clojure-stuff-el-L27" rel="file-clojure-stuff-el-L27">27</span>
+            <span class="line-number" id="file-clojure-stuff-el-L28" rel="file-clojure-stuff-el-L28">28</span>
+            <span class="line-number" id="file-clojure-stuff-el-L29" rel="file-clojure-stuff-el-L29">29</span>
+            <span class="line-number" id="file-clojure-stuff-el-L30" rel="file-clojure-stuff-el-L30">30</span>
+            <span class="line-number" id="file-clojure-stuff-el-L31" rel="file-clojure-stuff-el-L31">31</span>
+            <span class="line-number" id="file-clojure-stuff-el-L32" rel="file-clojure-stuff-el-L32">32</span>
+            <span class="line-number" id="file-clojure-stuff-el-L33" rel="file-clojure-stuff-el-L33">33</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-clojure-stuff-el-LC1"><span class="c1">;; clj-refactor: Use C-c C-m. See https://github.com/magnars/clj-refactor.el</span></div><div class="line" id="file-clojure-stuff-el-LC2"><span class="p">(</span><span class="nf">defun</span> <span class="nv">clj-refactor-hooks</span> <span class="p">()</span></div><div class="line" id="file-clojure-stuff-el-LC3"><span class="p">(</span><span class="nf">clj-refactor-mode</span> <span class="mi">1</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC4"><span class="p">(</span><span class="nf">cljr-add-keybindings-with-prefix</span> <span class="s">&quot;C-c C-m&quot;</span><span class="p">))</span></div><div class="line" id="file-clojure-stuff-el-LC5">&nbsp;</div><div class="line" id="file-clojure-stuff-el-LC6"><span class="c1">;; nREPL: The new Clojure network REPL. See https://github.com/kingtim/nrepl.el</span></div><div class="line" id="file-clojure-stuff-el-LC7">  <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;nrepl</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC8">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;nrepl-interaction-mode-hook</span> <span class="ss">&#39;nrepl-turn-on-eldoc-mode</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC9">&nbsp;</div><div class="line" id="file-clojure-stuff-el-LC10"><span class="c1">;; Autocompletion for nREPL; From https://github.com/purcell/ac-nrepl</span></div><div class="line" id="file-clojure-stuff-el-LC11">  <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;ac-nrepl</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC12">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;nrepl-mode-hook</span> <span class="ss">&#39;ac-nrepl-setup</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC13">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;nrepl-interaction-mode-hook</span> <span class="ss">&#39;ac-nrepl-setup</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC14">  <span class="p">(</span><span class="nf">eval-after-load</span> <span class="s">&quot;auto-complete&quot;</span></div><div class="line" id="file-clojure-stuff-el-LC15">     <span class="o">&#39;</span><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;ac-modes&#39;nrepl-mode</span><span class="p">))</span></div><div class="line" id="file-clojure-stuff-el-LC16">  <span class="c1">;; Probably gets in the way of yasnippet?</span></div><div class="line" id="file-clojure-stuff-el-LC17">  <span class="p">(</span><span class="nf">defun</span> <span class="nv">set-auto-complete-as-completion-at-point-function</span> <span class="p">()</span></div><div class="line" id="file-clojure-stuff-el-LC18">    <span class="p">(</span><span class="nf">setq</span> <span class="nv">completion-at-point-functions</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">auto-complete</span><span class="p">)))</span></div><div class="line" id="file-clojure-stuff-el-LC19">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;auto-complete-mode-hook</span> <span class="ss">&#39;set-auto-complete-as-completion-at-point-function</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC20">  </div><div class="line" id="file-clojure-stuff-el-LC21">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;nrepl-mode-hook</span> <span class="ss">&#39;set-auto-complete-as-completion-at-point-function</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC22">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;nrepl-interaction-mode-hook</span> <span class="ss">&#39;set-auto-complete-as-completion-at-point-function</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC23">  <span class="c1">;; Popup documentation change</span></div><div class="line" id="file-clojure-stuff-el-LC24">  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">nrepl-interaction-mode-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-c C-d&quot;</span><span class="p">)</span> <span class="ss">&#39;ac-nrepl-popup-doc</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC25">&nbsp;</div><div class="line" id="file-clojure-stuff-el-LC26"><span class="c1">;; Glue code: Bring it all together...</span></div><div class="line" id="file-clojure-stuff-el-LC27">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;clojure-mode-hook</span> <span class="ss">&#39;paredit-mode</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC28">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;clojure-mode-hook</span> <span class="ss">&#39;rainbow-delimiters-mode</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC29">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;clojure-mode-hook</span> <span class="ss">&#39;auto-indent-mode</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC30">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;clojure-mode-hook</span> <span class="ss">&#39;clj-refactor-hooks</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC31">  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;clojure-mode-hook</span> <span class="ss">&#39;auto-complete-mode</span><span class="p">)</span></div><div class="line" id="file-clojure-stuff-el-LC32">  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;auto-mode-alist</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;\\.cljs\\&#39;&quot;</span> <span class="o">.</span> <span class="nv">clojure-mode</span><span class="p">))</span></div><div class="line" id="file-clojure-stuff-el-LC33">  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;auto-mode-alist</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;\\.cljx\\&#39;&quot;</span> <span class="o">.</span> <span class="nv">clojure-mode</span><span class="p">))</span></div></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+          </div>
+        </div>
+    <div id="comments" class="new-comments">
+      
+    </div>
+      <p class="uncommentable"><span class="octicon octicon-alert"></span> Please <a href="/login?return_to=/zilti/6083155" rel="nofollow">sign in</a> to comment on this gist.</p>
+  </div>
+</div>
+
+  <div class="context-overlay"></div>
+</div>
+
+    </div>
+    <div class="slow-loading-overlay"></div>
+  </div>
+
+  <div id="ajax-error-message" class="flash flash-error">
+    <div class="container">
+      <span class="octicon octicon-alert"></span>
+      Something went wrong with that request. Please try again.
+      <a href="#" class="octicon octicon-remove-close ajax-error-dismiss"></a>
+    </div>
+  </div>
+
+  <footer>
+    <div id="footer">
+  <div class="container clearfix">
+
+    <!-- Served fresh by github-fe102-cp1-prd.iad.github.net -->
+    <p class="right">&copy; 2013 GitHub Inc. All rights reserved.</p>
+    <a class="left" href="/">
+      <span class="mega-octicon octicon-mark-github"></span>
+    </a>
+    <ul id="legal">
+      <li><a href="https://github.com/blog">The GitHub Blog</a></li>
+      <li><a href="mailto:support@github.com">Support</a></li>
+      <li><a href="https://github.com/contact">Contact</a></li>
+    </ul>
+
+  </div><!-- /.container -->
+</div><!-- /.#footer -->
+
+  </footer>
+
+</body>
+</html>
