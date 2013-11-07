@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Clojure in a bank | Applying a functional language to a large organisation</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://blog.malcolmsparks.com/wp-content/themes/twentyeleven/style.css" />
+<link rel="pingback" href="http://blog.malcolmsparks.com/xmlrpc.php" />
+<!--[if lt IE 9]>
+<script src="http://blog.malcolmsparks.com/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="Clojure in a bank &raquo; Feed" href="http://blog.malcolmsparks.com/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="Clojure in a bank &raquo; Comments Feed" href="http://blog.malcolmsparks.com/?feed=comments-rss2" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.malcolmsparks.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.malcolmsparks.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.5.1" />
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="home blog single-author two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="http://blog.malcolmsparks.com/" title="Clojure in a bank" rel="home">Clojure in a bank</a></span></h1>
+				<h2 id="site-description">Applying a functional language to a large organisation</h2>
+			</hgroup>
+
+						<a href="http://blog.malcolmsparks.com/">
+									<img src="http://blog.malcolmsparks.com/wp-content/uploads/2012/11/cropped-2012-11-16-13.59.532.jpg" width="1000" height="288" alt="" />
+							</a>
+			
+								<form method="get" id="searchform" action="http://blog.malcolmsparks.com/">
+		<label for="s" class="assistive-text">Search</label>
+		<input type="text" class="field" name="s" id="s" placeholder="Search" />
+		<input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+	</form>
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content" title="Skip to primary content">Skip to primary content</a></div>
+				<div class="skip-link"><a class="assistive-text" href="#secondary" title="Skip to secondary content">Skip to secondary content</a></div>
+								<div class="menu"><ul><li class="current_page_item"><a href="http://blog.malcolmsparks.com/" title="Home">Home</a></li><li class="page_item page-item-2"><a href="http://blog.malcolmsparks.com/?page_id=2">About</a></li></ul></div>
+			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+		<div id="primary">
+			<div id="content" role="main">
+
+			
+						<nav id="nav-above">
+			<h3 class="assistive-text">Post navigation</h3>
+			<div class="nav-previous"><a href="http://blog.malcolmsparks.com/?paged=2" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+			<div class="nav-next"></div>
+		</nav><!-- #nav-above -->
+	
+								
+					
+	<article id="post-134" class="post-134 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=134" title="Permalink to MQTT in Clojure with the core.async library" rel="bookmark">MQTT in Clojure with the core.async library</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=134" title="3:43 am" rel="bookmark"><time class="entry-date" datetime="2013-07-20T03:43:58+00:00" pubdate>July 20, 2013</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=134#comments" title="Comment on MQTT in Clojure with the core.async library">4</a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Last week, David Nolen <a href="http://swannodette.github.io/2013/07/12/communicating-sequential-processes">wrote</a> a wonderful article on Clojure&#8217;s new core.async library and how it eliminates &#8216;callback hell&#8217; in the browser.  In a recent <a href="http://thinkrelevance.com/blog/2013/07/10/rich-hickey-and-core-async-podcast-episode-035">podcast</a>, Rich Hickey stresses that callback hell isn&#8217;t just a problem for JavaScript developers &#8211; Java developers, who are increasingly using async APIs, have their share of pain. In this article I&#8217;ll try to explain how <code>core.async</code> can help them too.</p>
+<p>To provide some background, I&#8217;m working on a client project which is sourcing <a href="http://mqtt.org">MQTT</a> (MQ Telemetry Transport) events from sensors and processing them with <a href="http://storm-project.net">Storm</a>. If you haven&#8217;t heard of MQTT, it&#8217;s the protocol driving the &#8216;Internet of Things&#8217;. For my test harness I&#8217;m publishing test messages using a Java-based MQTT API client-library, Eclipse Paho.</p>
+<p>When publishing messages using this async API to a broker, the broker responds by acknowledging delivery. Clients can choose to resend messages that may have been lost in transit. This is important, because MQTT is designed to work in harse conditions where the network may be unreliable.</p>
+<p>How does this work?</p>
+<p>A device using this Java API connects to a broker by instantiating an instance of <code>MqttAsyncClient</code> with the url of the broker and a client id.</p>
+<pre class="brush: java; title: ; notranslate" title="">
+client = new MqttAsyncClient(
+           &quot;tcp://emergency-room.hospital.nhs.uk:1883&quot;,
+           &quot;Malcolm's nose&quot;);
+ </pre>
+<p>To publish a message, the device calls the <code>publish</code> method with a topic name and a message (some bytes). The method returns a token so that the client can track the delivery of the message.</p>
+<pre class="brush: java; title: ; notranslate" title="">
+IMqttDeliveryToken token = publish(String topic, MqttMessage message);
+</pre>
+<p>The tracking is achieved by registering a callback on the client.</p>
+<pre class="brush: java; title: ; notranslate" title="">
+client.setCallback(MqttCallback callback);
+</pre>
+<p>The callback interface looks like this :-</p>
+<pre class="brush: java; title: ; notranslate" title="">
+interface MqttCallback {
+     void deliveryComplete(IMqttDeliveryToken token);
+}
+</pre>
+<p>When a message has been delivered successfully, the token is used to signal this through the <code>MqttCallback</code> interface. This is pretty simple and not unlike many other async APIs.</p>
+<p>Let&#8217;s imagine that messages usually get through after 10 seconds but if we don&#8217;t get an acknowledgement we should send the message again. How do we write this?</p>
+<p>Normally this would involve keeping track of each message in a data table, along with the time it was sent. Periodically we would check the table for any entries that were sent more than 10 seconds ago but where no acknowledgement had been received. This could get tricky, and we&#8217;d have to take care not to cause any race conditions between the threads publishing the messages and the thread doing the checks. If we ran the checks too infrequently, we may delay the resend of an important message. If we ran too often, we risk contention and impacting the overall performance of the system.</p>
+<p>However, with Clojure&#8217;s core.async library, life has got a whole lot easier.</p>
+<p>To show this, let&#8217;s switch to writing in Clojure. We publish messages via the Java API in the usual way</p>
+<pre class="brush: clojure; title: ; notranslate" title="">
+(.publish client &quot;sneezing&quot; (.getBytes &quot;achoo! [80 m/s]&quot;))
+</pre>
+<p>This returns our delivery token.</p>
+<p>For each token we can create a new <code>core.async</code> channel (channels, unlike threads, are super light-weight). We&#8217;ll need to store each token with an associated channel. Let&#8217;s use an atom for this.</p>
+<pre class="brush: clojure; title: ; notranslate" title="">
+(def tok-&gt;chan (atom {}))
+</pre>
+<p>Here&#8217;s how we associate the token with a channel in the map.</p>
+<pre class="brush: clojure; title: ; notranslate" title="">
+(let [tok (mqtt-publish client &quot;sneezing&quot; &quot;achoo! [80 m/s]&quot;)
+      c (chan)]
+        (swap! tok-&gt;chan assoc tok c))
+ </pre>
+<p>Now, the point of creating a channel is so our callback interface can handle the delivery acknowledgements by simply placing something on the channel.</p>
+<pre class="brush: clojure; title: ; notranslate" title="">
+(reify MqttCallback
+      (deliveryComplete [_ tok]
+        (when-let 1
+          (go (&gt;! c :arrived))
+          (swap! tok-&gt;chan dissoc tok))))
+ </pre>
+<p>When an acknowledgement is received, the token is used as a key to look up the channel. The keyword <code>:arrived</code> is then &#8216;put&#8217; on the channel, and the channel is removed from the map, as it is no longer needed. Note the put operator is <code>>!</code> (which must occur within a <code>go</code> block, don&#8217;t worry about that yet).</p>
+<p>Now, here&#8217;s the neat trick. We can code the message retry logic in the <em>same block of code</em> that publishes the original message.</p>
+<p>Let&#8217;s wrap the original message publishing code in loop, so each message is retried after 10 seconds.</p>
+<pre class="brush: clojure; title: ; notranslate" title="">
+(go
+  (loop []
+      (let [tok (mqtt-publish client
+                    &quot;sneezing&quot; &quot;achoo! [80 m/s]&quot;)
+              c (chan)]
+          (swap! tok-&gt;chan assoc tok c)
+          (when-not (alts! c (timeout 10000))
+            (recur)))))
+</pre>
+<p>The last expression uses <code>alts!</code> to select over 2 channels. The first channel, <code>c</code> is the one we&#8217;re hoping to take the <code>:arrived</code> keyword from. Competing in this race is a second channel, created by the <code>timeout</code> function, which will close (returning nil) in 10 seconds. The winner of this race tells us whether the message arrived ok (if we &#8216;take&#8217; <code>:arrived</code> from <code>c</code>) or nil (if the 10 second countdown expires). If we get a nil, then we go to the top of the loop and try again. Simple. Magic. Amazing.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=134#comments" title="Comment on MQTT in Clojure with the core.async library"><b>4</b> Replies</a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-134 -->
+
+				
+					
+	<article id="post-122" class="post-122 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=122" title="Permalink to Emacs Demystified" rel="bookmark">Emacs Demystified</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=122" title="9:36 pm" rel="bookmark"><time class="entry-date" datetime="2012-11-27T21:36:47+00:00" pubdate>November 27, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=122#comments" title="Comment on Emacs Demystified">6</a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>There&#8217;s a discussion on the Clojure mailing list about which development environment is most suitable for beginners who want to get started with Clojure.</p>
+<p>If you&#8217;re already an expert IDE user for other work, such as Java development, it makes sense to try Clojure out in environment you&#8217;re used to. However, what should a beginner do if they <em>aren&#8217;t</em> already familiar with an IDE? <strong>If this is you, my strong advice is that you learn Emacs.</strong></p>
+<h2>Emacs optimises the tail</h2>
+<p>Most tools try to optimise the first few hours of use by giving access to all the features via menu-bars and icons. These certainly make <em>learning</em> the tool easier. In fact, the Windows operating system seems to me to be designed to optimise a person&#8217;s first experience with a computer.</p>
+<p>However, once you are familiar with how to use a tool most users find that using keyboard shortcuts makes them more productive, just as many computer users discover that they get more done with a command line. Duplicating access to a feature via a menu and/or an icon only adds to the visual clutter which, detracting from the overall experience. And when you&#8217;re trying to focus on creating content, visual noise can be a distraction.</p>
+<p>Emacs is different. In Emacs, the keyboard shortcut is the <em>primary</em> way of accessing a feature. Many features aren&#8217;t even available via the menu and toolbar. For the sake of reducing visual clutter to a minimum I recommend you toggle off even the basic menu and toolbar that Emacs<br />
+displays when you first start it (see below for how).</p>
+<p>So rather than optimise the first few hours of use, Emacs makes the <em>subsequent</em> years as productive as possible.</p>
+<p>Once you&#8217;re familiar with a tool it&#8217;s easy to forget how you felt when you started out. I remember being a little overwhelmed the first time I tried IntelliJ, I couldn&#8217;t work out how to view 2 files side by side. I also remember finding Eclipse overwhelming, I was confused by its views and perspectives.</p>
+<h2>Practicalities</h2>
+<p>Learning any complex tool like an IDE or Emacs is not a trivial undertaking. But scrambling up the initial learning curve with Emacs is really not all that hard. Here&#8217;s how :-</p>
+<h3><a href="http://www.gnu.org/software/emacs/">Get Emacs</a>.</h3>
+<p>Get a recent copy, version 24 or above. If you&#8217;re on a Mac, avoid Aquamacs for the time being.</p>
+<h3>Start Emacs.</h3>
+<p>Read the text in front of you. Start the tutorial. Run through the tutorial, have a break, come back and do it again. This is really important. Don&#8217;t try to do anything complex (like configure a Clojure environment) until you&#8217;re comfortable with the basics. Don&#8217;t try to learn everything in one go. Emacs has a long learning curve but it doesn&#8217;t have to be steep. Nobody knows all of Emacs and you don&#8217;t have to know much of it to start with. Gradually you will pick up new tips and tricks from other Emacs users and your own curiosity.</p>
+<h3>Minimise the visual clutter.</h3>
+<p>The tutorial will have taught you what <code>M-x</code> means.</p>
+<pre><code> M-x cust-var&lt;RET&gt;
+ Customize variable: menu-bar-mode
+ (click Toggle, then State - 'Save for Future Sessions')
+
+ M-x cust-var&lt;RET&gt;
+ Customize variable: tool-bar-mode
+ (click Toggle, then State - 'Save for Future Sessions')
+
+ M-x cust-var&lt;RET&gt;
+ Customize variable: scroll-bar-mode
+ (click Toggle, then State - 'Save for Future Sessions')
+</code></pre>
+<h3>Kill the caps</h3>
+<p>Rebind your useless CAPS-LOCK key to a Control key. On a Mac, you can<br />
+do that by going to Sytsem Preferences/Keyboard/Modifiers. GNOME and KDE<br />
+users can also do this via settings. For raw X Windows, I find it&#8217;s best<br />
+to add the following to your X conf :</p>
+<pre><code>Section "InputClass"
+    Identifier  "Keyboard Defaults"
+    MatchIsKeyboard "yes"
+    Option  "XkbOptions" "ctrl:nocaps"
+EndSection
+</code></pre>
+<h3>Customize your Clojure environment.</h3>
+<p>There are plenty of tutorials on this. Find a recent one and follow it. Most advice is to use<br />
+nRepl. Personally I find nRepl to be still lacking in certain useful features so I run the original swank instead. In my lein user profile I add the swank plugin.</p>
+<pre><code>~/.lein/profiles.clj
+
+{:user {:plugins [
+                  [lein-swank "1.4.4"]
+                  ]}}
+</code></pre>
+<p>Then I run up an Emacs shell</p>
+<pre><code>M-x eshell
+</code></pre>
+<p>Then I run the swank listener via lein to start my JVM with my project&#8217;s classpath</p>
+<pre><code>$ cd ~/src/myproject
+$ lein swank
+</code></pre>
+<p>Then I connect to localhost and port 4005 (ie. the defaults).</p>
+<pre><code>M-x slime-connect
+</code></pre>
+<p>Then I locate a Clojure file and compile it with <code>C-c C-k</code>.</p>
+<h3>Install and learn paredit.</h3>
+<p>Many people recommend using an Emacs &#8216;starter kit&#8217; which provide various bells and whistles intended for certain user groups (eg. Clojure developers). You&#8217;ll find many examples on github. My advice is to avoid these until you are more comfortable with the default Emacs environment. Personally I don&#8217;t use a starter kit and find that Emacs 24 has ironed out plenty of the wrinkles that these starter kits were created to address.</p>
+<h2>IDE strengths are not tuned to Clojure development</h2>
+<p>For Java developers there are a number of features that tip the balance<br />
+firmly in favour of using an IDE :-</p>
+<ol>
+<li>
+<p>Java, being both statically types and verbose lends itself to<br />
+code-completion facilities in the editor.</p>
+</li>
+<li>
+<p>Improving the design of object oriented code demands heavy<br />
+refactoring, where a good IDE can greatly help.</p>
+</li>
+<li>
+<p>Java&#8217;s requirements on file organisation (one file per public class)<br />
+means that large project can run into thousands of individual files,<br />
+which are more easily accessed using tree controls characteristic of<br />
+IDEs.</p>
+</li>
+</ol>
+<p>All these benefits are significantly less useful for Clojure<br />
+development, so the balance tips in back in favour of Emacs which excels<br />
+at text editing. As an expert user in multiple IDEs and Emacs I can<br />
+attest that the text editing in IDEs feels awkward and even cumbersome<br />
+by Emacs standards.</p>
+<h2>A sound investment</h2>
+<p>Commiting the time to learn Emacs is a very sound investment. I&#8217;ve been using Emacs myself since 1991. The initial learning curve was a few days, which is a tiny fraction of that 20 years. Many tools have come and gone since 1991, including Windows 3.1, Lotus Notes, Visual Age for Java. Emacs predates all these and it&#8217;s very much the same tool now (at version 24) as it was then (at version 18). I fully expect to be using Emacs for another 20 years.</p>
+<p>That would be a big payback if I only used Emacs for development. But I can use Emacs for lots of other tasks. Right now I&#8217;m writing this blog in Emacs using a mode specially designed for creating Markdown formatted articles (which this is one). The same keybindings apply and much of the feature set is just as relevant as when I&#8217;m developing :-</p>
+<ul>
+<li>slick navigation</li>
+<li>text manipulation</li>
+<li>bookmarks</li>
+<li>git integration</li>
+<li>kill-rings</li>
+<li>macros</li>
+<li>narrowing to region</li>
+<li>grep-find</li>
+</ul>
+<p>I don&#8217;t have to work hard to remember all the keybindings associated with these features, they are burnt into my muscle memory. If you haven&#8217;t yet learned to properly touch-type, I also recommend you add that to your &#8216;to-do&#8217; list. Emacs is kind to touch-typists. Like vi, Emacs allows you to navigate without moving your hands over to the arrow keys and back.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=122#comments" title="Comment on Emacs Demystified"><b>6</b> Replies</a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-122 -->
+
+				
+					
+	<article id="post-104" class="post-104 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=104" title="Permalink to The sixty-million-dollar mistake" rel="bookmark">The sixty-million-dollar mistake</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=104" title="6:46 pm" rel="bookmark"><time class="entry-date" datetime="2012-11-15T18:46:22+00:00" pubdate>November 15, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=104#comments" title="Comment on The sixty-million-dollar mistake">4</a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<h1>The sixty-million-dollar mistake</h1>
+<p>Consider the following Java code :-</p>
+<pre><code>public class MoneyAmount {
+
+    private double value;
+    private String currency;
+
+    public void getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public void getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        String validCcy = CurrencyManager.lookupCurrency(currency);
+        if (validCcy != null) {
+            this.currency = validCcy;
+        }
+    }
+}
+
+public static void main(String[] args) {
+    MoneyAmount amt = new MoneyAmount();
+    for (row : spreadsheet) {
+        amt.setValue(row.getValue());
+        amt.setCurrency(row.getCurrency());
+        bookCash(amt);
+    }
+}
+</code></pre>
+<p>So far so good. All the unit tests pass, let&#8217;s deploy it into<br />
+production.</p>
+<p>Everything goes well for many years. Then a small error occurs in the<br />
+input data :-</p>
+<pre><code>40000 USD
+60000000 JPy
+</code></pre>
+<p>What happens?</p>
+<p>Ouch! We&#8217;re going to book 60,000,000 USD instead of 60,000,000<br />
+Yen. That&#8217;s a significant mistake.</p>
+<p>You may think that I&#8217;ve contrived this example (I couldn&#8217;t possibly<br />
+confirm or deny that on this blog) but it does show how subtle a<br />
+horrifying coding mistake can be.</p>
+<p>Why did we make that $60M mistake?</p>
+<ol>
+<li>The developer shouldn&#8217;t have re-used the instance of MoneyAmount.</li>
+<li>The developer should have checked for the null case returning from <code>CurrencyManager.lookupCurrency</code>.</li>
+<li>The developer should have avoided using setter methods.</li>
+</ol>
+<p>Let&#8217;s direct our questioning at a deeper level.</p>
+<p>Why did the developer make these mistakes?</p>
+<ol>
+<li>The developer didn&#8217;t receive adequate education.</li>
+<li>Due to tight deadlines, the developer was not given enough time to think about the edge cases.</li>
+<li>The developer&#8217;s code wasn&#8217;t properly reviewed by a code-reviewer.</li>
+<li>There weren&#8217;t enough tests in the test suite.</li>
+</ol>
+<p>These are all potential causes, but it&#8217;s not easy to see which one is<br />
+relevant and take corrective action.</p>
+<ol>
+<li>What constitutes &#8216;adequate&#8217; education for developers?</li>
+<li>How do we manage projects so that estimates are accurate and there are no slippages.</li>
+<li>How do we enforce proper code-review and how much review is necessary?</li>
+<li>What constitutes adequate testing?</li>
+</ol>
+<p>Many people are involved in discovering better answers to these<br />
+questions working <em>within</em>, as well as <em>supplementing</em>, their existing<br />
+toolsets.</p>
+<p>I think these approaches are mostly ineffectual, at some<br />
+level. Otherwise I wouldn&#8217;t have contemplated bringing in a new<br />
+programming language into the bank. In the case of Clojure, it has meant<br />
+building a whole new toolset around it (including the IDE where most of<br />
+the developers on my team have moved to Emacs).</p>
+<h2>Mere tools?</h2>
+<p>Despite the disruption, I&#8217;ve been very encouraged by the effectiveness<br />
+that a modern tool like Clojure has on software quality. While I<br />
+consider a programming language as a tool, that may unfairly diminish<br />
+its importance. As an industry we are continually discovering better<br />
+ways of creating software and <em>new programming languages are still the<br />
+main vessels in which we distill that experience</em>. Those who adopt a<br />
+modern programming language inherit the wealth of a generation&#8217;s<br />
+experience.</p>
+<p>I began this article by presenting a real coding mistake. My experience<br />
+with Clojure means that nowadays I approach the issue differently. Why<br />
+did the developer make these mistakes?</p>
+<ol>
+<li>The tool encouraged it.</li>
+</ol>
+<p>Ultimately, delivering reliable software to our users is more important<br />
+than our development tools, however much we&#8217;ve grown used to them. If<br />
+our tools are letting us make these expensive mistakes then we need to<br />
+consider their replacement.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=104#comments" title="Comment on The sixty-million-dollar mistake"><b>4</b> Replies</a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-104 -->
+
+				
+					
+	<article id="post-101" class="post-101 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=101" title="Permalink to Triple-witching day" rel="bookmark">Triple-witching day</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=101" title="7:53 am" rel="bookmark"><time class="entry-date" datetime="2012-09-21T07:53:53+00:00" pubdate>September 21, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=101#respond" title="Comment on Triple-witching day"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Yesterday evening I was on a conference call with some colleagues. We are all trying to complete the UAT testing for a major project deployment next month.</p>
+<p>Today is a triple-witching day (TL;DR: triple-witching day happens 4 times a year when many bank staff go home late from work). Unfortunately the test-managers want to use today to test the operations on a triple-witching day &#8211; trouble is I didn&#8217;t realise until now the implications for the system we are contributing. We&#8217;ll need to write and apply a fix to support triple-witching day.</p>
+<p>So please join me for this special-edition &#8216;live&#8217; blogging (on the train down to London) where I think about what we can do.</p>
+<p>We have a scheduler in the system that schedules a particular job for 1730 in New York. We&#8217;ll have to disable that job today, and write up a procedure guide for what our operations staff should do every triple-witching day. But this project is designed to deliver cost-savings to the bank through automation, so it seems counter to the aims of the project to expand the number of manual processes.</p>
+<p>Fortunately our scheduler (which we call &#8216;chime&#8217;) is written in Clojure. It is built on <code>clj-time</code> which in turn brings in the excellent Joda-Time library.</p>
+<p>Our scheduler is designed to exploit Clojure&#8217;s lazy sequences. Our functions return sequences of infinitely re-occuring events. We can then use sequence operators such as <code>map</code>, <code>filter</code> and <code>take</code>. Then we build schedules by attaching these events to functions that get called at the right time.</p>
+<p>We already have a function that returns all the days on which banking business happens in a given city (everyday excluding weekends and holidays). That function calls out to a C++ library which embeds official market information about holidays so we won&#8217;t cover that here.</p>
+<p>For New York, we call it like this :-</p>
+<pre><code>(business-days "NY")
+</code></pre>
+<p>This returns a sequence of all the business days from today (which is implied).</p>
+<p>We can override &#8216;today&#8217; to be something else, with our <code>as-of</code> macro, which binds a dynamic var which usually defaults to the current time.</p>
+<pre><code>(def ^:dynamic ^DateTime *now* nil)
+
+(defmacro as-of [^Object from &amp; body]
+  `(with-bindings {(var *now*) (DateTime. ~from)}
+     ~@body))
+
+(as-of "2010-10-20"
+  (business-days "NY"))
+</code></pre>
+<p>What I want to do is build a function that returns a sequence of business days that are triple-witching-days, so I can build a special schedule for days like today.</p>
+<p>Triple witching days are the third Friday of months of March, June, September and December (with the exception of Good Friday, which is a holiday, so the triple-witching day occurs on the prior Thursday).</p>
+<p>Joda-Time doesn&#8217;t have the notion of &#8216;third Friday in the month&#8217;. Let&#8217;s first build a predicate in clj-time for what that means.</p>
+<p>In London, our Clojure Dojos happen on the last Tuesday of the month.</p>
+<pre><code>(defn dojo-day? [day]
+  (and (= DateTimeConstants/TUESDAY (.getDayOfWeek day))
+       (not= (.getMonthOfYear day) (.getMonthOfYear (.plusWeeks day 1)))))
+</code></pre>
+<p>The first constraint checks that it&#8217;s a Tuesday. The second term tests whether the following Tuesday is in the same month. If not, then it must be the <em>last</em> Tuesday in this month, so it&#8217;s a Dojo-day!</p>
+<p>We can easily generate the sequence of Dojo days from today. We start by generating a list of all the days from today :-</p>
+<pre><code>(defn ^LocalDate today []
+  (LocalDate. *now*))
+
+(defn days-from-today []
+  (iterate #(.plusDays ^LocalDate % 1) (today)))
+</code></pre>
+<p>Now we just add a filter.</p>
+<pre><code>(take 6 (filter dojo-day? (days-from-today)))
+</code></pre>
+<p>which returns :-</p>
+<pre><code>(#&lt;LocalDate 2012-09-25&gt; 
+ #&lt;LocalDate 2012-10-30&gt; 
+ #&lt;LocalDate 2012-11-27&gt; 
+ #&lt;LocalDate 2012-12-25&gt; 
+ #&lt;LocalDate 2013-01-29&gt; 
+ #&lt;LocalDate 2013-02-26&gt;)
+</code></pre>
+<p>I&#8217;m not sure we&#8217;ll have a Clojure Dojo on Xmas day this year but who you never know with those guys&#8230;</p>
+<p>So back to work. With the predicate that tests for the Dojo day we can write a variation that tests for the last Friday in a month :-</p>
+<pre><code>(defn third-friday? [day]
+  (and (= DateTimeConstants/FRIDAY (.getDayOfWeek day))
+       (= (.getMonthOfYear day) (.getMonthOfYear (.minusWeeks day 2)))
+       (not= (.getMonthOfYear day) (.getMonthOfYear (.minusWeeks day 3)))))
+</code></pre>
+<p>This is based on a similar principle. If it&#8217;s the third Friday of a month than the Friday 2 weeks before must be in the same month, but the Friday <em>three</em> weeks before must be in the previous month.</p>
+<p>We can now build in the months in which triple-witching days occur.</p>
+<pre><code>(defn triple-witching-day? [day]
+  (and
+   (third-friday? day)
+   (#{3 6 9 12} (.getMonthOfYear day))))
+</code></pre>
+<p>We not quite done yet because we haven&#8217;t considered what happens on Good Friday. We mustn&#8217;t fall into the trap of considering the third Thursday of the month &#8211; it still has to be the day before the third <em>Friday</em>.</p>
+<pre><code>(defn triple-witching-day? [day]
+  (or (and
+       (third-friday? day)
+       (#{3 6 9 12} (.getMonthOfYear day))
+       (business-day? "NY" day))
+      (let [fri (.plusDays day 1)]
+        (and
+         (not (business-day? "NY" fri))
+         (third-friday? fri)
+         (#{3 6 9 12} (.getMonthOfYear fri))))))
+</code></pre>
+<p>Now our 2 schedules can be built as follows :-</p>
+<pre><code>(filter triple-witching-day? (business-days))
+(filter (comp not triple-witching-day?) (business-days))
+</code></pre>
+<p>Note I prefer the <code>(comp not f)</code> style to writing <code>#(not (f %))</code>.</p>
+<p>Now I&#8217;m ready to patch our UAT system when I get in. Still a few minutes left on the train for a few observations&#8230;</p>
+<ol>
+<li>
+<p>In an ideal world you&#8217;d never have these awkward situations when you have to think how to patch a system with new functionality as soon as possible. But banks are not ideal worlds and these things do crop up. The Agile manifesto values &#8216;responding to change, over working to a plan&#8217; for days like today.</p>
+</li>
+<li>
+<p>I&#8217;ve found hacking many fixes into a system usually degrades the architecture quickly. In Java systems these fixes can create dependency cycles. In Clojure systems the architecture is protected from cycles occurring because a Clojure system won&#8217;t even start if you have them between namespaces, and inside namespaces as long as you avoid using <code>declare</code> &#8211; this is a topic for a whole new blog article!</p>
+</li>
+</ol>
+<p>Well, my train is now slowing down so I have to post this.</p>
+<p>(If you spot any flaws with my algorithms, please tell me soon!!!!)</p>
+<p>Wish us luck!</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=101#respond" title="Comment on Triple-witching day"><span class="leave-reply">Leave a reply</span></a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-101 -->
+
+				
+					
+	<article id="post-94" class="post-94 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=94" title="Permalink to The UK Government should take a look at Clojure" rel="bookmark">The UK Government should take a look at Clojure</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=94" title="8:07 pm" rel="bookmark"><time class="entry-date" datetime="2012-06-28T20:07:28+00:00" pubdate>June 28, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=94#respond" title="Comment on The UK Government should take a look at Clojure"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Today saw the launch of a <a href="http://www.cabinetoffice.gov.uk/sites/default/files/resources/CM8353_acc.pdf">UK Government White Paper on Open Data</a>.</p>
+<p>In his forward, Francis Maude writes :-</p>
+<blockquote><p>
+  &#8220;Data is the 21st century&#8217;s new raw material&#8230;&#8221;
+</p></blockquote>
+<p>At EuroClojure this year I spoke about the numerous strengths of Clojure as an<br />
+enabling technology to release trapped data and onto the web. I think<br />
+this is one of Clojure&#8217;s best kept secrets.</p>
+<p>Then there are examples of Clojure&#8217;s strengths in processing data in<br />
+order to find new insights.</p>
+<p>And at last Tuesday&#8217;s <a href="http://groups.google.com/group/london-clojurians">London Clojure Dojo</a> I witnessed a powerful example<br />
+of how Clojure can consume and leverage data on the web.</p>
+<p>Perhaps to mark the centenary of Alan Turing&#8217;s birth, 4 fellow<br />
+Clojurians chose to create a chatbot that could engage humans in<br />
+conversation. In the space of an hour-and-a-half they had created a demo<br />
+from nothing. The code, written using LightTable, showed how they had<br />
+&#8216;cheated&#8217; by using the user&#8217;s input to drive a search against Twitter,<br />
+processing the JSON results and printing back a response. (I, for one,<br />
+was totally taken in at first however).</p>
+<p>The impressive thing for me was not the &#8216;fake AI&#8217; but the speed at which four<br />
+developers could craft something that sourced data from the web and<br />
+manipulated it in such an effortless, almost nonchalent, manner.</p>
+<p>I commented after the demonstration that I strongly felt this is how<br />
+programming will be in 10 years time. Future programmers just won&#8217;t<br />
+understand why things were seemingly so difficult for us today &#8211; the<br />
+industry is awash with chatter about efficient serialization formats,<br />
+parsers, DSLs, middleware, integration technologies &#8211; and yet these guys<br />
+made it all look so easy. Once you&#8217;ve mastered Clojure, of course, it<br />
+is.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=94#respond" title="Comment on The UK Government should take a look at Clojure"><span class="leave-reply">Leave a reply</span></a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-94 -->
+
+				
+					
+	<article id="post-83" class="post-83 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=83" title="Permalink to Notes on &#8216;rethinking web services&#8217;" rel="bookmark">Notes on &#8216;rethinking web services&#8217;</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=83" title="7:32 am" rel="bookmark"><time class="entry-date" datetime="2012-06-22T07:32:21+00:00" pubdate>June 22, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=83#respond" title="Comment on Notes on &#8216;rethinking web services&#8217;"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>I recently read a <a href="http://matt.aimonetti.net/posts/2012/06/13/rethinking-web-service-development/">good article</a> by Matt Aimonetti on creating web services. He makes some particular good points.</p>
+<h2>Web APIs are increasingly exposing raw data</h2>
+<blockquote><p>
+  &#8220;But web APIs are also more and more used to expose raw data to other software. The challenge though, is that we haven’t changed the way we write web applications to adapt to this new way of providing data.</p>
+<p>  Lately more and more applications provide their raw data to the outside world via web APIs. &#8221;
+</p></blockquote>
+<p>Matt observes that developers are increasingly focussed on the data. This could be for the reason that Open Data is becoming more established (eg. <a href="http://data.gov.uk">http://data.gov.uk</a>) or perhaps because such web APIs are better designed this way and a <a href="http://en.wikipedia.org/wiki/Natural_selection">selection mechanism</a> is driving the surviving population of APIs on the web.</p>
+<p>I agree too our current tools and methods could be out of date. Perhaps even our language needs updating: how accurate is it call these things &#8216;web APIs&#8217; or &#8216;web services&#8217;?</p>
+<h2>Documentation</h2>
+<p>Matt makes another excellent point about documentation. Users of this exposed data may not have access to or understanding of your source code. They may not even be developers. So explicit documentation is important, and documentation is invariably more accurate if generated.</p>
+<blockquote><p>
+  &#8220;For that I use a Domain Specific Language (DSL) which is a fancy way to say that I have some specific code allowing me to explicitly define my web services. These services exist as objects that can then be used to process requests but also to validate inputs, and even more importantly to generate documentation.&#8221;
+</p></blockquote>
+<p>Here&#8217;s an example of his DSL, which I&#8217;ve combined with the code for this implementation.</p>
+<pre><code>describe_service "hello_world" do |service|
+  service.formats   :json
+  service.http_verb :get
+  service.disable_auth # on by default
+
+  # INPUT
+  service.param.string  :name, :default =&gt; 'World', :doc =&gt; "The name of the person to greet."
+
+  # OUTPUT
+  service.response do |response|
+    response.object do |obj|
+      obj.string :message, :doc =&gt; "The greeting message sent back. Defaults to 'World'"
+      obj.datetime :at, :doc =&gt; "The timestamp of when the message was dispatched"
+    end
+  end
+
+  # DOCUMENTATION
+  service.documentation do |doc|
+    doc.overall "This service provides a simple hello world implementation example."
+    doc.example "&lt;code&gt;curl -I 'http://localhost:9292/hello_world?name=Matt'&lt;/code&gt;"
+  end
+
+  # SERVICE IMPLEMENTATION
+  # the returned value is used as the response body, all the Sinatra helpers
+  # are available.
+  service.implementation do
+    {:message =&gt; "Hello #{params[:name]}", :at =&gt; Time.now}.to_json
+  end
+end    
+</code></pre>
+<p>What struck me about this is how similar it is to <a href="http://github.com/ordnungswidrig/compojure-rest">Philipp Meier&#8217;s compojure-rest</a> for Clojure. For example, I&#8217;ve translated his example into compojure-rest&#8217;s <code>defresource</code> syntax :-</p>
+<pre><code>(defresource 
+
+  ^{:doc "This service provides a simple hello world implementation example."
+    :example "&lt;code&gt;curl -I 'http://localhost:9292/hello_world?name=Malcolm'&lt;/code&gt;"
+    :params ["name" "The name of the person to greet."]} 
+
+  hello-world
+
+  :available-media-types ["application/json"]
+  :method-allowed? (request-method-in :get)
+  :authorized? true
+
+  :handle-ok (fn [context]
+               {:message (format "Hello %s" 
+                           (or (get-in context [:request :params "name"]) 
+                               "World")) ; default
+                :datetime (java.util.Date.)}))
+</code></pre>
+<p>In compojure-rest, we should be able to add test metadata to the defresource which, along with the map declaring the service itself, could be used to generate documentation, examples and tests.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=83#respond" title="Comment on Notes on &#8216;rethinking web services&#8217;"><span class="leave-reply">Leave a reply</span></a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-83 -->
+
+				
+					
+	<article id="post-67" class="post-67 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=67" title="Permalink to Coding a transactional database using Clojure&#8217;s &#8216;reader literals&#8217;." rel="bookmark">Coding a transactional database using Clojure&#8217;s &#8216;reader literals&#8217;.</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=67" title="12:01 am" rel="bookmark"><time class="entry-date" datetime="2012-04-19T00:01:14+00:00" pubdate>April 19, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=67#comments" title="Comment on Coding a transactional database using Clojure&#8217;s &#8216;reader literals&#8217;.">6</a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>I want to show how you can create a simple persistent database by utilising reader literals in Clojure 1.4. You can copy these lines into a Clojure program if you like &#8211; the only dependency you require is <code>clojure.java.io</code>.</p>
+<p>Let&#8217;s start by defining a transaction as an update to some state using a protocol :-</p>
+<pre><code>(defprotocol Transaction (update [_ state]))
+</code></pre>
+<p>Here&#8217;s some example transactions we want to perform. For this article let&#8217;s imagine we&#8217;re creating a database of user accounts. We&#8217;ll just create two transaction types- creating users and deleting them. Let&#8217;s record the name and email address, plus the date they joined or left.</p>
+<pre><code>(defrecord CreateUser [name email start-date]
+  Transaction
+  (update [this db]
+    (update-in db [:users] conj
+      {:name name :email email :start-date start-date})))
+
+(defrecord DeleteUser [email remove-date]
+  Transaction
+  (update [this db]
+    (update-in db [:users]
+      (fn [coll] (remove (fn [r] (= (:email r) email)) coll)))))
+</code></pre>
+<p>Data is important. We&#8217;ll want to keep records of these transactions.</p>
+<pre><code>(defprotocol TransactionLog (record [_ tx]))
+</code></pre>
+<p>Here&#8217;s an implementation that uses an agent to write the records to a print-stream.</p>
+<pre><code>(defrecord DefaultTransactionLog [ag]
+  TransactionLog
+  (record [this tx]
+    (send-off ag
+      (fn [out]
+        (binding [*out* out *flush-on-newline* true]
+          (io! (prn tx)) out)))))
+</code></pre>
+<p>The agent will hold the print-stream. Agents are good for I/O because messages to them only get delivered if the transaction completes its update succesfully. If a retry is needed the message doesn&#8217;t get delivered. We let the Clojure prn function figure out how to serialize it. It&#8217;s optional, but I&#8217;ve wrapped the actual print statement in an <code>io!</code> wrapper as a safety check.</p>
+<p>Having written the records we&#8217;ll need some way of reading them back. We&#8217;ll just use the standard Clojure reader for this. This function returns a list of all the transactions in a file.</p>
+<pre><code>(defn read-transactions [f]
+  (if-not (.exists f) []
+    (let [rdr (java.io.PushbackReader. (clojure.java.io/reader f))]
+      (take-while identity
+        (repeatedly 
+          (fn [] (read rdr false nil)))))))
+</code></pre>
+<p>Now we move on to the database state. Let&#8217;s decorate the transaction log with something that will hold this state. As transactions are added to it they will update the in-memory state and be recorded on disk. This can support the TransactionLog protocol as well. The state will be a Clojure ref. The delegate will be a backing transaction log.</p>
+<pre><code>(defrecord Database [state delegate]
+  TransactionLog
+  (record [this tx]
+    (dosync
+     (alter state (partial update tx))
+     (record delegate tx))))
+</code></pre>
+<p>Now we&#8217;re ready to create our database with the Clojure ref and backing transaction log. We&#8217;ll initialize the ref with a result of updating an empty map with a series of transactions read from our file.</p>
+<pre><code>(def db 
+   (Database.
+     (ref (reduce (fn [db tx] (update tx db)) {}
+                    (read-transactions
+                      (clojure.java.io/file "my.db.clj"))))
+     (DefaultTransactionLog. 
+       (agent (clojure.java.io/writer
+                (clojure.java.io/file "my.db.clj")
+                :append true)))))
+</code></pre>
+<p>Remember those transactions we coded earlier? Let&#8217;s add some convenience functions that will create and apply these transactions :-</p>
+<pre><code>(defn create-user [name email]
+    (record db (CreateUser. name email (java.util.Date.))))
+
+(defn delete-user [email]
+    (record db (DeleteUser. email (java.util.Date.))))
+</code></pre>
+<p>Notice how we&#8217;re creating <code>java.util.Date</code> instances.</p>
+<p>Now, let&#8217;s test it.</p>
+<pre><code>(create-user "Bob" "bob@example.org")
+(create-user "Alice" "alice@example.org")
+(create-user "Carol" "carol@example.org")
+(delete-user "alice@example.org")
+</code></pre>
+<p>What&#8217;s the state of the database?</p>
+<pre><code>(deref (:state db))    
+</code></pre>
+<p>You should see something like this :-</p>
+<pre><code>{:users 
+  ({:name "Carol",
+    :email "carol@example.org",
+    :start-date #inst "2012-04-19T16:00:35.903-00:00"}
+   {:name "Bob",
+    :email "bob@example.org",
+    :start-date #inst "2012-04-19T16:00:35.901-00:00"})}
+</code></pre>
+<p>What&#8217;s in our database file? Below is the raw content. Unlike some database files it&#8217;s quite easy to read and even possible to edit by hand if the need arises.</p>
+<pre><code>#blog.CreateUser{:name "Bob", :email 
+"bob@example.org", :start-date #inst 
+"2012-04-19T16:00:35.901-00:00"}
+#blog.CreateUser{:name "Alice", :email 
+"alice@example.org", :start-date #inst 
+"2012-04-19T16:00:35.903-00:00"}
+#blog.CreateUser{:name "Carol", :email 
+"carol@example.org", :start-date #inst 
+"2012-04-19T16:00:35.903-00:00"}
+#blog.DeleteUser{:email "alice@example.org", 
+:remove-date #inst 
+"2012-04-19T16:00:35.904-00:00"}
+</code></pre>
+<p>Note, unless you aren&#8217;t using Clojure 1.4 or above you won&#8217;t see the <code>#inst</code> tags!</p>
+<p>Notice how Clojure is writing out and reading back the <code>java.util.Date</code> instance. You can also register your own Java types to it through the <code>*data-readers*</code> dynamic binding (more details in the Clojure 1.4 release notes). This makes things really easy to create some fairly complex atomic transactions.</p>
+<p>Now try recompiling &#8211; you should find the database is restored. You can also try removing the user. The transaction log will store both the create-user event and the delete-user event, both with timings.</p>
+<p>That&#8217;s around 30 lines of code to code a transactional database, and a few more lines to code some custom transactions.</p>
+<p>You don&#8217;t have to limit yourself to a map as your state. At Deutsche Bank we&#8217;ve used a similar design but with RDF triple-stores that are queryable in a datalog syntax. A key benefit with using Clojure&#8217;s persistent data-structures for simple in-memory datastores is that you don&#8217;t have to worry about locks or concurrent updates.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=67#comments" title="Comment on Coding a transactional database using Clojure&#8217;s &#8216;reader literals&#8217;."><b>6</b> Replies</a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-67 -->
+
+				
+					
+	<article id="post-56" class="post-56 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=56" title="Permalink to Reflections on a real-world Clojure application (take 2)" rel="bookmark">Reflections on a real-world Clojure application (take 2)</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=56" title="11:01 pm" rel="bookmark"><time class="entry-date" datetime="2012-01-18T23:01:34+00:00" pubdate>January 18, 2012</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=56#respond" title="Comment on Reflections on a real-world Clojure application (take 2)"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Last night I gave a talk at the London Clojure Users Group (LCUG) about a &#8216;real-world&#8217; (16K lines-of-code) application we built in less than a year with Clojure at Deutsche Bank. I really enjoyed the event and thanks to SkillsMatter who were fantastic hosts.</p>
+<p>There were a lot of questions during the Q&amp;A at the end which I did my best to answer at the time. Now I&#8217;ve had some more thinking time I&#8217;d like to add a few extra comments.</p>
+<p>If you couldn&#8217;t attend the talk you can catch it <a href="http://skillsmatter.com/podcast/scala/real-world-clojure">here</a>.</p>
+<p>Below is the original presentation in blog form (thank you Markdown!). My extra comments can be found in the epilogue &#8211; feel free to ask further questions in the comments area.</p>
+<h1>Reflections on a real-world Clojure application-</h1>
+<h2>Background</h2>
+<ul>
+<li>Java background, especially early J2EE circa 1999-2002</li>
+<li>Test Driven Development &#8211; ran 20 courses</li>
+<li>Mastering TDD helped me to write Java using <em>values</em> rather than <em>objects</em></li>
+<li>Began to write Java in a more functional way &#8211; but much more verbose!!</li>
+<li>Started using Clojure at work for user web interfaces in November 2009</li>
+<li>Began to attend Clojure Dojos in London</li>
+<li>February 2011 &#8211; Clojure used extensively on a new application, now 16K LOCs!</li>
+</ul>
+<h1>The &#8216;main&#8217; function</h1>
+<h2>Developer bootstrap</h2>
+<p>For developers</p>
+<pre><code>$ mvn dependency:copy-dependencies
+$ ./run
+</code></pre>
+<p>which does this :-</p>
+<pre><code>#!/bin/sh
+echo "Starting Fandango run script..."
+
+export PATH=$PATH:target/bin
+
+# Set debug to nil to disable JVM debugging.
+classpath='src/main/clojure:target/dependency/*'
+main=src/main/clojure/com/db/mis4/fandango/main.clj
+
+java -cp ${classpath} clojure.main ${main}
+</code></pre>
+<p>Then slime in with Emacs!</p>
+<p>(Let&#8217;s look at configuration in more detail)</p>
+<h1>Configuration</h1>
+<h2>Requirements of a configuration system</h2>
+<ul>
+<li>Flexibility &#8211; we should be able to add configuration where we need it</li>
+<li>Distributed ownership &#8211; we shouldn&#8217;t have to know the live passwords</li>
+<li>Source agnostic &#8211; we&#8217;d like to be able to use local files <em>and</em> centralised storage.</li>
+</ul>
+<h2>Candidates?</h2>
+<ul>
+<li>Java properties files</li>
+<li>JSON/YAML</li>
+<li>XML &#8211; tree based, schemas enforces structure rather than value</li>
+<li>Databases &#8211; records for configuration are too diverse</li>
+<li>RDF &#8211; graph based, queryable</li>
+</ul>
+<h2>Clojure as configuration?</h2>
+<blockquote><p>
+  &#8220;Protocols and file formats that are Turing-complete input languages are the worst offenders, because for them, recognizing valid or expected inputs is UNDECIDABLE: no amount of programming or testing will get it right&#8230; A Turing-complete input language destroys security for generations of users. Avoid Turing-complete input languages! &#8221; &#8212; Corey Doctorow
+</p></blockquote>
+<h4>So&#8230;</h4>
+<p>Be careful if you choose Clojure as your configuration format!!</p>
+<h2>&#8216;Open Data&#8217;</h2>
+<p>All our data (application &amp; environment configuration, report definitions, user details &amp; entitlements, etc.) are stored as RDF statements</p>
+<ul>
+<li>&#8220;<em>The cat sat on the mat</em>&#8221;
+<ul>
+<li>Subject: <em>the cat</em></li>
+<li>Predicate (also known as <em>property</em>): <em>sat on</em></li>
+<li>Object: <em>the mat</em></li>
+</ul>
+</li>
+<li>
+<p>Relations are at an <em>individual</em> level rather than at a <em>set</em> (ie. table) level.</p>
+</li>
+<li>More intro to RDF here:
+<ul>
+<li>http://www.bbc.co.uk/blogs/radiolabs/s5/linked-data/s5.html</li>
+<li>http://linkeddatabook.com</li>
+</ul>
+</li>
+</ul>
+<h2>Our configuration system</h2>
+<ul>
+<li>RDF files (mostly Turtle format)</li>
+<li>SPARQL queries</li>
+<li>Uses a dynamic var: <code>(with-config ...)</code></li>
+<li>Delays to avoid unnecessary queries</li>
+</ul>
+<h2>Example</h2>
+<p>create-assocations :-</p>
+<pre><code>(defn create-associations [model]
+  {::directories
+   (delay
+    (sparql/select1-map
+     model
+     [:proc cmdb/host :host]
+     [:proc cmdb/install-dir (as-uri (format "file://%s" (or (System/getenv "FANDANGO_INSTALL_DIR")
+                                                             (System/getProperty "user.dir"))))]
+     [:host a cmdb/Host]
+     [:host cmdb/hostname (get-hostname)]
+     [:proc cmdb/userid (System/getProperty "user.name")]
+     [:proc ["http://mis4.gto.intranet.db.com/fandango/" "dataDirectory"] :data-dir]
+     [:proc ["http://mis4.gto.intranet.db.com/fandango/" "logDirectory"] :log-dir]
+     [:proc ["http://mis4.gto.intranet.db.com/fandango/" "workDirectory"] :work-dir]
+     [:proc ["http://mis4.gto.intranet.db.com/fandango/" "pidDirectory"] :pid-dir]
+     [:optional [:proc cmdb/source-dir :source-dir]]
+</code></pre>
+<h1>Security</h1>
+<h2>Entitlements</h2>
+<p>All users are given FOAF &#8216;profiles&#8217;, with added VCARD and other statements.</p>
+<p>Given these prefixes</p>
+<pre><code>@prefix foaf: &amp;lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix rdfs: &amp;lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+</code></pre>
+<p>This statement (in the configuration) gives all users a &#8216;Guest&#8217; role.</p>
+<pre><code>foaf:Person rdfs:subClassOf &amp;lt;Guest&gt; .
+</code></pre>
+<h2>N-triples</h2>
+<p>Statements are then added to create users, request roles, approve or reject roles</p>
+<p>Creating a user</p>
+<pre><code>&amp;lt;events/5afcf604-16c0-4cab-a6d1-656ed3f3420c&gt; &amp;lt;time&gt; "2011-12-25T12:00Z"^^&amp;lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .
+&amp;lt;events/5afcf604-16c0-4cab-a6d1-656ed3f3420c&gt; rdfs:type &amp;lt;CreateUser&gt; .
+&amp;lt;events/5afcf604-16c0-4cab-a6d1-656ed3f3420c&gt; &amp;lt;eventfor&gt; &amp;lt;users/malcolm.sparks%40db.com&gt; .
+</code></pre>
+<p>Request a role</p>
+<pre><code>&amp;lt;events/b5bed531-a324-4aec-9ace-2785c65a19b7&gt; &amp;lt;time&gt; "2011-12-25T14:00Z"^^&amp;lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .
+&amp;lt;events/b5bed531-a324-4aec-9ace-2785c65a19b7&gt; rdfs:type &amp;lt;RequestRole&gt; .
+&amp;lt;events/b5bed531-a324-4aec-9ace-2785c65a19b7&gt; &amp;lt;role&gt; &amp;lt;Administrator&gt; .
+&amp;lt;events/b5bed531-a324-4aec-9ace-2785c65a19b7&gt; &amp;lt;eventfor&gt; &amp;lt;users/malcolm.sparks%40db.com&gt; .
+</code></pre>
+<h2>Language integrated query</h2>
+<p>Data can be queried directly from Clojure</p>
+<pre><code>(defn get-approved-roles-for-user [user]
+  (sparql/select-map
+   [(get-combined-model) (config/get-config-model)]
+   [:approval a events-ns/RoleApproved]
+   [:approval events-ns/time :approval-time]
+   [:approval roles/approver :approver]
+   [:approver foaf/name :approver-name]
+   [:optional [:approver foaf/homepage :approver-homepage]]
+   [:approval roles/cause :request]
+   [:request roles/requester user]
+   [:request events-ns/time :request-time]
+   [:request roles/role :role]
+   [:role rdfs/label :role-name]))
+</code></pre>
+<h1>Deployment</h1>
+<h2>Releasing to production</h2>
+<pre><code>$ git clone http://github....db.com/.../fandango.git
+$ git verify-tag 4.5.0
+$ git checkout tags/4.5.0
+$ make release
+</code></pre>
+<p>Derive the version from git!</p>
+<p>GNU Make incantation &#8230;</p>
+<pre><code>describe := $(subst -, ,$(shell git describe --tags --long HEAD))
+version := $(word 1,$(subst -, ,$(describe)))
+release := $(shell expr 1 + $(word 2,$(describe)))
+</code></pre>
+<p>And generate the <code>pom.xml</code> &#8211; ie. in Make :-</p>
+<pre><code>pom.xml:    pom.template.xml
+            cat $&lt; | sed -e "s/@VERSION@/$(version)/g" &gt;$@
+
+mvn dependency:copy-dependencies
+cp -r src/ dest/
+</code></pre>
+<p>We use RPM but the principle of copying the source and dependency jars over is the same.</p>
+<h2>Installation</h2>
+<p>Installation is easy</p>
+<pre><code>$ rpm --dbpath /opt/privatedb -Uvh fandango-4.5.0-1-x86_64.rpm
+</code></pre>
+<h2>Production bootstrap</h2>
+<pre><code>$ fandango start
+</code></pre>
+<p>A lot more complex than the developer bootstrap.</p>
+<ul>
+<li>Init script (from Java Service Wrapper &#8211; enhanced with <code>roqet</code> to read environment variables from configuration)</li>
+<li>Init script generates the <code>wrapper.conf</code>, then calls Java Service Wrapper native executable</li>
+<li>Native binary spawns JVM with 2 args <code>clojure.main boot.clj</code></li>
+<li>boot.clj sets up a classloader which pulls in the dependency jars</li>
+<li>boot.clj hands off to main.clj, rest is as the developer bootstrap.</li>
+</ul>
+<p>But source code is still copied onto the system as is.</p>
+<h1>Logging</h1>
+<h2>Getting started</h2>
+<p>Logging is important because it&#8217;s what everyone expects to find.</p>
+<p>These will get you started :-</p>
+<pre><code>(clojure.core/println)
+(clojure.pprint/pprint)
+</code></pre>
+<p>However, as your application grows you will eventually need a more sophisticated logging system. We use Log4J and configure it with clj-logging-config.</p>
+<p>You&#8217;ll need the following packages to do this :-&#8221;</p>
+<pre><code>(use 'clojure.tools.logging)
+(use 'clj-logging-config/log4j)
+</code></pre>
+<h2>(with-logging-config)</h2>
+<pre><code>(with-logging-config 
+  [:root {:level :debug 
+          :out (io/file workdir "job.log")}]
+  ...
+</code></pre>
+<h2>(with-logging-context)</h2>
+<p>For using the NDC and MDC of Log4J.</p>
+<pre><code>(with-logging-config
+  [:root {:pattern "%d [%p] (for Customer %X{customer}) %m%n"}]
+   ...
+
+   (with-logging-context {"customer" "John Smith"}
+     ...
+</code></pre>
+<h1>Reflections</h1>
+<h2>The Good</h2>
+<ul>
+<li>Retain the JVM</li>
+<li>No class files, yippee!</li>
+<li>Sliming in! EDD: Eval Driven Development!</li>
+<li>Separation of value, identity, state: State is a timeline of changing values.</li>
+<li>Learning time &#8211; even our DBA is now comfortable with Clojure.</li>
+</ul>
+<h2>The Bad</h2>
+<ul>
+<li>People are justifiably afraid of new things</li>
+<li>Tooling (for those not comfortable with Emacs)</li>
+<li>Java interop can bite you</li>
+</ul>
+<h2>The Ugly</h2>
+<ul>
+<li>Stack traces</li>
+<li>Debugging</li>
+</ul>
+<h2>Quality versus value</h2>
+<blockquote><p>
+  &#8220;Value is what you are trying to produce, and quality is only one aspect of it, intermixed with cost, features, and other factors.&#8221;   &#8212; John Carmack, http://altdevblogaday.com/2011/12/24/static-code-analysis/
+</p></blockquote>
+<h4>cf. &#8216;Agile&#8217; absolutes</h4>
+<ul>
+<li>Always write the tests first</li>
+<li>Tests should always pass</li>
+<li>Always fix the build before working on new features</li>
+<li>Integrate continuously</li>
+<li>Refactor prior to adding new features</li>
+<li>Consistent code style</li>
+</ul>
+<para class="action">Our experience of Git + Clojure is prompting us to question certain assumptions.</para>
+<h2>More info</h2>
+<p>http://blog.malcolmsparks.com</p>
+<h2>Q &amp; A</h2>
+<p>Over to you&#8230;</p>
+<h2>Epilogue</h2>
+<p>Many of the questions related to the RDF portion of my presentation. There were a lot of others, I can&#8217;t remember all now.</p>
+<h3>How big is your team and how did it grow?</h3>
+<p>We started with 2 developers and grew to 4. Forcing Clojure on developers is unwise. I know that was tried somewhere else and most developers only used the Java interop!</p>
+<h3>Why do you use RDF for configuration rather than XML or JSON or even Clojure itself?</h3>
+<p>JSON is certainly more conventional as a configuration format (or XML in the Java world)<br />
+There isn&#8217;t a strong reason not to use Clojure itself (I had a slide warning of the dangers of Turing complete input languages but the point stands nevertheless). I don&#8217;t think my answer was very good last night so here are some advantages of RDF :-</p>
+<ul>
+<li>Meaning &#8211; RDF allows you to make logic set-based statements to classes of what are otherwise straight name/values pairs.</li>
+<li>Metadata &#8211; RDF allows you to make statements about statements. You can use metadata to label configuration values, add annotations (in multiple languages if you like), or constrain the values to some valid range or set, or say something about the nature of the property. You can do this in a very limited way with XML (perhaps with attributes) but with JSON there&#8217;s nothing built-in or idiomatic.</li>
+<li>Mergeability &#8211; RDF allows you to source statements from a wide variety of sources and merge the models together, whereas there&#8217;s nothing built-in or idiomatic in XML or JSON. In tree formats config statements have to group inside each other in a single hierarchy &#8211; designing this hierarchy is a job in itself. Graphs are more flexible since nodes can exist in multiple hierarchies if needs be.</li>
+<li>Inference &#8211; in RDF, having some data allows you to infer other data which you would otherwise have to make explicitly. This has the potential to reduce data discrepancies. For example, given a database name, listener host and port you can &#8216;infer&#8217; a database connection string. </li>
+</ul>
+<p>That said, I&#8217;m not really pushing RDF as a config format. We took a gamble on it and it paid off in our case. Other projects are different. JSON is a great format that enables fast and simple data exchange (when you control both ends).</p>
+<p>I also suggested that a domain model is more valuable for <em>persistent</em> data than for <em>transient</em> data structures. Object oriented languages encourage you to design the domain model internal to a program. But in my view there is <em>more value</em> in a domain model you can communicate <em>between</em> systems, and keep for longer periods, than in a domain model that you can only use <em>privately</em> (ie. in a single memory address space) and only while your application is running. This is the exact opposite of designing domain models in Java/C# classes and serializing out to a database or JSON/XML files, hence the need to illustrate with a real-world example (in this case, configuration).</p>
+<h3>What other Clojure frameworks do you use?</h3>
+<ul>
+<li>Compojure/Ring/Hiccup/Clout for web pages.</li>
+<li>Plugboard for REST but the intention is to move towards something like compojure-rest</li>
+<li>Swank &#8211; couldn&#8217;t manage without it!</li>
+</ul>
+<p>It&#8217;s a surprise to me how much we manage to do with just the standard Clojure libraries.</p>
+<h3>Do you think functionality rises linearly or exponentially with lines of code?</h3>
+<p>I thought this was a great question because it points to the huge amount of algorithmic re-use that we enjoy in Clojure.</p>
+<h3>Did you have a specific business problem that led you to Clojure?</h3>
+<p>Honestly, no. In my case it was a growing frustration with large Java systems. But since we&#8217;ve been using Clojure in our team there have been a number of business problems that have cropped up that are ideally suited to Clojure. Certainly in my industry (banking) the business is built on mathematical functions and data transformations for which functional languages like Clojure are ideal.</p>
+<h3>Do you think Clojure be around in 5 years time?</h3>
+<p>This final question was asked by someone sitting in the front row. I don&#8217;t think they would have asked this if they&#8217;d seen how many people were in the room! Clojure is building momentum, at least in London, and as I said in my talk I think it&#8217;s beyond the point of critical mass now.</p>
+<p>But on reflection I think it&#8217;s an important question. Why should anyone invest a lot of time in learning something that isn&#8217;t going to be around in a few years? However, technology is always about betting on certain horses (VHS or Betamax?) and you can never be 100% certain. LISP is a good bet though, it&#8217;s survived over 50 years and people keep rediscovering it. So even if Clojure doesn&#8217;t survive, I&#8217;m confident the knowledge you get from learning it will remain relevant.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=56#respond" title="Comment on Reflections on a real-world Clojure application (take 2)"><span class="leave-reply">Leave a reply</span></a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-56 -->
+
+				
+					
+	<article id="post-49" class="post-49 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=49" title="Permalink to Transitive relations in core.logic" rel="bookmark">Transitive relations in core.logic</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=49" title="7:26 pm" rel="bookmark"><time class="entry-date" datetime="2011-12-27T19:26:53+00:00" pubdate>December 27, 2011</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=49#respond" title="Comment on Transitive relations in core.logic"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Inspired by some recent blogs I&#8217;ve been playing with core.logic.</p>
+<p>In our use RDF at work we have been developing on Jena, a Java library for processing and querying RDF triples. Overall, Jena is an excellent library and has powerful inference capabilities. While Clojure has great interop support for Java sometimes you find some mismatches between the two paradigms.</p>
+<p>For example, Jena being a Java library supports concurrency via read/write locks rather than Clojure&#8217;s Software Transactional Memory. In practise this mismatch disrupts Clojure&#8217;s preference for lazy sequences &#8211; results have to be read in entirety to avoid concurrent modification errors. Jena&#8217;s concurrency model is also confusing to use, and we&#8217;ve had to fix a number of deadlocks in our code which have been hard to diagnose. Since we only use a small subset of OWL logical predicates in our dataset it may be possible to replace Jena with something that worked better with Clojure.</p>
+<p>Both the RDFS and OWL inference engines in Jena work by extending the graph with additional links called &#8216;entailments&#8217; which reflect the possible inferences that can be made, using both forward and backward chaining strategies. Creating an inference graph can be expensive and not something you want to do on every query. However, if your data model isn&#8217;t static you have to re-create the inference graph every time it changes. While there are inference engines that support such incremental updates efficiently, I was intrigued by core.logic to see if it was possible extending the data model and rather to put inferencing in the relations themselves.</p>
+<p>Here&#8217;s an example. RDFS declares a subclass predicate which declares one class to be a subclass of another. Any instances of the subclass are, by inference, also instances of the superclass.</p>
+<p>We can declare this relation in core.logic like so.</p>
+<pre><code>(defrel subclass-of p1 p2)
+</code></pre>
+<p>Here are some facts to illustrate the example.</p>
+<pre><code>(fact subclass-of "Royal Bengal Tiger" "Tiger")
+(fact subclass-of "Tiger" "Cat")
+(fact subclass-of "Cat" "Mammal")
+(fact subclass-of "Mammal" "Animal")
+</code></pre>
+<p>Now we can get all the graph links with this query.</p>
+<pre><code>(run* [q]
+      (fresh [a b]
+             (subclass-of a b)
+             (== q [a b])))
+</code></pre>
+<p>But rdfs:subclass-of is a owl:transitive. Never mind, we can transform the relation to act transitively. Here&#8217;s the transformer function :-</p>
+<pre><code>(defn transitive [r]
+  (letfn [(t [p1 p2]
+            (fresh [between]
+                   (conde
+                    ((r p1 p2))
+                    ((r p1 between)
+                     (t between p2)))))]
+    t))
+</code></pre>
+<p>Now we can use it to get all the entailments as well.</p>
+<pre><code>;; This transforms the relation into a transitive relation
+(run* [q]
+      (fresh [a b]
+             ((transitive subclass-of) a b)
+             (== q [a b])))
+</code></pre>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=1" title="View all posts in Uncategorized" rel="category">Uncategorized</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=49#respond" title="Comment on Transitive relations in core.logic"><span class="leave-reply">Leave a reply</span></a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-49 -->
+
+				
+					
+	<article id="post-42" class="post-42 post type-post status-publish format-standard hentry category-sorting">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="http://blog.malcolmsparks.com/?p=42" title="Permalink to Scalable sorting" rel="bookmark">Scalable sorting</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="http://blog.malcolmsparks.com/?p=42" title="7:50 am" rel="bookmark"><time class="entry-date" datetime="2011-11-03T07:50:07+00:00" pubdate>November 3, 2011</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.malcolmsparks.com/?author=1" title="View all posts by admin" rel="author">admin</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="http://blog.malcolmsparks.com/?p=42#comments" title="Comment on Scalable sorting">2</a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Sorting data is an important step in gathering data together for aggregation and reporting purposes.</p>
+<p>Most Clojure sort algorithms you&#8217;ll find on the web assume you can fit all the items to sort into the memory of a single JVM instance. For example, many merge sorts will use <code>partition</code> to split the data set into 2 halves.</p>
+<p>Where I work we frequently have to deal with large volumes of data where the data sets we deal with are far too large for these algos. Instead we have to find alternatives.</p>
+<p>Here&#8217;s our approach to sorting large data. Although we did spend some time researching the problem, there&#8217;s bound to be more better algorithms out there. Please let me know if you find one!</p>
+<h2>Divide and conquer</h2>
+<p>To sort a large dataset we break it into smaller &#8216;bite-sized&#8217; chunks which we <em>can</em> sort in memory, and write these sorted chunks to disk. Then we can run a lazy merge sort against these chunks. Although we currently run this on one node the nature of merge sort is that it can scale-out recursively and is compatible with map-reduce. In production use we&#8217;ve found that even on a single node huge datasets need a small degree of recursion just to avoid having too many chunks and running out of file handles. However, we&#8217;ll ignore recursion for the purposes of this discussion (we can always add it later).</p>
+<h2>A simple merge-sort function</h2>
+<p>First, let me print our merge-sort function minus the requisite doc-strings and comments.</p>
+<pre><code>(defn merge-sort
+  ([^java.util.Comparator comp colls]
+     (letfn [(next-item [[_ colls]]
+               (if (nil? colls)
+                 [:end nil]
+                 (let [[[yield &amp; p] &amp; q] 
+                       (sort-by first comp colls)]
+                   [yield (if p (cons p q) q)])))]
+           (-&gt;&gt; colls
+                (vector :begin) 
+                (iterate next-item)
+                (drop 1)
+                (map first)
+                (take-while (partial not= :end)))))
+  ([colls]
+     (merge-sort compare colls)))
+</code></pre>
+<p>Firstly, note the main function overload takes 2 arguments. The first is the Java comparator we&#8217;ll use to sort the data, the second is a <em>collection of sorted sequences</em>. These sequences don&#8217;t have to be in memory, they are lazy and their elements can be read in as we need them (from disk, network, etc.). However, we do assume the sequences have <em>already been sorted</em> with the same Java comparator given in the first argument. At the lowest level of recursion these sequences will be small enough to be sortable in memory and written out to disk &#8211; this is fairly trivial so we won&#8217;t cover it here.</p>
+<p>We define a function called <code>next-item</code> which takes the collection sequences and returns a pair:</p>
+<ul>
+<li>the first value is the next result in the merge-sorted sequence. This is called the <em>yield</em>.</li>
+<li>the second value is the same collection of sequences we started with <em>minus the yielded value</em>. This is called the <em>remainder</em> and is used to calculate the next result.</li>
+</ul>
+<p>Here&#8217;s the <em>next-item</em> function (first draft) :-</p>
+<pre><code>(fn [colls]
+    (let [[[yield &amp; p] &amp; q] 
+          (sort-by first comp colls)]
+        [yield (cons p q))]))
+</code></pre>
+<p>The first job of the function is to sort the collections of sequences by their first values.</p>
+<pre><code>(sort-by first comp colls)
+</code></pre>
+<p>Here, <code>comp</code> is just the Java comparator that dictates the order of the sort.</p>
+<p>Now we destructure. Since the item we want is the first item of the first sequence, we destructure like this :-</p>
+<pre><code>[[yield &amp; p] &amp; q]
+</code></pre>
+<ul>
+<li><code>yield</code> is the item we are saying is the next item in the merged sorted sequence.</li>
+<li><code>p</code> is the rest of the sequence which contained <code>yield</code>.</li>
+<li><code>q</code> is the collection of all the other sequences.</li>
+</ul>
+<p>(A nice &#8216;by-product&#8217; of the <code>sort-by</code> is that <code>q</code> is already sorted. Even if the contents of <code>p</code> demand that we sort again, it won&#8217;t be an expensive operation.  In fact, my own tests have shown that little or no performance improvement can be made by avoiding the use of Java&#8217;s sort by moving the head collection down the list &#8211; Java&#8217;s sort is very efficient for sets that are either &#8216;already sorted&#8217; or &#8216;almost sorted&#8217;.)</p>
+<p>Now we need to form our pair&#8230;</p>
+<p>The first item is <code>yield</code>. That&#8217;s easy.</p>
+<p>The second item is the collection of sequences with <code>yield</code> removed. That&#8217;s <code>p</code> joined onto the head of <code>q</code>, so we use <code>cons</code>.</p>
+<pre><code>(cons p q)
+</code></pre>
+<p>Remember that <code>q</code> is a collection of sequences sorted by &#8216;first item&#8217;. We don&#8217;t know that <code>(cons p q)</code> is sorted according to first item. It&#8217;s likely that the next result is in <code>p</code> or in <code>(first q)</code>. However, we defer this sort operation to the next iteration, because re-sorting is the first thing we do in each iteration.</p>
+<p>By the way, if <code>p</code> is nil then <code>p</code> is exhausted and we&#8217;ll just take <code>q</code>, hence this tweak :-</p>
+<pre><code>(if p (cons p q) q)
+</code></pre>
+<p>Putting this altogether, our final <code>next-item</code> function is as follows :-</p>
+<pre><code>(fn [colls]
+    (let [[[yield &amp; p] &amp; q] 
+          (sort-by first comp colls)]
+        [yield (if p (cons p q) q)]]))
+</code></pre>
+<h2>Repeat as necessary</h2>
+<p>Each time we run the <code>next-item</code> function we&#8217;ll get the next result in our merged sorted sequence. Sounds like another job for Clojure&#8217;s <code>iterate</code> function!</p>
+<p>Our <code>next-item</code> function needs to be amend slightly so that it can work iteratively &#8211; it needs to accept the same kind of structure that it produces. We amend the function signature so it can take a pair as the argument, and we destructure to ignore the first item and label the second.</p>
+<pre><code>(fn [[_ colls]]
+    (let [[[yield &amp; p] &amp; q] 
+          (sort-by first comp colls)]
+        [yield (if p (cons p q) q)]])
+</code></pre>
+<p>We&#8217;ll just have to initiate the iteration with a fake pair.</p>
+<pre><code>[:begin colls]
+</code></pre>
+<p>And we&#8217;ll have to ensure the iteration can tell the caller when to stop.</p>
+<pre><code>[:end nil]
+</code></pre>
+<p>Let&#8217;s build that &#8216;stop&#8217; into our function :-</p>
+<pre><code>(next-item [[_ colls]]
+  (if (nil? colls) [:end nil]
+    (let [[[yield &amp; p] &amp; q] 
+          (sort-by first comp colls)]
+      [yield (if p (cons p q) q)])))
+</code></pre>
+<p>Now the inner function is finished let&#8217;s move onto the main body of the merge-sort function.</p>
+<pre><code> (-&gt;&gt; colls
+     (vector :begin) 
+     (iterate next-item)
+     (drop 1)
+     (map first)
+     (take-while (partial not= :end))
+     (lazy-seq))
+</code></pre>
+<p>We start by taking the <code>colls</code> argument and apply the <code>-&gt;&gt;</code> threading operator to it. This means that the result of each step will be added as the <em>last</em> argument of the next step.</p>
+<pre><code>(-&gt;&gt; colls
+    ... )
+</code></pre>
+<p>As we discussed earlier, we have to compose the first &#8216;fake&#8217; pair to get the first iteration to work.</p>
+<pre><code>(vector :begin) 
+</code></pre>
+<p>This creates <code>[:begin colls]</code>. We should remember this is also the first item that <code>iterate</code> will yield so we&#8217;ll have to drop it later.</p>
+<p>Now let&#8217;s run our next-item function (infinitely)</p>
+<pre><code>(iterate next-item)
+</code></pre>
+<p>We don&#8217;t want the first &#8216;fake&#8217; result &#8211; it was just to help the iterate function, let&#8217;s drop it :-</p>
+<pre><code>(drop 1)
+</code></pre>
+<p>We&#8217;re only interested in the yield values (the first in each pair) :-</p>
+<pre><code>(map first)
+</code></pre>
+<p>And we need to continue until the stop marker :-</p>
+<pre><code>(take-while (partial not= :end))
+</code></pre>
+<p>Finally we overload the merge-sort function to use a default comparator where it isn&#8217;t specified.</p>
+<h2>Testing</h2>
+<p>Let&#8217;s define a function that can create <em>n</em> collections of <em>m</em> size populated with random numbers.</p>
+<pre><code>user&gt; (defn make-colls [n m]
+  (for [i (range n)]
+    (sort
+     (for [j (range m)]
+       (rand-int 1000000)))))
+</code></pre>
+<p>Let&#8217;s evaluate now so this structure in in memory and its creation doesn&#8217;t affect our merge-sort performance measurements.</p>
+<pre><code>user&gt; (def colls (make-colls 100 20000))
+</code></pre>
+<p>Let&#8217;s test it to ensure that it&#8217;s working. We expect the first collection to be sorted.</p>
+<pre><code>user&gt; (take 10 (first colls))
+
+(15 33 88 94 114 119 148 164 189 190)
+</code></pre>
+<p>However, when we merge sort, the numbers from all the collections are merged so we get a less rapidly incrementing sequence of numbers.</p>
+<pre><code>user&gt; (take 10 (merge-sort colls))    
+
+(1 1 1 2 2 5 6 7 7 8)
+</code></pre>
+<h2>Actually merge-sorting is quite useful</h2>
+<p>Sort algorithms are often used as a learning guide, especially for functional languages. But how useful is sorting for tackling business problems?</p>
+<p>It turns out we use merge-sort in multiple places in our Clojure system. The first use was for grouping of risk data so it can be collated on a trade-by-trade basis. Then we decided to rewrite an old Java-based scheduler that was expensive to maintain. We now have a lazy scheduler (we call it &#8216;Chime&#8217;) that uses this lazy merge-sort to merge together multiple schedules of repeating tasks into a single schedule. I&#8217;ll discuss more about Chime in a future post.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.malcolmsparks.com/?cat=6" title="View all posts in sorting" rel="category">sorting</a>			</span>
+									
+									<span class="sep"> | </span>
+						<span class="comments-link"><a href="http://blog.malcolmsparks.com/?p=42#comments" title="Comment on Scalable sorting"><b>2</b> Replies</a></span>
+			
+					</footer><!-- #entry-meta -->
+	</article><!-- #post-42 -->
+
+				
+						<nav id="nav-below">
+			<h3 class="assistive-text">Post navigation</h3>
+			<div class="nav-previous"><a href="http://blog.malcolmsparks.com/?paged=2" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+			<div class="nav-next"></div>
+		</nav><!-- #nav-above -->
+	
+			
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area" role="complementary">
+			
+				<aside id="archives" class="widget">
+					<h3 class="widget-title">Archives</h3>
+					<ul>
+							<li><a href='http://blog.malcolmsparks.com/?m=201307' title='July 2013'>July 2013</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201211' title='November 2012'>November 2012</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201209' title='September 2012'>September 2012</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201206' title='June 2012'>June 2012</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201204' title='April 2012'>April 2012</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201201' title='January 2012'>January 2012</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201112' title='December 2011'>December 2011</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201111' title='November 2011'>November 2011</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201108' title='August 2011'>August 2011</a></li>
+	<li><a href='http://blog.malcolmsparks.com/?m=201107' title='July 2011'>July 2011</a></li>
+					</ul>
+				</aside>
+
+				<aside id="meta" class="widget">
+					<h3 class="widget-title">Meta</h3>
+					<ul>
+												<li><a href="http://blog.malcolmsparks.com/wp-login.php">Log in</a></li>
+											</ul>
+				</aside>
+
+					</div><!-- #secondary .widget-area -->
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			<div id="site-generator">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress</a>
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript' src='http://blog.malcolmsparks.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.83c'></script>
+<script type='text/javascript' src='http://blog.malcolmsparks.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJava.js?ver=3.0.83c'></script>
+<script type='text/javascript' src='http://blog.malcolmsparks.com/wp-content/plugins/syntaxhighlighter/third-party-brushes/shBrushClojure.js?ver=20090602'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://blog.malcolmsparks.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://blog.malcolmsparks.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeMidnight.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+
+</body>
+</html>
