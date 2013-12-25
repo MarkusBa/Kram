@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: markus
+Build-Jdk: 1.7.0_45
+Main-Class: de.test.Main
+Created-By: Maven Integration for Eclipse
+

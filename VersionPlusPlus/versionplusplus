@@ -1,0 +1,7 @@
+#!/bin/bash
+# first mvn checken
+# dann gitsp
+# dann erhoehen
+java -cp "/home/markus/bin/VersionPlusPlus-0.0.1-jar-with-dependencies.jar" Main
+# dann committen und pushen
+# dann taggen und pushen
