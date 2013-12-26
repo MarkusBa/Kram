@@ -16,13 +16,18 @@ import nu.xom.Text;
 
 public class Main {
 
+	
+	public static String newVersionGit;
+	
 	public static void increment(Element version){
 		String[] versionNumbers = version.getValue().split("\\.");
 		Integer end = Integer.valueOf(versionNumbers[versionNumbers.length - 1]) + 1;
 		versionNumbers[versionNumbers.length - 1] = String.valueOf(end);
 		String newVersion = versionNumbers[0];
+		newVersionGit = "V" + newVersion;
 		for(int i= 1; i < versionNumbers.length; i++ ){
 			newVersion = newVersion + "." + versionNumbers[i];
+			newVersionGit = newVersionGit + "-" + versionNumbers[i];
 		}
 //		Node newNode = new Text(newVersion);
 		version.removeChildren();
@@ -33,6 +38,8 @@ public class Main {
 	
 	
 	public static void main(String[] args){
+		
+			
 		
 		   Builder builder = new Builder();
 		     
@@ -59,6 +66,27 @@ public class Main {
 		      PrintWriter out = new PrintWriter("pom.xml");
 		      out.println(result);
 		      out.close();
+		      
+		      try {
+		      String command0 = "git commit -m \" Changed version.  \" ";
+		      String command00 = "git push origin  ";		      
+		      String command1 = "git tag -a " + newVersionGit;
+		      String command2 = "git push origin  " + newVersionGit;
+		      Runtime runtime = Runtime.getRuntime();
+		      Process process = runtime.exec(command0);
+			  process.waitFor();
+		      process = runtime.exec(command00);
+			  process.waitFor();
+		      process = runtime.exec(command1);
+			  process.waitFor();
+		      process = runtime.exec(command2);
+			  process.waitFor();
+
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		      
 		    }
 		    // indicates a well-formedness error
 		    catch (ParsingException ex) { 
