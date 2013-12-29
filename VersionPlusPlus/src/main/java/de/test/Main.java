@@ -1,6 +1,8 @@
 package de.test;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import nu.xom.Builder;
@@ -36,6 +38,36 @@ public class Main {
 	}
 	
 	
+	public static void waitForMe(Process p){
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(
+                p.getInputStream()), 13107200);
+
+        String line = null;
+
+        try {
+        
+        while (input.ready() == false) { /* intentional empty space here */ }
+        
+      
+			if (input.ready()) {
+			    while ((line = input.readLine()) != null) {
+			        System.out.println(line);
+			    }
+
+			    try {
+			        p.waitFor();
+			    } catch (InterruptedException e) {
+			        // TODO Auto-generated catch block
+			        e.printStackTrace();
+			    }
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void main(String[] args){
 		
@@ -67,25 +99,20 @@ public class Main {
 		      out.println(result);
 		      out.close();
 		      
-		      try {
 		      String command0 = "git commit -m \" Changed version.  \" ";
 		      String command00 = "git push origin  ";		      
 		      String command1 = "git tag -a " + newVersionGit;
 		      String command2 = "git push origin  " + newVersionGit;
 		      Runtime runtime = Runtime.getRuntime();
 		      Process process = runtime.exec(command0);
-			  process.waitFor();
+		      waitForMe(process);
 		      process = runtime.exec(command00);
-			  process.waitFor();
+		      waitForMe(process);
 		      process = runtime.exec(command1);
-			  process.waitFor();
+		      waitForMe(process);
 		      process = runtime.exec(command2);
-			  process.waitFor();
+		      waitForMe(process);
 
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 		      
 		    }
 		    // indicates a well-formedness error
