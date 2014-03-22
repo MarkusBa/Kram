@@ -1,0 +1,2 @@
+cmdhistory=[";; Switching to liberator-service.routes.home namespace" ";; Switching to liberator-service.repl namespace" "(use 'liberator-service.repl)" "(start-server)" "(ccw.debug.serverrepl/with-exception-serialization (clojure.core/binding [clojure.core/*compile-path* \\"classes\\"] (clojure.core/compile 'liberator-service.repl)))" ";; Switching to liberator-service.repl namespace" "(require 'liberator-service.repl)" "(use 'liberator-service.repl)"]
+eclipse.preferences.version=1
