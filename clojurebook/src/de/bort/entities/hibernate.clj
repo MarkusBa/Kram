@@ -3,35 +3,29 @@
            org.hibernate.annotations.GenericGenerator
            org.hibernate.SessionFactory
            org.hibernate.cfg.Configuration
-           de.bort.entities.Nodes))
+           de.bort.entities.Nodes
+	   de.bort.entities.Prefixes
+	   de.bort.entities.Quads))
 
 (defonce session-factory
   (delay (-> (Configuration.)
              .configure
              .buildSessionFactory)))
 
-(defn add-nodes
-  [& nodes]
-  (with-open [session (.openSession @session-factory)]
-    (let [tx (.beginTransaction session)]
-      (doseq [node nodes]
-        (.save session node))
-      (.commit tx))))
-
-
 (defmacro with-session
   [session-factory & body]
   `(with-open [~'session (.openSession ~(with-meta session-factory '{:tag SessionFactory}))]
      ~@body))
 
-(defn get-nodes
-  "A simplified implementation of get-nodes, benefitting from the
+(defn get-entities
+  "A simplified implementation of get-entities, benefitting from the
 with-session macro."
-  []
+  [entitystring]
   (with-session @session-factory
     (-> session
-        (.createQuery "from Nodes")
+        (.createQuery (str "from " entitystring))
         .list)))
+
 
 (defmacro with-transaction
   [& body]
@@ -39,11 +33,12 @@ with-session macro."
      ~@body
      (.commit tx#)))
 
-(defn add-nodes
+(defn add-entities
   "A simplified implementation of add-nodes, benefitting from the
 with-session and with-transaction macros."
-  [& nodes]
+  [& entities]
   (with-session @session-factory
     (with-transaction
-      (doseq [node nodes]
-        (.save session node)))))
+      (doseq [entity entities]
+        (.save session entity)))))
+

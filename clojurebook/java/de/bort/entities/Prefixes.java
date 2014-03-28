@@ -55,7 +55,10 @@ public class Prefixes {
 		this.uri = uri;
 	}
 
-      
+        @Override
+    	public String toString(){
+    		return prefix + " " + uri;
+    	}
 
       
         //Here you need to generate getters and setters  
