@@ -27,6 +27,11 @@ public class Prefixes {
 	public Prefixes() {
 	}
 
+	public Prefixes(String uri, String prefix){
+        	this.prefix = prefix;
+       		this.uri = uri;
+    	}
+
 	@Column(name = "ts")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getTs() {

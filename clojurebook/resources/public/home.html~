@@ -30,7 +30,7 @@
 		}
 		
 		function addPrefix() {			
-			var jqxhr = $.post("/add-prefix", {prefix: $('#pre').val(), uri: $('#uri').val()}, renderPrefixes)
+			var jqxhr = $.post("/add-prefix", {prefix: $('#pre').val(), uri: }, renderPrefixes)
 			             .fail(handleError);
 		}
 		

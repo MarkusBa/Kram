@@ -10,7 +10,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-		<title>Crudbook</title>
+		<title>Ihr Wichser!</title>
 		<script type="text/javascript" 
 		        src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">
 		</script>
@@ -30,7 +30,7 @@
 		}
 		
 		function addPrefix() {			
-			var jqxhr = $.post("/add-prefix", {prefix: $('#pre').val(), uri: $('#uri').val()}, renderPrefixes)
+			var jqxhr = $.post("/add-prefix", {prefix: "bla;bla"}, renderPrefixes)
 			             .fail(handleError);
 		}
 		
@@ -41,8 +41,7 @@
 		<h1>Current Prefixes</h1>
 		<p id="error"></p>
 		<ul id="prefix-list"></ul>		
-		<input type="text" id="pre" placeholder="prefix name"/>
-		<input type="text" id="uri" placeholder="uri name"/>			
+		<input type="text" id="name" placeholder="prefix name"/>					
 		<button onclick="addPrefix()">Add Prefix!</button>
 	</body>
 </html>
