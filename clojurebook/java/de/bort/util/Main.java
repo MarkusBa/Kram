@@ -14,9 +14,15 @@ import de.bort.entities.Quads;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main{
+
+    public static void deleteThese(Session session, String entity, List<Integer> ids){
+      session.createQuery(" update "  + entity + " p set p.deleted = true where p.id in :ids ").setParameterList("ids",ids).executeUpdate();
+              session.createQuery(" update "  + entity + " p set p.deleted = false where p.id not in :ids ").setParameterList("ids",ids).executeUpdate();
+    }
 
     public static void main(String...strings ) {
     String dbUrl = "jdbc:mysql://localhost/crudbook";

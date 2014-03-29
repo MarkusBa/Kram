@@ -55,7 +55,26 @@
 			var jqxhr = $.post("/add-prefix", {prefix: $('#pre').val(), uri: $('#uri').val()}, renderPrefixes)
 			             .fail(handleError);
 		}
-		
+		function getSelected()
+                {
+         	var returnMe = "";
+		var values = $('#deletionselect').val();
+                var temp = "";
+		for(i in values){
+		   temp = values[i].split(/\s+/);
+		   returnMe = returnMe + temp[0] + " "; 
+		}
+		console.log(returnMe);
+	        return returnMe; 
+       		}
+
+		function sendDeletions() {			
+			var stringy = getSelected();
+			console.log(stringy);
+			var jqxhr = $.post("/set-deletions", {deletionids: stringy}, renderPrefixes)
+			             .fail(handleError);
+		}		
+
 		$(function() {getPrefixes();
                               populateDeletions();
                               populateNormal();});

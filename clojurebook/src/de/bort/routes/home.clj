@@ -62,10 +62,33 @@
       (add-pfx (get params "prefix") (get params "uri"))))
   :handle-created (fn [_]  (generate-string (get-pfx "false"))) 
   ) 
-                                        
+
+(defn cst [ids]
+  (map #(Integer/valueOf %) ids))
+
+(defn perform-deletions [text  ]
+  (let [ids (cst (split text #"\s"))]
+    
+    (hib/delete-entity-ids "Prefixes" ids)))
+
+
+(defresource set-deletions
+  :allowed-methods [:post]
+  :available-media-types ["application/json"]
+  :malformed? (fn [context]
+                (let [params (get-in context [:request :form-params])] 
+                  (empty? (get params "deletionids"))))
+  :handle-malformed "deletionids cannot be empty!"
+  :post!  
+  (fn [context]             
+    (let [params (get-in context [:request :form-params])]
+      (perform-deletions (get params "deletionids"))))
+  :handle-created (fn [_]  (generate-string (get-pfx "false"))) 
+  ) 
 
 (defroutes home-routes
   (ANY "/" request home)
   (ANY "/add-prefix" request add-prefix)
+  (ANY "/set-deletions" request set-deletions)
   (ANY "/deletions" request get-deleted)
   (ANY "/prefixes" request get-prefixes))

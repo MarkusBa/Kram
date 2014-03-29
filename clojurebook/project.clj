@@ -7,6 +7,7 @@
                  [ring-server "0.3.0"]
                  [liberator "0.9.0"]
                  [lib-noir "0.6.9"]
+		 [org.clojure/java.jdbc "0.1.1"]
                  [mysql/mysql-connector-java "5.1.26"]
                  [org.hibernate/hibernate-core "4.0.1.Final"] 
                  [cheshire "5.2.0"]]
