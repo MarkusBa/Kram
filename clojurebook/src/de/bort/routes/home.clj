@@ -44,10 +44,6 @@
     (.setPrefix p  text1)
       (hib/add-entities p)))
 
-(defn add-pfx2 [t]
-  (println (type t))
-  )
-
 (defresource add-prefix
   :allowed-methods [:post]
   :available-media-types ["application/json"]
@@ -59,23 +55,9 @@
   (fn [context]             
     (let [params (get-in context [:request :form-params])]
       (add-pfx (get params "prefix") (get params "uri"))))
-  :handle-created (generate-string "post successful") 
+  :handle-created (fn [_]  (generate-string (get-pfx))) 
   ) 
-                                        ;deleteme
-(def prefixes (atom ["foo" "bar"]))
-
-(defresource add-prefix2
-  :allowed-methods [:post]
-  :available-media-types ["application/json"]
-  :malformed? (fn [context]
-                (let [params (get-in context [:request :form-params])] 
-                  (empty? (get params "prefix"))))
-  :handle-malformed "prefix name cannot be empty!"
-  :post!  
-  (fn [context]             
-    (let [params (get-in context [:request :form-params])]
-      (swap! prefixes conj (get params "prefix"))))
-  :handle-created (generate-string "post successful"))
+                                        
 
 (defroutes home-routes
   (ANY "/" request home)
