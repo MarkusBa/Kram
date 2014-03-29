@@ -23,7 +23,9 @@ public class Prefixes {
 	private String prefix;
 	private String uri;
 	private Date ts;
+        private boolean deleted;
 
+  
 	public Prefixes() {
 	}
 
@@ -32,6 +34,16 @@ public class Prefixes {
        		this.uri = uri;
     	}
 
+    @Column(name = "deleted")
+    public boolean getDeleted(){
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted1){
+        deleted = deleted1;
+    }
+
+  
 	@Column(name = "ts")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getTs() {
@@ -62,7 +74,7 @@ public class Prefixes {
 
         @Override
     	public String toString(){
-    		return prefix + " " + uri;
+    		return id.toString() + " " + prefix + " " + uri;
     	}
 
       

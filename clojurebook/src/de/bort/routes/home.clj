@@ -26,13 +26,18 @@
     (fn [{{{resource :resource} :route-params} :request}]
       (.lastModified (file (str (io/resource-path) "/home.html")))))
 
-(defn get-pfx [] 
-  (map str (hib/get-entities "Prefixes") )
-  )  
+(defn get-pfx [booli] 
+  (map str (hib/get-entities "Prefixes" booli) )
+  )
 
 (defresource get-prefixes
   :allowed-methods [:get]
-  :handle-ok (fn [_] (generate-string (get-pfx)))
+  :handle-ok (fn [_] (generate-string (get-pfx "false")))
+  :available-media-types ["application/json"])
+
+(defresource get-deleted
+  :allowed-methods [:get]
+  :handle-ok (fn [_] (generate-string (get-pfx "true")))
   :available-media-types ["application/json"])
 
 
@@ -55,11 +60,12 @@
   (fn [context]             
     (let [params (get-in context [:request :form-params])]
       (add-pfx (get params "prefix") (get params "uri"))))
-  :handle-created (fn [_]  (generate-string (get-pfx))) 
+  :handle-created (fn [_]  (generate-string (get-pfx "false"))) 
   ) 
                                         
 
 (defroutes home-routes
   (ANY "/" request home)
   (ANY "/add-prefix" request add-prefix)
+  (ANY "/deletions" request get-deleted)
   (ANY "/prefixes" request get-prefixes))

@@ -21,7 +21,29 @@
 			for(prefix in prefixes) 
 				$('#prefix-list').append($('<li/>', {html: prefixes[prefix]}));				
 		}
+
+		function renderDeletions(deletions) {
+                        console.log(deletions);
+			$('#deletionselect').innerHTML='';
+			for(i in deletions) 
+                          $('#deletionselect').append("<option selected >" + deletions[i]+"</option>");				
+		}
 		
+		function populateDeletions() {
+			$.get("/deletions", renderDeletions);						
+		}
+		function renderNormal(deletions) {
+                        console.log(deletions);      
+
+			for(i in deletions) 
+                          $('#deletionselect').append("<option>" + deletions[i] + "</option>");				
+		}
+		
+		function populateNormal() {
+			$.get("/prefixes", renderNormal);						
+		}
+
+
 		function getPrefixes() {
 			$.get("/prefixes", renderPrefixes);						
 		}
@@ -34,7 +56,9 @@
 			             .fail(handleError);
 		}
 		
-		$(function() {getPrefixes();});
+		$(function() {getPrefixes();
+                              populateDeletions();
+                              populateNormal();});
 		</script>
 	</head>
 	<body>
@@ -44,5 +68,7 @@
 		<input type="text" id="pre" placeholder="prefix name"/>
 		<input type="text" id="uri" placeholder="uri name"/>			
 		<button onclick="addPrefix()">Add Prefix!</button>
+                <select id="deletionselect" multiple > </select>
+                <button onclick="sendDeletions()">Mark Deleted</button>
 	</body>
 </html>

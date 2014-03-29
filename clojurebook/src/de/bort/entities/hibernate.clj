@@ -20,12 +20,11 @@
 (defn get-entities
   "A simplified implementation of get-entities, benefitting from the
 with-session macro."
-  [entitystring]
+  [entitystring deleted]
   (with-session @session-factory
     (-> session
-        (.createQuery (str "from " entitystring))
+       (.createQuery (str "from " entitystring " where deleted = " deleted))
         .list)))
-
 
 (defmacro with-transaction
   [& body]
