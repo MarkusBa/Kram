@@ -92,7 +92,7 @@ grepfind () { find . -type f -name "$2" -print0 | xargs -0 grep "$1" ; }
 alias findgrep='grepfind'
 
 #alias pstree='/sw/bin/pstree -g 2 -w'
-
+/home/markus/guake-colors-solarized/set_light.sh
 
 
 

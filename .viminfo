@@ -1,0 +1,812 @@
+# Diese viminfo-Datei wurde von Vim 7.4 generiert.
+# Sie können sie verändern, wenn Sie vorsichtig vorgehen!
+
+# Wert von 'encoding', als diese Datei geschrieben wurde
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Letztes Suchmuster:
+~MSle0~/color
+
+# Letztes Ersetzen Suchmuster:
+~MSle0&<dependency
+
+# Letzte ersetzte Zeichenkette:
+$
+
+# Befehlszeile Geschichte (neueste bis älteste):
+:wq
+:q
+:w
+:syntax
+:set nu!
+:set nu
+:vimtutor
+:history
+:grep
+:grep version
+:grep version *
+:.,.+1!
+:v
+:h sql.txt
+:n sql-completion
+:SQLSetType MySQL
+:%s//@Transactional\r&/g
+:s
+:%s//@Transactional\r/g
+:%s//\r&/g
+
+# Suchausdruck Geschichte (neueste bis älteste):
+?/color
+?/gaa
+?/syntax
+?/number
+?/esc
+? \<xcape\>
+? \+$
+? ^\d\+\ze\.\s\+
+?/usr/bin/perl
+?/<dependency
+? <dep
+?/[dependency]
+?/dependency
+
+# Ausdruck Geschichte (neueste bis älteste):
+
+# Eingabe-Zeile Geschichte (neueste bis älteste):
+
+# Eingabe-Zeile Geschichte (neueste bis älteste):
+
+# Register:
+"1	LINE	0
+	        ein anderes Zeichen als  d  siehst, hast Du etwas falsches getippt;
+"2	LINE	0
+	alias cp = 'cp -r'
+"3	LINE	0
+	set nu!
+"4	LINE	0
+	
+"5	LINE	0
+	 (require 'jde-findbugs)
+"6	LINE	0
+	2. show schemas;
+"7	LINE	0
+	1. show schemas;
+"8	LINE	0
+	1. show schemas;
+"9	LINE	0
+	
+""-	CHAR	0
+	execute pathogen#infect()
+
+# Datei-Marken:
+'0  96  0  ~/.zshrc.local
+'1  95  11  ~/.zshrc.local
+'2  79  0  ~/.vimrc
+'3  25  19  ~/.vimrc
+'4  53  0  ~/.vimrc
+'5  1  24  ~/.vimrc
+'6  24  12  ~/.vimrc
+'7  27  0  ~/.vimrc
+'8  26  0  ~/.vimrc
+'9  1  0  ~/git/Clojure/cmdline/src/cmdline/core.clj
+
+# Geschichte (neueste zuerst):
+-'  96  0  ~/.zshrc.local
+-'  1  0  ~/.zshrc.local
+-'  95  11  ~/.zshrc.local
+-'  79  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  25  19  ~/.vimrc
+-'  53  0  ~/.vimrc
+-'  167  0  ~/.vimrc
+-'  24  12  ~/.vimrc
+-'  27  0  ~/.vimrc
+-'  26  0  ~/.vimrc
+-'  1  0  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  322  0  /tmp/tutorEQKnuR
+-'  270  2  /tmp/tutorEQKnuR
+-'  283  2  /tmp/tutorEQKnuR
+-'  297  0  /tmp/tutorEQKnuR
+-'  295  0  /tmp/tutorEQKnuR
+-'  291  0  /tmp/tutorEQKnuR
+-'  289  0  /tmp/tutorEQKnuR
+-'  286  0  /tmp/tutorEQKnuR
+-'  282  0  /tmp/tutorEQKnuR
+-'  279  0  /tmp/tutorEQKnuR
+-'  273  0  /tmp/tutorEQKnuR
+-'  271  0  /tmp/tutorEQKnuR
+-'  269  0  /tmp/tutorEQKnuR
+-'  267  0  /tmp/tutorEQKnuR
+-'  265  0  /tmp/tutorEQKnuR
+-'  263  0  /tmp/tutorEQKnuR
+-'  261  0  /tmp/tutorEQKnuR
+-'  259  0  /tmp/tutorEQKnuR
+-'  251  0  /tmp/tutorEQKnuR
+-'  249  0  /tmp/tutorEQKnuR
+-'  244  0  /tmp/tutorEQKnuR
+-'  240  0  /tmp/tutorEQKnuR
+-'  238  0  /tmp/tutorEQKnuR
+-'  233  0  /tmp/tutorEQKnuR
+-'  226  0  /tmp/tutorEQKnuR
+-'  223  0  /tmp/tutorEQKnuR
+-'  222  54  /tmp/tutorEQKnuR
+-'  203  0  /tmp/tutorEQKnuR
+-'  201  5  /tmp/tutorEQKnuR
+-'  202  8  /tmp/tutorEQKnuR
+-'  118  0  /tmp/tutorEQKnuR
+-'  132  0  /tmp/tutorEQKnuR
+-'  129  0  /tmp/tutorEQKnuR
+-'  126  0  /tmp/tutorEQKnuR
+-'  124  0  /tmp/tutorEQKnuR
+-'  121  0  /tmp/tutorEQKnuR
+-'  114  0  /tmp/tutorEQKnuR
+-'  112  0  /tmp/tutorEQKnuR
+-'  109  0  /tmp/tutorEQKnuR
+-'  106  2  /tmp/tutorEQKnuR
+-'  105  0  /tmp/tutorEQKnuR
+-'  104  5  /tmp/tutorEQKnuR
+-'  103  0  /tmp/tutorEQKnuR
+-'  101  32  /tmp/tutorEQKnuR
+-'  1  0  /tmp/tutorEQKnuR
+-'  6  31  ~/.zshrc.local
+-'  1  0  ~/Clojure/clojurebook/src/de/bort/entities/hibernate.clj
+-'  53  0  ~/Clojure/clojurebook/src/de/bort/entities/hibernate.clj
+-'  34  8  ~/.zshrc.local
+-'  76  20  ~/.zshrc.local
+-'  9  0  ~/.zshrc.local
+-'  75  25  ~/.zshrc.local
+-'  93  0  ~/.zshrc.local
+-'  33  0  ~/.zshrc.local
+-'  5  0  ~/.zshrc.local
+-'  25  0  ~/.zshrc.local
+-'  3  0  ~/.vimrc
+-'  123  0  ~/.vimrc
+-'  18  0  ~/.vimrc
+-'  2  62  ~/test
+-'  1  0  ~/test
+-'  45  78  ~/.Xmodmap
+-'  2  30  ~/.Xmodmap
+-'  1  0  ~/.Xmodmap
+-'  8  0  ~/workspace/VersionPlusPlus/pom.xml
+-'  48  1  ~/workspace/VersionPlusPlus/pom.xml
+-'  3  0  ~/workspace/VersionPlusPlus/pom.xml
+-'  1  0  ~/workspace/VersionPlusPlus/pom.xml
+-'  42  0  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  55  8  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  16  14  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  27  0  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  19  2  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  10  23  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  22  13  ~/Clojure/cmdline/src/cmdline/core.clj
+-'  1  0  ~/Clojure/cmdline/src/cmdline/core.clj
+-'  1  0  ~/Clojure/cmdline/core.clj
+-'  21  15  ~/Clojure/cmdline/src/cmdline/core.clj
+-'  44  0  ~/Clojure/clojurebook/src/de/bort/entities/hibernate.clj
+-'  30  2  ~/Clojure/clojurebook/resources/public/home.html
+-'  1  0  ~/Clojure/clojurebook/resources/public/home.html
+-'  71  25  ~/Clojure/clojurebook/resources/public/home.html
+-'  1  0  ~/git/Clojure/cmdline/src/cmdline/core.clj
+-'  322  0  /tmp/tutorEQKnuR
+
+# Geschichte der Markierungen innerhalb von Dateien (neueste zuerst):
+
+> ~/.zshrc.local
+	"	96	0
+	^	95	1
+	.	95	0
+	+	11	138
+	+	12	0
+	+	13	0
+	+	3	32
+	+	8	35
+	+	11	0
+	+	13	18
+	+	15	0
+	+	16	0
+	+	17	0
+	+	18	0
+	+	22	0
+	+	25	0
+	+	37	18
+	+	99	9
+	+	37	18
+	+	54	0
+	+	28	0
+	+	28	0
+	+	28	0
+	+	35	25
+	+	29	6
+	+	33	8
+	+	34	8
+	+	35	1
+	+	52	0
+	+	39	32
+	+	42	0
+	+	54	23
+	+	59	0
+	+	62	18
+	+	61	0
+	+	62	17
+	+	63	0
+	+	78	0
+	+	40	0
+	+	81	0
+	+	95	0
+	+	94	0
+	+	95	0
+	+	78	25
+	+	79	20
+	+	37	9
+	+	5	32
+	+	6	31
+	+	95	0
+
+> ~/.vimrc
+	"	79	0
+	^	25	20
+	.	25	19
+	+	1	0
+	+	18	0
+	+	123	0
+	+	24	8
+	+	166	0
+	+	168	0
+	+	27	0
+	+	25	0
+	+	24	12
+	+	168	0
+	+	1	0
+	+	25	19
+
+> ~/git/Clojure/cmdline/src/cmdline/core.clj
+	"	1	0
+	^	46	7
+	.	46	6
+	+	10	23
+	+	8	36
+	+	12	20
+	+	15	32
+	+	55	25
+	+	10	23
+	+	15	39
+	+	12	28
+	+	54	0
+	+	55	34
+	+	17	0
+	+	37	0
+	+	26	24
+	+	27	33
+	+	26	26
+	+	27	52
+	+	28	35
+	+	27	34
+	+	28	53
+	+	27	50
+	+	23	16
+	+	24	19
+	+	28	51
+	+	27	62
+	+	29	73
+	+	30	44
+	+	36	1
+	+	33	35
+	+	36	0
+	+	30	65
+	+	36	1
+	+	55	41
+	+	17	0
+	+	18	16
+	+	20	0
+	+	19	57
+	+	19	2
+	+	27	23
+	+	28	24
+	+	29	24
+	+	30	24
+	+	19	46
+	+	24	25
+	+	27	23
+	+	28	24
+	+	29	24
+	+	30	24
+	+	34	34
+	+	33	35
+	+	16	11
+	+	16	0
+	+	55	52
+	+	55	54
+	+	38	17
+	+	40	2
+	+	45	21
+	+	46	10
+	+	47	0
+	+	52	42
+	+	53	43
+	+	54	0
+	+	53	22
+	+	46	4
+	+	39	3
+	+	41	0
+	+	43	9
+	+	46	6
+
+> /tmp/tutorEQKnuR
+	"	322	0
+	^	204	35
+	.	222	54
+	+	85	31
+	+	101	0
+	+	201	0
+	+	204	34
+	+	222	54
+
+> ~/Clojure/clojurebook/src/de/bort/entities/hibernate.clj
+	"	56	28
+	^	44	0
+	.	43	1
+	+	42	36
+	+	43	1
+
+> ~/Clojure/enlive-test/src/enlive_test/core.clj
+	"	1	0
+
+> ~/test
+	"	2	62
+	^	2	64
+	.	2	62
+	+	2	62
+
+> ~/.Xmodmap
+	"	45	78
+	^	59	36
+	.	59	34
+	+	44	130
+	+	44	0
+	+	44	0
+	+	62	0
+	+	44	56
+	+	44	0
+	+	42	0
+	+	42	39
+	+	43	0
+	+	42	13
+	+	250	0
+	+	253	26
+	+	251	0
+	+	252	11
+	+	58	2
+	+	59	0
+	+	57	0
+	+	59	34
+
+> ~/workspace/VersionPlusPlus/pom.xml
+	"	8	0
+	^	8	2
+	.	8	0
+	+	8	0
+
+> ~/Clojure/cmdline/project.clj
+	"	7	53
+	^	7	54
+	.	7	17
+	+	7	17
+
+> ~/Clojure/cmdline/src/cmdline/core.clj
+	"	22	13
+	^	22	14
+	.	22	13
+	+	2	2
+	+	18	10
+	+	20	8
+	+	21	14
+	+	3	12
+	+	6	0
+	+	8	43
+	+	9	19
+	+	10	23
+	+	12	15
+	+	15	29
+	+	22	13
+
+> ~/Clojure/cmdline/core.clj
+	"	1	0
+
+> ~/Clojure/clojurebook/resources/public/home.html
+	"	30	2
+	^	30	3
+	.	29	87
+	+	69	57
+	+	70	52
+	+	72	0
+	+	71	53
+	+	72	70
+	+	60	49
+	+	25	32
+	+	26	0
+	+	25	35
+	+	24	0
+	+	32	27
+	+	33	37
+	+	27	36
+	+	28	27
+	+	29	80
+	+	25	0
+	+	35	22
+	+	39	42
+	+	43	18
+	+	42	24
+	+	43	33
+	+	38	0
+	+	71	66
+	+	61	46
+	+	39	35
+	+	37	0
+	+	36	44
+	+	39	37
+	+	26	46
+	+	71	25
+	+	39	78
+	+	38	7
+	+	28	7
+	+	29	87
+
+> ~/Clojure/clojurebook/src/de/bort/routes/home.clj
+	"	70	0
+
+> ~/Clojure/clojurebook/java/de/bort/entities/Prefixes.java
+	"	77	32
+	^	77	33
+	.	77	32
+	+	77	32
+
+> ~/git/emacs/.emacs
+	"	266	33
+	^	266	34
+	.	266	33
+	+	266	33
+
+> ~/.emacs
+	"	265	30
+	^	265	31
+	.	265	30
+	+	77	1
+	+	78	1
+	+	79	1
+	+	117	1
+	+	221	1
+	+	79	0
+	+	80	0
+	+	81	0
+	+	70	15
+	+	112	0
+	+	112	0
+	+	112	0
+	+	113	0
+	+	34	30
+	+	35	0
+	+	112	0
+	+	86	0
+	+	112	0
+	+	93	36
+	+	93	0
+	+	95	16
+	+	109	70
+	+	101	17
+	+	103	0
+	+	108	0
+	+	173	0
+	+	141	1
+	+	139	1
+	+	137	1
+	+	135	1
+	+	174	0
+	+	124	0
+	+	214	0
+	+	209	0
+	+	147	1
+	+	146	10
+	+	210	39
+	+	128	0
+	+	219	0
+	+	217	0
+	+	218	27
+	+	214	0
+	+	211	60
+	+	216	0
+	+	215	0
+	+	213	40
+	+	234	0
+	+	233	15
+	+	250	17
+	+	254	0
+	+	253	1
+	+	254	46
+	+	259	0
+	+	260	1
+	+	259	0
+	+	261	35
+	+	262	22
+	+	263	29
+	+	264	32
+	+	265	30
+
+> ~/.emacs.d/scripts/converteclipsepr
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/.xinitrc
+	"	1	10
+	^	1	11
+	.	1	11
+	+	1	11
+
+> ~/Downloads/test.sql
+	"	1	12
+	^	2	4
+	.	2	3
+	+	1	13
+	+	2	3
+
+> ~/dbext_sql_history.txt
+	"	2	0
+	.	2	0
+	+	3	0
+	+	2	0
+
+> ~/Downloads/Result
+	"	1	0
+	^	1	54
+	.	2	0
+	+	1	0
+	+	1	0
+	+	14	0
+	+	15	0
+	+	1	53
+	+	2	0
+
+> ~/Downloads/sql-completion
+	"	1	0
+
+> /usr/share/vim/vim74/doc/ft_sql.txt
+	"	185	0
+
+> ~/git/emacs/.git/COMMIT_EDITMSG
+	"	12	0
+	^	1	3
+	.	1	2
+	+	1	2
+
+> ~/svn/eclipse-hide-toolbar-read-only/src/com/kizzx2/hidetoolbar/actions/StartupManager.java
+	"	25	0
+
+> /tmp/Ideen.org
+	"	178	0
+
+> ~/workspace/VersionPlusPlus/versionplusplus
+	"	9	0
+	^	6	5
+	.	6	4
+	+	4	14
+	+	9	23
+	+	5	86
+	+	6	4
+
+> ~/bin/versionplusplus
+	"	2	74
+	^	2	75
+	.	2	74
+	+	2	74
+
+> ~/Clojure/versionplusplus/versionplusplus
+	"	1	0
+	^	17	17
+	.	17	16
+	+	14	0
+	+	1	0
+	+	2	0
+	+	1	15
+	+	3	3
+	+	11	23
+	+	14	27
+	+	18	0
+	+	5	16
+	+	17	19
+	+	18	0
+	+	19	0
+	+	14	27
+	+	17	0
+	+	15	23
+	+	16	26
+	+	17	16
+
+> ~/haskell/DataTest/test.hs
+	"	12	3
+	^	12	4
+	.	12	3
+	+	2	38
+	+	4	16
+	+	7	2
+	+	6	0
+	+	5	25
+	+	7	20
+	+	9	8
+	+	13	0
+	+	9	9
+	+	10	41
+	+	11	55
+	+	11	61
+	+	13	0
+	+	12	3
+
+> ~/workspace/helloworld/pom.xml
+	"	15	0
+	.	15	0
+	+	15	0
+	+	15	0
+	+	15	0
+	+	15	0
+	+	15	0
+	+	15	0
+
+> ~/Clojure/enlive-test/project.clj
+	"	7	26
+	^	7	26
+	.	7	22
+	+	7	22
+
+> ~/haskell/fay/test.hs
+	"	74	13
+	^	52	6
+	.	52	5
+	+	1	0
+	+	47	5
+	+	48	5
+	+	49	5
+	+	50	5
+	+	52	5
+
+> ~/haskell/MyFile.hs
+	"	23	18
+	^	23	18
+	.	23	17
+	+	14	0
+	+	16	0
+	+	14	0
+	+	14	0
+	+	1	0
+	+	22	38
+	+	23	17
+	+	22	6
+	+	23	17
+
+> ~/Clojure/modern-cljs/src/cljs/modern_cljs/modern.cljs
+	"	42	1
+	^	42	1
+	.	80	0
+	+	50	0
+	+	80	0
+
+> ~/haskell/Hello.hs
+	"	22	14
+	^	22	14
+	.	19	51
+	+	1	0
+	+	12	0
+	+	12	0
+	+	9	32
+	+	10	18
+	+	9	32
+	+	10	65
+	+	27	31
+	+	9	31
+	+	10	61
+	+	27	40
+	+	27	0
+	+	20	0
+	+	18	0
+	+	19	0
+	+	27	40
+	+	28	0
+	+	26	12
+	+	27	1
+	+	19	51
+
+> ~/Clojure/modern-cljs/project.clj
+	"	23	49
+	.	1	0
+	+	1	0
+
+> ~/haskell/test
+	"	4	3
+	^	2	3
+	.	5	0
+	+	1	34
+	+	2	0
+	+	3	0
+	+	4	0
+	+	5	0
+
+> ~/haskell/mysql.hs
+	"	21	1
+	^	6	27
+	.	6	26
+	+	20	57
+	+	16	47
+	+	20	57
+	+	16	49
+	+	5	13
+	+	21	47
+	+	8	1
+	+	9	1
+	+	21	54
+	+	7	21
+	+	6	23
+	+	7	16
+	+	6	25
+	+	7	21
+	+	6	28
+	+	9	5
+	+	10	22
+	+	21	54
+	+	7	16
+	+	6	22
+	+	7	17
+	+	5	33
+	+	7	16
+	+	21	54
+	+	6	26
+
+> ~/haskell/hamlet.hs
+	"	38	0
+	^	46	0
+	.	51	0
+	+	1	0
+	+	60	0
+	+	1	0
+	+	11	0
+	+	13	0
+	+	15	0
+	+	54	0
+	+	57	1
+	+	58	1
+	+	59	1
+	+	15	11
+	+	15	22
+	+	16	0
+	+	43	0
+	+	11	7
+	+	3	0
+	+	51	13
+	+	52	5
+	+	51	4
+	+	52	4
+	+	50	26
+	+	51	0
+
+> /tmp/TSA-Personalisierungsschnittstelle-1.doc
+	"	1	0
+
+> /tmp/TSA-Personalisierungsschnittstelle.doc
+	"	34	0
+
+> /tmp/Ideen
+	"	127	0
+
+> /etc/sudoers.tmp
+	"	30	35
+	^	30	36
+	.	30	35
+	+	29	0
+	+	29	42
+	+	30	35
+
+> /etc/fstab
+	"	9	81
+	^	9	82
+	.	9	81
+	+	9	81
