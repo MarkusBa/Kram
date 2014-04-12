@@ -2,8 +2,8 @@ PATH=${PATH}:${HOME}/bign
 # depending on which "bin" you want to give higher priority
 PATH=${PATH}:/usr/local/lib/play2
 
-export HISTFILESIZE=
-export HISTSIZE=
+export HISTFILESIZE=1000000000000
+export HISTSIZE=1000000000000000
 
 PATH=${PATH}:/home/markus/.cabal/bin
 export PATH # for good measure
