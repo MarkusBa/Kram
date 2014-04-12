@@ -22,10 +22,74 @@ xmodmap -e "keycode 82 = space"
 #xcape -e "$spare_modifier=space"
 #use xfce instead
 
-function cd()
-{
- builtin cd "$*" && ls
+
+function cd() {
+    new_directory="$*";
+        if [ $# -eq 0 ]; then 
+                  new_directory=${HOME};
+        fi;
+        builtin cd "${new_directory}" && ls
 }
 
 alias cp = 'cp -r'
+
+alias l.='ls -d .* --color=auto'
+alias la="ls -aF"
+
+## get rid of command not found ##
+alias cd..='cd ..'
+ 
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+
+alias mkdir='mkdir -pv'
+# install  colordiff package :)
+alias diff='colordiff'
+
+alias mount='mount |column -t'
+
+# handy short cuts #
+alias h='history'
+alias j='jobs -l'
+
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%T'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+
+alias vi=vim
+alias svi='sudo vi'
+alias vis='vim "+set si"'
+alias edit='vim'
+
+alias update='sudo apt-get update && sudo apt-get upgrade'
+alias wget='wget -c'
+
+alias gpm="git push origin master"
+alias gcm="git commit -m "
+alias gaa="git add -A"
+
+# ff:  to find a file under the current directory
+ff () { /usr/bin/find . -name "$@" ; }
+# ffs: to find a file whose name starts with a given string
+ffs () { /usr/bin/find . -name "$@"'*' ; }
+# ffe: to find a file whose name ends with a given string
+ffe () { /usr/bin/find . -name '*'"$@" ; }
+
+# grepfind: to grep through files found by find, e.g. grepf pattern '*.c'
+# note that 'grep -r pattern dir_name' is an alternative if want all files 
+grepfind () { find . -type f -name "$2" -print0 | xargs -0 grep "$1" ; }
+# I often can't recall what I named this alias, so make it work either way: 
+alias findgrep='grepfind'
+
+#alias pstree='/sw/bin/pstree -g 2 -w'
+
+
+
 
