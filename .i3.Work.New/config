@@ -177,8 +177,19 @@ exec_always xbindkeys
 exec_always xmodmap ~/.Xmodmap
 exec_always clipit -d  
 exec_always /home/barthlen/gnome-terminal-colors-solarized/set_light.sh
+exec_always eclipse
+exec_always firefox 
+exec_always thunderbird
+exec_always thunar
+exec_always mysql-workbench
+exec_always emacs
 
-#exec ~/.screenlayout/dualdtop.sh			
+
+
+
+
+
+exec --no-startup-id i3-msg 'workspace 7:terms; exec /usr/bin/gnome-terminal' 
 #exec chromium-browser					
 #exec gvim						
 #exec volumeicon							
@@ -210,7 +221,9 @@ bindsym Mod1+0 workspace "10:office"
 
 ## Assign workspaces to programs
 assign [class="^Chromium-browser$" instance="^chromium-browser$"] → 1:firefox
+assign [class="^Eclipse$" instance="^Eclipse$"] → 2:eclipse
 assign [class="^Gvim$" instance="^gvim$"] → 5:emacs
+assign [class="^Mysql-workbench-bin$" instance="^mysql-workbench-bin$"] → 6:workbench
 assign [class="^MPlayer$" instance="^gl$"] → 9:music
 assign [class="^Firefox$" instance="^Navigator$"] → 1:firefox
 assign [class="^Emacs$" instance="^emacs$"] → 5:emacs
