@@ -32,7 +32,7 @@ alias rp='cd /home/barthlen/git/rlpPortal'
 alias bi='cd /home/barthlen/git/bimeditor'
 alias ph='cd /home/barthlen/git/phoenix'
 alias op='cd /home/barthlen/Old\ Projects'
-alias lt='ls -lt'
+alias lt='ls -ltr'
 
 
 
