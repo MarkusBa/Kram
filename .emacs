@@ -257,14 +257,157 @@
         (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
 
 
- (global-set-key "\C-cs" 'shell)
- (global-set-key "\C-cq" 'sql-mode)
- (global-set-key "\C-cj" 'jde-mode)
- (global-set-key "\C-cl" 'evil-mode)
- (global-set-key "\C-cp" 'paredit-mode)
- (global-set-key "\C-cd" 'dired)
- (global-set-key "\C-cc" 'global-font-lock-mode)
 
 ;; disable color crap
 (global-font-lock-mode nil)
 
+(defun insert-p-tag ()
+  "Insert <p></p> at cursor point."
+  (interactive)
+  (insert "<p></p>")
+  (backward-char 4))
+
+(defun next-user-buffer ()
+  "Switch to the next user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (and (string-equal "*" (substring (buffer-name) 0 1)) (< i 20))
+      (setq i (1+ i)) (next-buffer))))
+
+(defun previous-user-buffer ()
+  "Switch to the previous user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (and (string-equal "*" (substring (buffer-name) 0 1)) (< i 20))
+      (setq i (1+ i)) (previous-buffer) )))
+
+
+
+(require 'god-mode)
+(global-set-key (kbd "<escape>") 'god-mode-all)
+(defun my-update-cursor ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only)
+                        'box
+                      'bar)))
+
+(add-hook 'god-mode-enabled-hook 'my-update-cursor)
+(add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+(defun fullscreen (&optional f)
+       (interactive)
+       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+               '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+               '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+
+(shell)
+
+    (defun kill-other-buffers ()
+      "Kill all other buffers."
+      (interactive)
+      (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
+;;Irc client
+(require 'erc)
+
+(erc-autojoin-mode t)
+(setq erc-autojoin-channels-alist
+  '((".*\\.freenode.net" "#emacs" "#clojure" "#lisp" "#ubuntu-de" "##java")
+     ))
+
+(erc-track-mode t)
+(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
+
+                                 "324" "329" "332" "333" "353" "477"))
+;; don't show any of this
+(setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
+
+(defun djcb-erc-start-or-switch ()
+  "Connect to ERC, or switch to last active buffer"
+  (interactive)
+  (if (get-buffer "irc.freenode.net:6667") ;; ERC already active?
+
+    (erc-track-switch-buffer 1) ;; yes: switch to last active
+    (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
+      (erc :server "irc.freenode.net" :port 6667 :nick "MarkusBarthlen" :full-name "Markus" :password "mark" )
+      )))
+
+;; alt: MarkusX
+
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; integrate copy/paste with X
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
+(require 'anything-grep)
+(require 'undo-tree)
+
+;minibuffer hisT
+(savehist-mode 1)
+
+
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
+(setq org-agenda-files (list "~/org/work.org"
+                             "~/org/home.org"))
+
+(setq org-default-notes-file (concat org-directory "/org/notes.org"))
+(define-key global-map "\C-cc" 'org-capture)
+
+     (setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")))
+
+(require 'recentf)
+ 
+;; get rid of `find-file-read-only' and replace it with something
+;; more useful.
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+ 
+;; enable recent files mode.
+(recentf-mode t)
+ 
+; 50 files ought to be enough.
+(setq recentf-max-saved-items 50)
+ 
+(defun ido-recentf-open ()
+  "Use `ido-completing-read' to \\[find-file] a recent file"
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
+
+
+
+;; switch to ERC with Ctrl+c i
+(global-set-key (kbd "C-c i") 'djcb-erc-start-or-switch) ;; ERC  
+(global-set-key "\C-cn" 'next-user-buffer)
+(global-set-key "\C-cs" 'shell)
+(global-set-key "\C-cq" 'sql-mode)
+(global-set-key "\C-cj" 'jde-mode)
+(global-set-key "\C-cv" 'evil-mode)
+(global-set-key "\C-cp" 'paredit-mode)
+(global-set-key "\C-cd" 'dired)
+(global-set-key "\C-cg" 'global-font-lock-mode)
+(global-set-key "\C-cb" 'ido-switch-buffer)
+(global-set-key (kbd "<f8>") 'ido-switch-buffer)   
+(global-set-key [f11] 'fullscreen)
+(global-set-key "\C-cf" 'list-matching-lines)
+(global-set-key "\M-o" 'other-window)
+(global-set-key [f2] 'rgrep)
+(global-set-key [f1] 'occur)
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-f" 'scroll-up)
+(global-set-key "\C-b" 'scroll-down)
+
+(fullscreen)
