@@ -52,11 +52,11 @@
 	
   services.virtualbox.enable = true;
 
-  fileSystems = [
-   { mountPoint = "/";
-     label = "nixos";  
-   }
-  ];
+  #fileSystems = [
+  # { mountPoint = "/";
+  #   label = "nixos";  
+  # }
+  #];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.guest = {
