@@ -1,49 +1,40 @@
 PATH=${PATH}:${HOME}/bign
-# depending on which "bin" you want to give higher priority
+#: depending on which "bin" you want to give higher priority
+PATH=${PATH}:/usr/local/lib/play2
+PATH=${PATH}:~/.cabal/bin
 
+
+export HISTFILESIZE=1000000000000
+export HISTSIZE=1000000000000000
+
+PATH=${PATH}:/home/markus/.cabal/bin
 export PATH # for good measure
-export CLOJURESCRIPT_HOME=/home/barthlen/Test/clojurescript
+export CLOJURESCRIPT_HOME=/home/markus/clojurescript
 #export JAVA_OPTS="-Xms1536m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC" 
-#export JAVA_OPTS="-Xms1536m -Xmx1536m" 
 
-export SHELL=/usr/bin/zsh
+#xcape -e "Control_R=space"
 
-export HISTSIZE=100000000
-export HISTFILESIZE=10000000000
+#spare_modifier="Hyper_L"
+#xmodmap -e "keycode 65 = $spare_modifier"
+#xmodmap -e "remove mod4 = $spare_modifier" # hyper_l is mod4 by default
+#xmodmap -e "add Control = $spare_modifier"
 
-#mein zeug
-export HTTP_PROXY='http://proxy.intern.chamaeleon.de:3128'
-export HTTPS_PROXY='https://proxy.intern.chamaeleon.de:3128'
-export FTP_PROXY='http://proxy.intern.chamaeleon.de:3128'
-export http_proxy='http://proxy.intern.chamaeleon.de:3128'
-export https_proxy='https://proxy.intern.chamaeleon.de:3128'
-export ftp_proxy='http://proxy.intern.chamaeleon.de:3128' 
-export JAVA_HOME='/usr/lib/jvm/jdk1.7.0/'
-export PATH=$PATH:$JAVA_HOME/bin
-export CATALINA_HOME=/home/barthlen/local/apache-tomcat-7.0.27
+# Map space to an unused keycode (to keep it around for xcape to
+# use).
+#xmodmap -e "keycode 82 = space"
 
-alias gitsp='git stash && git pull -r && git stash pop'
-alias l='ls'
-alias ll='ls -l'
-alias mvnc='mvn de.chamaeleon.tools.maven:versionator-maven-plugin:validate -Dreleasetyp=rc;mvn de.chamaeleon.tools.maven:versionator-maven-plugin:validate -Dreleasetyp=produktiv;mvn de.chamaeleon.tools.maven:versionator-maven-plugin:validate -Dreleasetyp=testing'
-alias jc='cd /home/barthlen/git/jobcenter'
-alias jb='cd /home/barthlen/git/jbis'
-alias rp='cd /home/barthlen/git/rlpPortal'
-alias bi='cd /home/barthlen/git/bimeditor'
-alias ph='cd /home/barthlen/git/phoenix'
-alias op='cd /home/barthlen/Old\ Projects'
-alias lt='ls -ltr'
-
+# Finally use xcape to cause the space bar to generate a space when tapped.
+#xcape -e "$spare_modifier=space"
+#use xfce instead
 
 
 function cd() {
     new_directory="$*";
-    if [ $# -eq 0 ]; then 
-        new_directory=${HOME};
-    fi;
-    builtin cd "${new_directory}" && ls
+        if [ $# -eq 0 ]; then 
+                  new_directory=${HOME};
+        fi;
+        builtin cd "${new_directory}" && ls
 }
-
 
 alias cp='cp -r'
 
@@ -103,3 +94,7 @@ grepfind () { find . -type f -name "$2" -print0 | xargs -0 grep "$1" ; }
 alias findgrep='grepfind'
 
 #alias pstree='/sw/bin/pstree -g 2 -w'
+#/home/markus/guake-colors-solarized/set_light.sh
+
+
+
