@@ -423,6 +423,10 @@ User buffers are those whose name does not start with *."
 (global-set-key "\C-b" 'scroll-down)
 
 (global-set-key "\C-Z" nil)
-(global-set-key "\C-V" nil)
+(global-set-key "\C-V" 'yank)
+(global-set-key "\C-cc" 'kill-ring-save)
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
 
 (fullscreen)
