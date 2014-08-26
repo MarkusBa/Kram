@@ -75,8 +75,20 @@
 ;;(load "/usr/share/emacs24/site-lisp/haskell-mode/haskell-mode.elc")
 
 ;; haskell
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode 
-;;   'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
+
+(defun my-haskell-mode-hook ()
+   (haskell-indentation-mode 1) ;; turn off, just to be sure
+   (haskell-indent-mode -1)       ;; turn on indent-mode
+
+   ;; further customisations go here.  For example:
+   (setq locale-coding-system 'utf-8 )
+   ;;(flyspell-prog-mode)  ;; spell-checking in comments and strings
+   ;; etc.      
+
+)
+
 
 ;; evil
 ;;(add-to-list 'load-path "~/.emacs.d/elpa/evil-1.0.6")
@@ -316,7 +328,7 @@ User buffers are those whose name does not start with *."
 
 (erc-autojoin-mode t)
 (setq erc-autojoin-channels-alist
-  '((".*\\.freenode.net" "#emacs" "#clojure" "#lisp" "#ubuntu-de" "##java")
+  '((".*\\.freenode.net" "#emacs" "#clojure" "#lisp" "#ubuntu-de" "##java" "#nixos" "#haskell")
      ))
 
 (erc-track-mode t)
@@ -409,5 +421,8 @@ User buffers are those whose name does not start with *."
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-f" 'scroll-up)
 (global-set-key "\C-b" 'scroll-down)
+
+(global-set-key "\C-Z" nil)
+(global-set-key "\C-V" nil)
 
 (fullscreen)
