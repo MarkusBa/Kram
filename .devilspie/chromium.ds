@@ -1,0 +1,5 @@
+(if
+  (contains (application_name) "hromium")
+  (set_workspace 9
+  (geometry "1440x1200+00")	
+)

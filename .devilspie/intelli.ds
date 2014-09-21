@@ -1,0 +1,5 @@
+(if
+  (contains (application_name) "ntelli")
+  (set_workspace 2)
+  (geometry "1440x1200+00")	
+)

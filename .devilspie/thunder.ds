@@ -1,0 +1,5 @@
+(if
+  (contains (application_name) "underbird")
+  (set_workspace 6)
+  (geometry "1440x1200+00")	
+)

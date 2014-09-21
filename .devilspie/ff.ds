@@ -1,0 +1,5 @@
+(if
+  (is (application_name) "Firefox")
+  (set_workspace 1)
+  (geometry "1440x1200+00")	
+)

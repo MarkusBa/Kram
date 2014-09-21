@@ -1,0 +1,5 @@
+(if
+  (contains (application_name) "clipse")
+  (set_workspace 5)
+  (geometry "1440x1200+00")	
+)
