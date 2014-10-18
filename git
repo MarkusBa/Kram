@@ -1,0 +1,43 @@
+Git - wikipedia definition
+
+---
+Alternativen - mercurial, cvs, svn, darcs,...
+
+---
+Warum? - the value of values (oder immutabilty ist toll)
+
+Projekte
+Dateien/Ordner, die oft manuell geändert werden
+"Time machine" für linux
+
+---
+git init
+git add
+git commit
+(git remote add)
+git push <> master
+
+Alternativ:
+
+git clone <uri>
+
+---
+git stash
+git pull -r
+git stash pop
+
+---
+git checkout <branch-name>
+git merge (2way)
+
+---
+git reset
+
+---
+git status
+git log
+gitk
+
+(git rebase)
+
+git tag
