@@ -380,6 +380,7 @@ User buffers are those whose name does not start with *."
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
              "* %?\nEntered on %U\n  %i\n  %a")))
 
+(setq org-startup-indented t)
 (require 'recentf)
  
 ;; get rid of `find-file-read-only' and replace it with something
@@ -399,7 +400,15 @@ User buffers are those whose name does not start with *."
       (message "Opening file...")
     (message "Aborting")))
 
+;;(add-to-list 'load-path "~/git/slime")
+;;(require 'slime-autoloads)
 
+;; Set your lisp system and, optionally, some contribs
+;;(setq inferior-lisp-program "/usr/bin/sbcl")
+;(setq slime-contribs '(slime-fancy))
+
+(flyspell-mode 0)
+(add-hook 'org-mode-hook (lambda () (flyspell-mode -1)))
 
 ;; switch to ERC with Ctrl+c i
 (global-set-key (kbd "C-c i") 'djcb-erc-start-or-switch) ;; ERC  

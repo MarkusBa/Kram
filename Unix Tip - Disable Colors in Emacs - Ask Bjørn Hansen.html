@@ -1,0 +1,926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Movable Type Pro 4.38" />
+<link rel="stylesheet" href="http://www.askbjoernhansen.com/styles.css" type="text/css" />
+<link rel="start" href="http://www.askbjoernhansen.com/" title="Home" />
+<meta name="ICBM" content="34.115740, -118.324129" />
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+<script type="text/javascript" src="http://www.askbjoernhansen.com/mt.js"></script>
+
+
+    <link rel="prev bookmark" href="http://www.askbjoernhansen.com/2002/09/05/its_raining.html" title="It's raining!" />
+    <link rel="next bookmark" href="http://www.askbjoernhansen.com/2002/09/07/new_ibooks_and.html" title="New iBooks and PowerBooks" />
+    
+    <title>Unix Tip - Disable Colors in Emacs - Ask Bjørn Hansen</title>
+</head>
+<body id="mt-blog" class="mt-entry-archive layout-wt">
+    <div id="container">
+        <div id="container-inner">
+
+
+            <div id="header">
+    <div id="header-inner">
+        <div id="header-content">
+
+
+            <div id="header-name"><a href="http://www.askbjoernhansen.com/" accesskey="1">Ask Bjørn Hansen</a></div>
+            <div id="header-description">oh make some big jumps, big jumps</div>
+
+        </div>
+    </div>
+</div>
+
+
+
+            <div id="content">
+                <div id="content-inner">
+
+
+                    <div id="alpha">
+                        <div id="alpha-inner">
+
+
+                            <div id="entry-138" class="entry-asset asset hentry">
+                                <div class="asset-header">
+                                    <h1 id="page-title" class="asset-name entry-title">Unix Tip - Disable Colors in Emacs</h1>
+                                    <div class="asset-meta">
+                                        <span class="byline">
+
+                                            By <span class="vcard author"><a class="fn url" href="http://askask.com/">Ask Bjørn Hansen</a></span> on <abbr class="published" title="2002-09-05T22:46:39-08:00">September  5, 2002 10:46 PM</abbr>
+
+                                        </span>
+
+                                        <span class="separator">|</span> <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comments">12 Comments</a>
+
+
+                                        <span class="separator">|</span> <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#trackbacks">1 TrackBack</a>
+
+                                    </div>
+                                </div>
+                                <div class="asset-content entry-content">
+
+                                    <div class="asset-body">
+                                        <p><a href="http://www.askbjoernhansen.com/archives/archives/2002/09/emacscolors.png"><img alt="emacscolors.png"   align="right" src="http://www.askbjoernhansen.com/archives/archives/2002/09/emacscolors-thumb.png" width="280" height="274" border="0" /></a>I hate color markup of my source code.  I hate the color output of `ls`.  It's not that I am some fanatic, craving back to the pre-web days.  It's not that I go around telling people, in a bitter voice "life was better when virtual desktops were in 80x25 using the 'screen' tool!"</p>
+
+<p>No, it's more related to running my 21 inch monitor in 1024x768.  I want to be able to see what I am doing.  The color stuff makes it @#$# impossibly to see.  Too bright cyan colors.  And odd greens.   It's great to get cues as to what type of files are in the directory when you do an ls; but not at the expense of being able to read the filename.</p>
+
+<p>Maybe it's helpful to color code HTML markup; but for perl code I prefer to keep the markup in the indention; and for ls output I'm just fine with seeing the filenames and knowing what type of file it is.</p>
+
+<p>But don't despair, it's easy to fix ...</p>
+                                    </div>
+
+
+                                    <div id="more" class="asset-more">
+                                        <p>To make ls stop the nuttiness you have to delete the alias that makes `ls` interpreted as `ls --color=tty`.  On many Linux boxes you need to delete some files called color-something in /etc/profile.d/.  </p>
+
+<p>To make emacs sane you can add </p>
+
+<p>;; disable color crap<br />
+(setq-default global-font-lock-mode nil)<br />
+ <br />
+to your .emacs file.  You can also toggle the color crap with "Meta-x global-font-lock-mode<enter>".</p>
+                                    </div>
+
+                                </div>
+                                <div class="asset-footer">
+
+
+                                </div>
+                            </div>
+
+
+                    <div id="trackbacks" class="trackbacks">
+    <h2 class="trackbacks-header">1 TrackBack</h2>
+
+    
+    
+
+
+    
+    
+        
+    <div class="trackbacks-content">
+        
+        <div class="trackback" id="ping-8">
+            <div class="inner">
+                <div class="trackback-header">
+                    <div class="asset-meta">
+                        <a href="http:/ouroboros.anu.edu.au/feed/spoon/2002/09/15#0002" rel="nofollow">Editing with or without colour</a> from Out of the cutlery drawer on <a href="#ping-8" rel="nofollow">September 14, 2002  7:31 AM</a>
+                    </div>
+                </div>
+                <div class="trackback-content">
+                    <p>
+                        Since I started my new job back in July, I've been editing Perl with vi, without colour. <a href="http:/ouroboros.anu.edu.au/feed/spoon/2002/09/15#0002" rel="nofollow">Read More</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+        
+    
+</div>
+
+
+                    <div id="comments" class="comments">
+
+
+    
+    
+        
+    <h2 class="comments-header">12 Comments</h2>
+    <div class="comments-content">
+        
+        <div id="comment-88" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://blog.dalberg.com" href="http://blog.dalberg.com" rel="nofollow">Jesper</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-88"><abbr class="published" title="2002-09-06T00:03:50-08:00">September  6, 2002 12:03 AM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>Advice: Use vi, like me ;)</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-89" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://www.askbjoernhansen.com/" href="http://www.askbjoernhansen.com/" rel="nofollow">Ask Bjoern Hansen</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-89"><abbr class="published" title="2002-09-06T03:13:17-08:00">September  6, 2002  3:13 AM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>I do sometimes. :-)  It's much better for my hands and shoulders and all too.</p>
+
+<p>I am just so much more productive in emacs, so it's hard for me to get over the learning curve in vi.</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-90" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://blog.dalberg.com" href="http://blog.dalberg.com" rel="nofollow">Jesper</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-90"><abbr class="published" title="2002-09-06T05:50:05-08:00">September  6, 2002  5:50 AM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>And so NOT worth it ;)</p>
+
+<p>I stopped using Emacs when I started doing more sysadm work than devel work. To lazy to change back to Emacs when I started writed software again, so now I have an editor I know (or at least can use without getting to annoyed) on every box im on, which is about the only real advantage of using vi.</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-91" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://www.cwinters.com/" href="http://www.cwinters.com/" rel="nofollow">Chris Winters</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-91"><abbr class="published" title="2002-09-06T14:01:07-08:00">September  6, 2002  2:01 PM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>Wow, I've always considered syntax highlighting one of the major selling points of smart editors. For me they provide an almost subconscious cue if something is wrong -- forgot to close a quote, etc. It's true that indenting does this also, but that's why they call them opinions :-)</p>
+
+<p>You know you can change the actual colors that are used for the various items?</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-93" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://www.askbjoernhansen.com/" href="http://www.askbjoernhansen.com/" rel="nofollow">Ask Bjoern Hansen</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-93"><abbr class="published" title="2002-09-06T15:43:08-08:00">September  6, 2002  3:43 PM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>I used to like it better; I think when I was getting serious about perl and using bbedit (!) to write code I liked it.  But after 5 years of not having colors I can't get myself to appreciate it again. Too Much Noise.</p>
+
+<p>> You know you can change the actual colors<br />
+> that are used for the various items?</p>
+
+<p>Yeah, I thought about that too.   But it seemed like too much hassle. I work on too many different computers with too many different role accounts.</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-97" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://www.cwinters.com/" href="http://www.cwinters.com/" rel="nofollow">Chris Winters</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-97"><abbr class="published" title="2002-09-06T19:57:57-08:00">September  6, 2002  7:57 PM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>That's why having a central repository (like, say, a website) where you can grab your .emacs (or custom.el if you use xemacs) is so handy :-) It even works on win32!</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-98" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://www.unix-girl.com/blog/" href="http://www.unix-girl.com/blog/" rel="nofollow">kasia</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-98"><abbr class="published" title="2002-09-07T08:01:57-08:00">September  7, 2002  8:01 AM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>vim on newer linux distribution also defaults to colour mode.. yucky</p>
+
+<p>(when coding in emacs it's very handy though..I just change the default colours to something more sane..)</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-99" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author"><a title="http://thomas.eibner.dk/" href="http://thomas.eibner.dk/" rel="nofollow">Thomas Eibner</a></span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-99"><abbr class="published" title="2002-09-09T13:01:40-08:00">September  9, 2002  1:01 PM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>Try using a more sane color scheme!</p>
+
+<p>Add this to your .Xdefaults:</p>
+
+<p>emacs*Foreground: Wheat<br />
+emacs*font: fixed<br />
+emacs*cursorColor: Green<br />
+emacs*Background: RoyalBlue4</p>
+
+<p>and run xrdb .Xdefaults</p>
+
+<p>mmm much more comfortable colors.</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-2064" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author">arun</span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-2064"><abbr class="published" title="2004-03-06T07:33:50-08:00">March  6, 2004  7:33 AM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>Sir,</p>
+
+<p>Can any help me in using colours in UNIX script,</p>
+
+<p>Thanks </p>
+
+<p>Arun</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-3379136" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author">Anonymous</span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-3379136"><abbr class="published" title="2009-04-27T18:57:51-08:00">April 27, 2009  6:57 PM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>This worked for me:   </p>
+
+<p>(global-font-lock-mode nil)<br />
+</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-3382458" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author">Fredrik Staxäng</span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-3382458"><abbr class="published" title="2009-05-15T06:03:29-08:00">May 15, 2009  6:03 AM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>I had to use (global-font-lock-mode nil)</p>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <div id="comment-3420008" class="comment">
+            <div class="inner">
+                <div class="comment-header">
+                    <div class="asset-meta">
+                        <span class="byline">
+                            
+        
+                            <span class="vcard author">Christophe</span>
+        
+                            | <a href="http://www.askbjoernhansen.com/2002/09/05/unix_tip_disable_colors_in_ema.html#comment-3420008"><abbr class="published" title="2009-10-10T04:35:17-08:00">October 10, 2009  4:35 AM</abbr></a>
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>Maybe <a href="http://www.emacswiki.org/emacs/ColorTheme" rel="nofollow">http://www.emacswiki.org/emacs/ColorTheme</a> can help you in choosing a better color theme.</p>
+
+<p>Or you can use, C-u C-x = to see the face of some part and change its color (according to the background) with a command like<br />
+<pre><br />
+(face-spec-set 'show-paren-match-face<br />
+	       '((((class color) (type tty)) (:background "yellow"))<br />
+		 (((class color) (background light))<br />
+		  (:background "black" :foreground "white"))<br />
+		 (((class color) (background dark))<br />
+		  (:background "light slate blue" :foreground "white"))))<br />
+</pre></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+        
+    
+
+
+    
+    
+
+
+</div>
+
+
+
+
+                        </div>
+                    </div>
+
+
+                    <div id="beta">
+    <div id="beta-inner">
+
+
+    
+    <div class="widget-search widget">
+    <h3 class="widget-header">Search</h3>
+    <div class="widget-content">
+        <form method="get" action="http://www.askbjoernhansen.com/mt/mt-search.cgi">
+            <input type="text" id="search" class="ti" name="search" value="" />
+
+            <input type="hidden" name="IncludeBlogs" value="1" />
+
+            <input type="hidden" name="limit" value="20" />
+            <input type="submit" accesskey="4" value="Search" />
+        </form>
+    </div>
+</div>
+
+<div class="widget-about-this-page widget">
+    <h3 class="widget-header">
+
+        About this Entry
+
+
+    </h3>
+    <div class="widget-content">
+
+
+        <p class="first">This page contains a single entry by <a href="http://askask.com/">Ask Bjørn Hansen</a> published on <em>September  5, 2002 10:46 PM</em>.</p>
+    
+        <p><a href="http://www.askbjoernhansen.com/2002/09/05/its_raining.html">It's raining!</a> was the previous entry in this blog.</p>
+    
+    
+        <p><a href="http://www.askbjoernhansen.com/2002/09/07/new_ibooks_and.html">New iBooks and PowerBooks</a> is the next entry in this blog.</p>
+    
+
+
+
+
+
+        <p>Find recent content on the <a href="http://www.askbjoernhansen.com/">main index</a> or look in the <a href="http://www.askbjoernhansen.com/archives.html">archives</a> to find all content.</p>
+
+    </div>
+</div>
+<div class="widget-archive-monthly widget-archive widget">
+    <h3 class="widget-header">Monthly <a href="http://www.askbjoernhansen.com/archives.html">Archives</a></h3>
+    <div class="widget-content">
+        <ul>
+        
+            <li><a href="http://www.askbjoernhansen.com/2010/04/">April 2010 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2009/08/">August 2009 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2009/07/">July 2009 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2009/03/">March 2009 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2009/02/">February 2009 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/12/">December 2008 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/11/">November 2008 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/09/">September 2008 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/05/">May 2008 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/04/">April 2008 (3)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/03/">March 2008 (3)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/02/">February 2008 (3)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2008/01/">January 2008 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/11/">November 2007 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/10/">October 2007 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/09/">September 2007 (8)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/08/">August 2007 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/07/">July 2007 (6)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/05/">May 2007 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/04/">April 2007 (6)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/03/">March 2007 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/02/">February 2007 (3)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2007/01/">January 2007 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/12/">December 2006 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/11/">November 2006 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/10/">October 2006 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/09/">September 2006 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/08/">August 2006 (5)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/07/">July 2006 (6)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/06/">June 2006 (3)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/05/">May 2006 (3)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/04/">April 2006 (5)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/03/">March 2006 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/02/">February 2006 (7)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2006/01/">January 2006 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/12/">December 2005 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/11/">November 2005 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/09/">September 2005 (1)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/08/">August 2005 (9)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/07/">July 2005 (9)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/06/">June 2005 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/05/">May 2005 (5)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/04/">April 2005 (10)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/03/">March 2005 (8)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/02/">February 2005 (15)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2005/01/">January 2005 (18)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/12/">December 2004 (9)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/11/">November 2004 (14)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/10/">October 2004 (10)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/09/">September 2004 (11)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/08/">August 2004 (15)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/07/">July 2004 (11)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/06/">June 2004 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/05/">May 2004 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/04/">April 2004 (7)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/03/">March 2004 (9)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/02/">February 2004 (8)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2004/01/">January 2004 (4)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/12/">December 2003 (11)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/11/">November 2003 (2)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/10/">October 2003 (6)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/09/">September 2003 (11)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/08/">August 2003 (15)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/07/">July 2003 (12)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/06/">June 2003 (7)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/05/">May 2003 (3)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/04/">April 2003 (13)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/03/">March 2003 (9)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/02/">February 2003 (11)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2003/01/">January 2003 (28)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/12/">December 2002 (7)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/11/">November 2002 (16)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/10/">October 2002 (25)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/09/">September 2002 (20)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/08/">August 2002 (21)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/07/">July 2002 (34)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/06/">June 2002 (8)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/05/">May 2002 (12)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/04/">April 2002 (18)</a></li>
+        
+    
+        
+            <li><a href="http://www.askbjoernhansen.com/2002/03/">March 2002 (10)</a></li>
+        
+        </ul>
+    </div>
+</div>
+        
+    
+
+
+
+<div class="widget-pages widget">
+    <h3 class="widget-header">Pages</h3>
+    <div class="widget-content">
+        <ul>
+    
+    
+        </ul>
+    </div>
+</div>
+
+<div class="widget-syndication widget">
+    <div class="widget-content">
+        <ul>
+            <li><img src="http://www.askbjoernhansen.com/mt/static/images/status_icons/feed.gif" alt="Subscribe to feed" width="9" height="9" /> <a href="http://www.askbjoernhansen.com/atom.xml">Subscribe to this blog's feed</a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="widget-openid widget">
+    <div class="widget-content">
+        <em><strong>OpenID</strong> accepted here</em>
+        <a href="http://www.sixapart.com/labs/openid/">Learn more about OpenID</a>
+    </div>
+</div>
+
+<div class="widget-powered widget">
+    <div class="widget-content">
+        <a href="http://www.movabletype.com/"><img src="http://www.askbjoernhansen.com/mt/static/images/mt4-bug-pbmt-white.png" alt="Powered by Movable Type 4.38" width="120" height="75" /></a>
+    </div>
+</div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+            <div id="footer">
+    <div id="footer-inner">
+        <div id="footer-content">
+            <div class="widget-powered widget">
+                <div class="widget-content">
+                    Powered by <a href="http://www.movabletype.com/" rel="generator">Movable Type Pro</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-52057-6");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+
+ /* bf */
+<script type="text/javascript" src="http://ipv4.v6test.develooper.com/cdn/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ipv4.v6test.develooper.com/js/v1/v6test.js"></script>
+
+<script type="text/javascript">
+   // v6.target = '';
+   if (!v6.target) { v6.only_once = true }
+   v6.site = '70883E58-2362-11DF-9662-A7424942988D';
+   v6.api_server = 'http://ipv4.v6test.develooper.com';
+   try {
+     v6.test();
+   } catch(err) {}
+</script>
+
+
+
+
+
+        </div>
+    </div>
+</body>
+</html>
