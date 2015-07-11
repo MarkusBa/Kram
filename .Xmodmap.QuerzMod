@@ -75,7 +75,7 @@ keycode 51 =  ISO_Group_Shift ISO_Group_Shift ISO_First_Group  NoSymbol
 ! Mod4(rechts)+Mod4(links) lässt Mod4 einrasten (Mod4Lock)
 ! das funktioniert nur in dieser Reihenfolge, da Mod4(rechts) (=Qwertz-AltGr) nur 4 Ebenen hat
 ! Der Lock lässt sich durch ein weiteres Mod4 lösen.
-!keysym less = ISO_Level3_Shift  ISO_Level3_Shift  ISO_Group_Shift   ISO_Group_Shift  ISO_Level3_Lock  NoSymbol
+keysym less = ISO_Level3_Shift  ISO_Level3_Shift  ISO_Group_Shift   ISO_Group_Shift  ISO_Level3_Lock  NoSymbol
 keysym ISO_Level3_Shift = ISO_Level3_Shift  ISO_Level3_Shift  ISO_Group_Shift   ISO_Group_Shift  ISO_Level3_Lock  NoSymbol
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -129,28 +129,28 @@ keycode 35 = dead_acute		dead_tilde	dead_stroke	dead_psili      dead_doubleacute
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !            Ebene1		Ebene2		Ebene3		Ebene5		Ebene4		Ebene4+Sh	Ebene6		Ebene7
 
-keycode 10 = 	1		exclam		onesuperior	onesubscript	ordfeminine	NoSymbol	notsign		NoSymbol
+keycode 10 = 	1		degree		onesuperior	onesubscript	ordfeminine	NoSymbol	notsign		NoSymbol
 !				°		¹	  	₁		ª	  			¬
-keycode 11 = 	2		quotedbl		twosuperior	twosubscript	masculine	NoSymbol	logicalor	NoSymbol
+keycode 11 = 	2		section		twosuperior	twosubscript	masculine	NoSymbol	logicalor	NoSymbol
 !				§		²	  	₂		º				∨
-keycode 12 = 	3		section		threesuperior	threesubscript	numerosign	NoSymbol	logicaland	NoSymbol
+keycode 12 = 	3		U2113		threesuperior	threesubscript	numerosign	NoSymbol	logicaland	NoSymbol
 !				ℓ liter		³	  	₃		№				∧
-keycode 13 = 	4		dollar	U203A		femalesymbol	NoSymbol	NoSymbol	U22A5		NoSymbol
+keycode 13 = 	4		guillemotright	U203A		femalesymbol	NoSymbol	NoSymbol	U22A5		NoSymbol
 !				»		›		♀						⊥ perpendicular
-keycode 14 = 	5		percent	U2039		malesymbol	periodcentered	NoSymbol	U2221		NoSymbol
+keycode 14 = 	5		guillemotleft	U2039		malesymbol	periodcentered	NoSymbol	U2221		NoSymbol
 !				«		‹		♂		·				∡ angle sign
-keycode 15 = 	6		ampersand		cent		U26A5		sterling	NoSymbol	U2225		NoSymbol
+keycode 15 = 	6		dollar		cent		U26A5		sterling	NoSymbol	U2225		NoSymbol
 !				$		¢		⚥		£				∥ parallel
 
-keycode 16 = 	7		slash	EuroSign		U03F0		currency	NoSymbol	rightarrow	NoSymbol
+keycode 16 = 	7		EuroSign	yen		U03F0		currency	NoSymbol	rightarrow	NoSymbol
 !				€		¥		ϰ Greek_kappa	¤				→
-keycode 17 = 	8   parenleft    singlelowquotemark  leftanglebracket	Tab		ISO_Left_Tab	infinity	NoSymbol
+keycode 17 = 	8   doublelowquotemark    singlelowquotemark  leftanglebracket	Tab		ISO_Left_Tab	infinity	NoSymbol
 !				„		‚		⟨ (bra)						∞
-keycode 18 = 	9   parenright   leftsinglequotemark rightanglebracket KP_Divide	KP_Divide	variation	NoSymbol
+keycode 18 = 	9   leftdoublequotemark   leftsinglequotemark rightanglebracket KP_Divide	KP_Divide	variation	NoSymbol
 !				“		‘		⟩ (ket)		/		/		∝ proportional to
-keycode 19 = 	0   equal  rightsinglequotemark  zerosubscript	KP_Multiply	KP_Multiply	emptyset	NoSymbol
+keycode 19 = 	0   rightdoublequotemark  rightsinglequotemark  zerosubscript	KP_Multiply	KP_Multiply	emptyset	NoSymbol
 !			”			’		₀		*		*		∅
-keycode 20 = ssharp		emdash		NoSymbol	U2011		KP_Subtract	KP_Subtract	hyphen		NoSymbol
+keycode 20 = minus		emdash		NoSymbol	U2011		KP_Subtract	KP_Subtract	hyphen		NoSymbol
 !		-		—				‑ non-breaking	-		-		­ soft hyphen 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -158,7 +158,7 @@ keycode 20 = ssharp		emdash		NoSymbol	U2011		KP_Subtract	KP_Subtract	hyphen		NoS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !            Ebene1		Ebene2		Ebene3		Ebene5		Ebene4		Ebene4+Sh	Ebene6		Ebene7
 
-keycode 24 = 	q		Q		Escape	Greek_xi	Prior		Prior		Greek_XI	Greek_XI
+keycode 24 = 	q		Q		ellipsis	Greek_xi	Prior		Prior		Greek_XI	Greek_XI
 !						…		ξ						Ξ		Ξ
 keycode 25 = 	w		W		underscore	NoSymbol	BackSpace	BackSpace	radical		NoSymbol
 !						_								√	
@@ -179,7 +179,7 @@ keycode 32 = 	o		O		equal		Greek_phi	KP_9		KP_9		Greek_PHI	Greek_PHI
 !						=		φ 						Φ		Φ
 keycode 33 = 	p		P		ampersand	U03D5		KP_Add		KP_Add		U211A		NoSymbol
 !						&		ϕ Greek_phi	+		+		ℚ rational
-keycode 34 = udiaeresis		U1E9E		U017F	 Greek_finalsmallsigma  U2212		NoSymbol	jot		NoSymbol
+keycode 34 = udiaresis		Udiaresis		U017F	 Greek_finalsmallsigma  U2212		NoSymbol	jot		NoSymbol
 !	     	ß		ẞ Capital ß	ſ long s	ς		− real minus			∘ ring operator
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -204,11 +204,11 @@ keycode 44 = 	j		J		parenleft	Greek_nu	KP_4		KP_4		U2115		NoSymbol
 !						(		ν						ℕ natural
 keycode 45 = 	k		K		parenright	Greek_rho	KP_5		KP_5		U211D		NoSymbol
 !						)		ρ						ℝ real
-keycode 46 = 	l		l		minus		Greek_tau	KP_6		KP_6		partialderivative
+keycode 46 = 	l		L		minus		Greek_tau	KP_6		KP_6		partialderivative
 !						-		τ						∂
-keycode 47 = 	odiaeresis		Odiaeresis		bar		Greek_delta	KP_Separator	comma		Greek_DELTA	Greek_DELTA
-!						bar		δ		,		,		Δ		Δ
-keycode 48 = 	adiaeresis		Adiaeresis		at		Greek_upsilon	period		KP_Decimal	nabla		NoSymbol
+keycode 47 = 	odiaresis		Odiaresis		bar		Greek_delta	KP_Separator	comma		Greek_DELTA	Greek_DELTA
+!						:		δ		,		,		Δ		Δ
+keycode 48 = 	adiaresis		Adiaresis		at		Greek_upsilon	period		KP_Decimal	nabla		NoSymbol
 !						@		υ		.		.		∇
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -231,11 +231,11 @@ keycode 57 = 	n		N		plus		Greek_beta	colon		NoSymbol	U21D0		NoSymbol
 !						+		β		:				⇐
 keycode 58 = 	m		M		percent		Greek_mu	KP_1		KP_1		ifonlyif	NoSymbol
 !						%		μ						⇔
-keycode 59 = comma		semicolon		quotedbl	U03F1		KP_2		KP_2		U21D2		NoSymbol
+keycode 59 = comma		endash		quotedbl	U03F1		KP_2		KP_2		U21D2		NoSymbol
 !		,		–		"		ϱ Greek_rho					⇒ implies 
-keycode 60 = period	   colon	apostrophe	U03D1		KP_3		KP_3		U21A6		NoSymbol
+keycode 60 = period	   enfilledcircbullet	apostrophe	U03D1		KP_3		KP_3		U21A6		NoSymbol
 !		.		•		'		ϑ Greek_theta					↦
-keycode 61 = 	minus		underscore		semicolon	Greek_theta	semicolon	NoSymbol	Greek_THETA	Greek_THETA
+keycode 61 = 	j		J		semicolon	Greek_theta	semicolon	NoSymbol	Greek_THETA	Greek_THETA
 !						;		θ		;				Θ
 
 

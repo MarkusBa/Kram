@@ -75,7 +75,7 @@ keycode 51 =  ISO_Group_Shift ISO_Group_Shift ISO_First_Group  NoSymbol
 ! Mod4(rechts)+Mod4(links) lässt Mod4 einrasten (Mod4Lock)
 ! das funktioniert nur in dieser Reihenfolge, da Mod4(rechts) (=Qwertz-AltGr) nur 4 Ebenen hat
 ! Der Lock lässt sich durch ein weiteres Mod4 lösen.
-!keysym less = ISO_Level3_Shift  ISO_Level3_Shift  ISO_Group_Shift   ISO_Group_Shift  ISO_Level3_Lock  NoSymbol
+keysym less = ISO_Level3_Shift  ISO_Level3_Shift  ISO_Group_Shift   ISO_Group_Shift  ISO_Level3_Lock  NoSymbol
 keysym ISO_Level3_Shift = ISO_Level3_Shift  ISO_Level3_Shift  ISO_Group_Shift   ISO_Group_Shift  ISO_Level3_Lock  NoSymbol
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -144,13 +144,13 @@ keycode 15 = 	6		ampersand		cent		U26A5		sterling	NoSymbol	U2225		NoSymbol
 
 keycode 16 = 	7		slash	EuroSign		U03F0		currency	NoSymbol	rightarrow	NoSymbol
 !				€		¥		ϰ Greek_kappa	¤				→
-keycode 17 = 	8   parenleft    singlelowquotemark  leftanglebracket	Tab		ISO_Left_Tab	infinity	NoSymbol
+keycode 17 = 	8	parenleft    singlelowquotemark  leftanglebracket	Tab		ISO_Left_Tab	infinity	NoSymbol
 !				„		‚		⟨ (bra)						∞
-keycode 18 = 	9   parenright   leftsinglequotemark rightanglebracket KP_Divide	KP_Divide	variation	NoSymbol
+keycode 18 = 	9	parenright    leftsinglequotemark rightanglebracket KP_Divide	KP_Divide	variation	NoSymbol
 !				“		‘		⟩ (ket)		/		/		∝ proportional to
-keycode 19 = 	0   equal  rightsinglequotemark  zerosubscript	KP_Multiply	KP_Multiply	emptyset	NoSymbol
+keycode 19 = 	0	equal  rightsinglequotemark  zerosubscript	KP_Multiply	KP_Multiply	emptyset	NoSymbol
 !			”			’		₀		*		*		∅
-keycode 20 = ssharp		emdash		NoSymbol	U2011		KP_Subtract	KP_Subtract	hyphen		NoSymbol
+keycode 20 = 	ssharp		emdash		NoSymbol	U2011		KP_Subtract	KP_Subtract	hyphen		NoSymbol
 !		-		—				‑ non-breaking	-		-		­ soft hyphen 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
